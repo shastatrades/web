@@ -20,7 +20,7 @@
 
 
 <!--{"accordionStart":true}-->
-## What are the transaction statuses?
+## What are our transaction statuses?
 <!--{"accordionBody":true}-->
 | Status | Meaning | Cash in bank? | Revenue real? | Spendable? |
 |---|---|---|---|---|
@@ -49,7 +49,7 @@
 
 
 <!--{"accordionStart":true}-->
-## What are the transaction types?
+## What are our transaction types?
 <!--{"accordionBody":true}-->
 | Type | Direction | Example |
 |---|---|---|
