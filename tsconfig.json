@@ -1,0 +1,83 @@
+// app/tsconfig.json
+
+{
+  "include": [
+    "src",
+    "npm",
+    "drizzle.config.ts"
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noUncheckedIndexedAccess": true,
+    "noEmit": true,
+    "lib": [
+      "DOM",
+      "ESNext",
+    ],
+    "types": [
+      "vite/client",
+      "./worker-configuration.d.ts",
+      "node"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "hono/jsx",
+    "paths": {
+      "@src/*": [
+        "./src/*"
+      ],
+      "@img-webp": [
+        "./npm/img-webp/index"
+      ],
+      "@on-time": [
+        "./npm/on-time/index"
+      ],
+      "@safely-access": [
+        "./npm/safely-access/index"
+      ],
+      "@hono-tabs": [
+        "./npm/hono-tabs/index"
+      ],
+      "@hono-accordion": [
+        "./npm/hono-accordion/index"
+      ],
+      "@hono-events": [
+        "./npm/hono-events/index"
+      ],
+      "@hono-tooltip": [
+        "./npm/hono-tooltip/index"
+      ],
+      "@hono-api/fe": [
+        "./npm/hono-api/fe/index"
+      ],
+      "@hono-api/be": [
+        "./npm/hono-api/be/index"
+      ],
+      "@hono-dom": [
+        "./npm/hono-dom/index"
+      ],
+      "@hono-toast": [
+        "./npm/hono-toast/index"
+      ],
+      "@hono-directives": [
+        "./npm/hono-directives/dist/index"
+      ],
+      "@hono-form": [
+        "./npm/hono-form/index"
+      ],
+      "@hono-email": [
+        "./npm/hono-email/index"
+      ],
+      "@hono-modal": [
+        "./npm/hono-modal/index"
+      ],
+      "@drizzle-compose": [
+        "./npm/drizzle-compose/index"
+      ]
+    }
+  },
+}

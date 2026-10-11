@@ -1,0 +1,472 @@
+// app/src/objectives/objectives.route.tsx
+
+import { Hono } from 'hono'
+import type { FC } from 'hono/jsx'
+import { css, Style } from 'hono/css'
+import { ModalConfirm } from '@hono-modal'
+import { tabsStyle, Tabs } from '@hono-tabs'
+import { onObjectivesPageLoad } from '@hono-directives'
+import ObjectiveInUp from '@src/objectives/ObjectiveInUp'
+import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
+import type { ClassNameReturn, DatasetReturn } from '@hono-dom'
+import { objectiveActivityStyle } from '@src/lib/ObjectiveActivity'
+import { dsKanbanColumns } from '@src/dataStructures/kanbanColumns.ds'
+import { queryObjectives, type QueryObjective } from '@src/db/queryObjective'
+import { classNameAssignees, classNameColumn, classNameCount, classNameObjective, classNameObjectives, classNameTags, classNameTitle, datasetColumnId, datasetId, datasetObjectiveInUpShowModal, datasetOrder, classNameSvg, idObjectiveTemplate, idActivity } from '@src/lib/dom'
+
+
+export default new Hono()
+  .get('/', async (c) => {
+    const kanbanData = await queryObjectives()
+
+    const idDataset = datasetId()
+    const orderDataset = datasetOrder()
+    const svgClassName = classNameSvg()
+    const tagsClassName = classNameTags()
+    const titleClassName = classNameTitle()
+    const countClassName = classNameCount()
+    const columnClassName = classNameColumn()
+    const columnIdDataset = datasetColumnId()
+    const assigneesClassName = classNameAssignees()
+    const objectiveClassName = classNameObjective()
+    const objectivesClassName = classNameObjectives()
+    const datasetShowModal = datasetObjectiveInUpShowModal()
+
+    return c.render(
+      <>
+        <title>Shasta Trades · Objectives</title>
+        <Style>{tabsStyle}</Style>
+        <Style>{subPageHeroStyle}</Style>
+        <Style>{objectiveActivityStyle}</Style>
+        <Style>{style}</Style>
+
+        <div class="objectives">
+          <div class="sub-page-hero">
+            <div class="bg"></div>
+            <div class="header">
+              <h1>Objectives</h1>
+              <div class="sub-title">Our objectives are publicly available here, we're making progress and we invite all to see, celebrate, and hold us accountable!</div>
+            </div>
+
+            <div class="buttons">
+              <button {...datasetObjectiveInUpShowModal().attr()} class="transparent big" type="button">Create</button>
+              <button class="orange big" type="button">Q3 2026</button>
+            </div>
+          </div>
+
+          <div class="page-content">
+            <Tabs variant="underline" name="objectives" tabs={[
+              {
+                id: 'kanban',
+                label: 'Kanban',
+                content: <>
+                  <div data-directive={onObjectivesPageLoad(kanbanData)} class="kanban-board-wrapper">
+                    <div class="kanban-board" id="kanbanBoard" aria-label="Kanban Board">
+                      <div class="kanban-board-inner">
+                        {dsKanbanColumns.map((column) => (
+                          <section {...columnIdDataset.attr(column.id)} class={columnClassName.className} aria-label={`${column.value} column`}>
+                            <header class="header">
+                              <h2 class="title">{column.value}</h2>
+                              <span class={countClassName.className}>
+                                {kanbanData[column.id]?.length || 0}
+                              </span>
+                            </header>
+                            <div class={objectivesClassName.className} {...columnIdDataset.attr(column.id)}>
+                              {kanbanData[column.id] && kanbanData[column.id]?.map((o) => (
+                                <ObjectiveCard
+                                  objective={o}
+                                  idDataset={idDataset}
+                                  orderDataset={orderDataset}
+                                  svgClassName={svgClassName}
+                                  tagsClassName={tagsClassName}
+                                  countClassName={countClassName}
+                                  titleClassName={titleClassName}
+                                  datasetShowModal={datasetShowModal}
+                                  assigneesClassName={assigneesClassName}
+                                  objectiveClassName={objectiveClassName} />
+                              ))}
+                            </div>
+                          </section>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </>
+              },
+              {
+                id: 'activity',
+                label: 'Activity',
+                content: <>
+                  <div id={idActivity().id}>
+                    <img class="feed-loading" src="/img/loading.svg" alt="Loading..." />
+                  </div>
+                </>
+              }
+            ]} />
+          </div>
+        </div>
+
+        <ObjectiveInUp />
+        <ModalConfirm message="Are you sure you'd love to delete this objective?" />
+
+        <template id={idObjectiveTemplate().id}>
+          <ObjectiveCard
+            objective={null}
+            idDataset={idDataset}
+            orderDataset={orderDataset}
+            svgClassName={svgClassName}
+            tagsClassName={tagsClassName}
+            countClassName={countClassName}
+            titleClassName={titleClassName}
+            datasetShowModal={datasetShowModal}
+            assigneesClassName={assigneesClassName}
+            objectiveClassName={objectiveClassName} />
+        </template>
+      </>
+    )
+  })
+
+
+const ObjectiveCard: FC<{
+  objective: QueryObjective | null,
+  idDataset: DatasetReturn,
+  orderDataset: DatasetReturn,
+  datasetShowModal: DatasetReturn,
+  objectiveClassName: ClassNameReturn,
+  tagsClassName: ClassNameReturn,
+  titleClassName: ClassNameReturn,
+  countClassName: ClassNameReturn,
+  assigneesClassName: ClassNameReturn,
+  svgClassName: ClassNameReturn,
+}> = ({ objective, idDataset, orderDataset, countClassName, datasetShowModal, objectiveClassName, tagsClassName, titleClassName, assigneesClassName, svgClassName }) => {
+  return <>
+    <div {...idDataset.attr(objective ? String(objective.id) : '')} {...orderDataset.attr(objective ? String(objective.order) : undefined)} data-order={objective ? String(objective.order) : undefined} class={objectiveClassName.className} draggable="true">
+      <div class={`${countClassName.className} ${!objective?.comments.length ? 'hidden' : ''}`}>{objective?.comments.length}</div> 
+
+      <div class="top-row">
+        <span class={titleClassName.className}>{objective?.title ?? ''}</span>
+        <button {...datasetShowModal.attr(objective?.id)} type="button" class={svgClassName.className}>
+          <img src="/img/edit.svg" alt="Edit objective" />
+        </button>
+      </div>
+      <div class="bottom-row" data-populated={Number(objective?.tags?.length) > 0 || Number(objective?.assignees?.length) > 0 ? 'true' : 'false'}>
+        <div class={tagsClassName.className}>
+          {objective?.tags?.map((tag) => <>
+            <span style={`background-color: ${tag.bgHex}; color: ${tag.fgHex};`}>
+              {tag.value}
+            </span>
+          </>)}
+        </div>
+        <div class={assigneesClassName.className}>
+          {objective?.assignees?.map((assignee) => <>
+            <img
+              src={`https://r2.shastatrades.org/${assignee.imageId}.webp`}
+              alt={`Assignee ${assignee.id}`}
+            />
+          </>)}
+        </div>
+      </div>
+    </div>
+  </>
+}
+
+
+const style = css`
+  .objectives {
+    .feed {
+      min-height: 21rem;
+    }
+
+    img.feed-loading {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+
+  .kanban-board-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    width: 100%;
+    margin-bottom: var(--space-huge);
+  }
+
+  .kanban-board {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e1 #f1f5f9;
+    -webkit-overflow-scrolling: touch;
+    &::-webkit-scrollbar {
+      height: 0.8rem;
+    }
+    &::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 1rem;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 1rem;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+
+    .kanban-board-inner {
+      display: flex;
+      gap: 2rem;
+      margin: auto;
+      width: max-content; /* ensures row width = content */
+
+      .column {
+        border-radius: 1.4rem;
+        box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.06), 0 0.2rem 0.4rem rgba(0, 0, 0, 0.04);
+        flex: 0 0 auto;
+        width: 38.5rem;
+        max-width: 84vw;
+        display: flex;
+        flex-direction: column;
+        transition: box-shadow 0.25s ease;
+        overflow: visible;
+        &:nth-child(1) {
+          background: linear-gradient(to bottom, rgba(99, 102, 241, 0.08), transparent);
+
+          .header {
+            border-bottom-color: #6366f1;
+          }
+
+          .count {
+            color: #4f46e5;
+            background-color: #e0e7ff;
+          }
+        }
+        &:nth-child(2) {
+          background: linear-gradient(to bottom, rgba(245, 158, 11, 0.08), transparent);
+
+          .header {
+            border-bottom-color: #f59e0b;
+          }
+
+          .count {
+            color: #b45309;
+            background-color: #fef3c7;
+          }
+        }
+        &:nth-child(3) {
+          background: linear-gradient(to bottom, rgba(16, 185, 129, 0.08), transparent);
+
+          .header {
+            border-bottom-color: #10b981;
+          }
+
+          .count {
+            color: #047857;
+            background-color: #d1fae5;
+          }
+        }
+
+        .header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 1.8rem 2rem 1.4rem 2rem;
+          border-bottom: 0.3rem solid transparent;
+          border-radius: 1.4rem 1.4rem 0 0;
+
+          .title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: #1e293b;
+            text-transform: uppercase;
+          }
+
+          .count {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #64748b;
+            background-color: #e2e8f0;
+            border-radius: 3rem;
+            padding: 0.4rem 1.2rem;
+            min-width: 3.6rem;
+            text-align: center;
+            transition: background-color 0.2s ease, color 0.2s ease;
+          }
+        }
+
+        .objectives {
+          padding: 1.4rem 1.4rem 1.8rem 1.4rem;
+          min-height: 12rem;
+          display: flex;
+          flex-direction: column;
+          gap: 1.2rem;
+          flex: 1;
+          border-radius: 0 0 1.4rem 1.4rem;
+
+          .objective {
+            background-color: #ffffff;
+            border: 0.2rem solid #e2e8f0;
+            border-radius: 1rem;
+            padding: 1.5rem 1.5rem 1.6rem 1.5rem;
+            box-shadow: 0 0.2rem 0.6rem rgba(0, 0, 0, 0.04);
+            cursor: grab;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+            user-select: none;
+            -webkit-user-select: none;
+            position: relative;
+            &:hover {
+              box-shadow: 0 0.8rem 2rem rgba(0, 0, 0, 0.08);
+              border-color: #cbd5e1;
+              transform: translateY(-0.2rem);
+            }
+            &:active {
+              cursor: grabbing;
+              transform: translateY(0) scale(0.98);
+            }
+            &.is-being-dragged {
+              opacity: 0.4;
+              border-style: dashed;
+              border-color: #94a3b8;
+              transform: scale(0.96);
+              box-shadow: none;
+              cursor: grabbing;
+            }
+
+            .count {
+              position: absolute;
+              right: -1.2rem;
+              top: -1.2rem;
+              background-color: rgb(11, 94, 215);
+              color: var(--white);
+              font-size: 80%;
+              font-weight: 600;
+              height: 2.5rem;
+              width: 2.5rem;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+
+            .top-row {
+              display: flex;
+              align-items: start;
+              justify-content: space-between;
+
+              .title {
+                font-size: 1.8rem;
+                font-weight: 500;
+                color: #1e293b;
+                line-height: 1.45;
+                word-break: break-word;
+                flex: 1;
+              }
+
+              .svg {
+                width: 2.7rem;
+                height: 2.7rem;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: translateX(0.9rem);
+                transition: var(--transition);
+                cursor: pointer;
+                opacity: 0.3;
+                border: none;
+                outline: none;
+                &:hover {
+                  opacity: 1;
+                  background-color: #f1f5f9;
+                }
+
+                img {
+                  width: 1.8rem;
+                  height: 1.8rem;
+                  object-fit: contain;
+                  pointer-events: none;
+                }
+              }
+            }
+
+            .bottom-row {
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              gap: 0.3rem;
+              &[data-populated="true"] {
+                margin-top: calc(var(--space-lite) / 2);
+              }
+
+              .tags {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.6rem;
+                flex: 1;
+                justify-content: flex-start;
+
+                span {
+                  font-size: 1.4rem;
+                  font-weight: 600;
+                  padding: 0.45rem 0.9rem;
+                  border-radius: 2rem;
+                  white-space: nowrap;
+                }
+              }
+
+              .assignees {
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                flex-shrink: 0;
+                transform: translateX(0.51rem);
+
+               img {
+                  width: 3rem;
+                  height: 3rem;
+                  border-radius: 50%;
+                  object-fit: cover;
+                  object-position: center center;
+                  box-shadow: 0 0 0 0.1rem #e2e8f0;
+                  background-color: #f1f5f9; /* fallback */
+                }
+              }
+            }
+          }
+        }
+
+        .drop-indicator {
+          height: 0.35rem;
+          background: linear-gradient(90deg, #6366f1, #a855f7, #6366f1);
+          background-size: 200% 100%;
+          border-radius: 1rem;
+          box-shadow: 0 0 1rem rgba(99, 102, 241, 0.55), 0 0 2.4rem rgba(168, 85, 247, 0.3);
+          margin: 0.1rem 0;
+          flex-shrink: 0;
+          pointer-events: none;
+          transition: all 0.15s ease;
+          &.is-loading {
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            padding: 0.5rem;
+
+            img {
+              width: 2rem;
+              height: 2rem;
+            }
+          }
+        }
+      }
+    }
+  }
+`

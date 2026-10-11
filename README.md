@@ -1,0 +1,34 @@
+# Shasta Trades App
+- Turso
+    - [Pricing](https://turso.tech/pricing)
+    - [Drizzle](https://docs.turso.tech/sdk/ts/orm/drizzle)
+    - [Encryption](https://docs.turso.tech/tursodb/encryption)
+- Cloudflare
+    - [Types](https://developers.cloudflare.com/workers/languages/typescript)
+    - [Pricing](https://developers.cloudflare.com/workers/platform/pricing/)
+    - [Secrets](https://developers.cloudflare.com/workers/configuration/secrets/)
+    - [Send Email](https://developers.cloudflare.com/api/resources/email_sending/methods/send/)
+- Hono
+    - [JSX](https://hono.dev/docs/guides/jsx)
+    - [CSS](https://hono.dev/docs/helpers/css)
+    - [Best Practices](https://hono.dev/docs/guides/best-practices)
+    - [Valibot Validator](https://www.npmjs.com/package/@hono/valibot-validator)
+- Drizzle
+    - [Schema](https://orm.drizzle.team/docs/sqlite/sql-schema-declaration)
+    - [Transactions](https://orm.drizzle.team/docs/transactions)
+    - [Select](https://orm.drizzle.team/docs/sqlite/select)
+    - [Insert](https://orm.drizzle.team/docs/sqlite/insert)
+    - [Update](https://orm.drizzle.team/docs/sqlite/update)
+    - [Delete](https://orm.drizzle.team/docs/sqlite/delete)
+    - [Operators](https://orm.drizzle.team/docs/sqlite/operators)
+    - [Timestamp Default Values](https://orm.drizzle.team/docs/sqlite/guides/timestamp-default-value)
+- Tools
+    - [Icons](https://icones.js.org/collection/all)
+    - [Squoosh](https://squoosh.app/)
+    - [PNG to ICO](https://convertio.co/)
+    - [Remove Comments](https://commentclean.com/)
+    - [Open Graph Testing](https://www.opengraph.xyz/) `1200 x 630`
+    - [Gradient CSS Generator](https://html-css-js.com/css/generator/box-shadow/)
+    - [Markdown Table Generator](https://tableconvert.com/markdown-generator)
+- Blogs
+    - [SEO Best Practices](https://www.semrush.com/blog/html-tags-for-seo/)
