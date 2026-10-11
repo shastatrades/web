@@ -12,7 +12,7 @@ export default (() => {
   return <>
     <meta charset="UTF-8" />
     <meta name="theme-color" content="#F9FBF9" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <link rel="preload" as="font" href="/fonts/proxima_nova_400.woff2" type="font/woff2" crossorigin="anonymous"></link>
     <link rel="preload" as="font" href="/fonts/proxima_nova_500.woff2" type="font/woff2" crossorigin="anonymous"></link>
     <link rel="preload" as="font" href="/fonts/proxima_nova_600.woff2" type="font/woff2" crossorigin="anonymous"></link>
