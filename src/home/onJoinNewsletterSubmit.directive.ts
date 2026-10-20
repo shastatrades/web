@@ -1,4 +1,4 @@
-// app/src/joinNewsletter/joinNewsletter.directive.ts
+// web/src/joinNewsletter/joinNewsletter.directive.ts
 
 import { showToast } from '@hono-toast'
 import type { AppType } from '@src/index'

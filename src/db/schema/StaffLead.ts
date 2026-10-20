@@ -1,4 +1,4 @@
-// app/src/db/schema/StaffLead.ts
+// web/src/db/schema/StaffLead.ts
 
 import { sql } from 'drizzle-orm'
 import { Person, LeadStatus, StaffPosition } from '@src/db'

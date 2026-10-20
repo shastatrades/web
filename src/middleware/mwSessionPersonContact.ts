@@ -1,4 +1,4 @@
-// app/src/middleware/mwSessionPersonContact.ts
+// web/src/middleware/mwSessionPersonContact.ts
 
 import { onError } from '@hono-api/be'
 import { createMiddleware } from 'hono/factory'

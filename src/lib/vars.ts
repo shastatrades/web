@@ -1,4 +1,4 @@
-// app/src/lib/vars.ts
+// web/src/lib/vars.ts
 
 import { msMinute, msWeek, secWeek, type HashCreateProps } from '@hono-form'
 

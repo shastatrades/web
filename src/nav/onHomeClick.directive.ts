@@ -1,4 +1,4 @@
-// app/src/nav/onHomeClick.directive.ts
+// web/src/nav/onHomeClick.directive.ts
 
 export default (el: HTMLAnchorElement) => {
   el.addEventListener('click', () => {

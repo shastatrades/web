@@ -1,10 +1,10 @@
-// app/src/api/objectiveComment.api.ts
+// web/src/api/objectiveComment.api.ts
 
 import { Hono } from 'hono'
 import { validator, onError, onSuccess } from '@hono-api/be'
 import { db, ObjectiveComment, ObjectiveActivity } from '@src/db'
 import { mwSessionPerson } from '@src/middleware/mwSessionPerson'
-import { dsObjectiveActivityTypes } from '@src/dataStructures/objectiveActivityTypes.ds'
+import { enumObjectiveActivityTypes } from '@src/enums/objectiveActivityTypes.enum'
 import { postObjectiveCommentValidator } from '@src/validators/objectiveComment.validator'
 
 
@@ -27,7 +27,7 @@ export default new Hono()
 
           await tx.insert(ObjectiveActivity).values({ // insert activity
             objectiveId: data.objectiveId,
-            typeId: dsObjectiveActivityTypes.commentAdded,
+            typeId: enumObjectiveActivityTypes.slug.commentAdded.id,
             actorId: person.id,
             commentId,
           })

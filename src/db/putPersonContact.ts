@@ -1,4 +1,4 @@
-// app/src/db/putPersonContact.ts
+// web/src/db/putPersonContact.ts
 
 import { eq } from 'drizzle-orm'
 import type { InferSelectModel } from 'drizzle-orm'

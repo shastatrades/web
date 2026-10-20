@@ -1,4 +1,4 @@
-// app/npm/hono-dom/id.ts
+// web/npm/hono-dom/id.ts
 
 export function id(id: string): IdReturn {
   return {

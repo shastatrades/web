@@ -13,6 +13,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@src': path.resolve(__dirname, 'src'),
+      '@enum': path.resolve(__dirname, 'npm/enum/index'),
       '@on-time': path.resolve(__dirname, 'npm/on-time/index'),
       '@hono-dom': path.resolve(__dirname, 'npm/hono-dom/index'),
       '@img-webp': path.resolve(__dirname, 'npm/img-webp/index'),
@@ -29,6 +30,7 @@ export default defineConfig({
       '@hono-accordion': path.resolve(__dirname, 'npm/hono-accordion/index'),
       '@drizzle-compose': path.resolve(__dirname, 'npm/drizzle-compose/index'),
       '@hono-directives': path.resolve(__dirname, 'npm/hono-directives/dist/index'),
+      '@hono-directives-run': path.resolve(__dirname, 'npm/hono-directives/src/index'),
     },
   },
   plugins: [

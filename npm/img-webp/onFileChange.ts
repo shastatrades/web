@@ -1,4 +1,4 @@
-// app/npm/img-webp/onFileChange.ts
+// web/npm/img-webp/onFileChange.ts
 
 import { imgTransmute, type ImgTransmuteConfig } from './imgTransmute'
 import { imgWebpEvents } from './imgWebpEvents'

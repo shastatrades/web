@@ -1,4 +1,4 @@
-// app/src/time/formatTime.directive.ts
+// web/src/time/formatTime.directive.ts
 
 import { formatTime } from '@src/time/formatTime'
 

@@ -1,12 +1,12 @@
-// app/src/nav/NavModal.tsx
+// web/src/nav/NavModal.tsx
 
-import { Style } from 'hono/css'
 import type { FC } from 'hono/jsx'
 import { createRPC } from '@hono-api/be'
 import type { AppType } from '@src/index'
-import svgClose from '@src/svg/close.svg?raw'
+import svgClose from '@src/svg/close.html?raw'
 import { onNavModalToggle } from '@hono-directives'
 import { datasetAuth, idNavModal } from '@src/lib/dom'
+import { enumFinanceFormPages } from '@src/enums/financeFormPages.enum'
 
 
 export default (() => {
@@ -37,7 +37,9 @@ export default (() => {
           <div {...authDataset.attr('loading')} class="item title">Loading...</div>
           <a {...authDataset.attr('false')} href={rpc['sign-in'].$url().href} class="item anchor">Sign In</a>
           <a {...authDataset.attr('false')} href={rpc['sign-up'].$url().href} class="item anchor">Sign Up</a>
-          <a {...authDataset.attr('true')} href={rpc.profile.$url().href} class="item anchor">Profile</a>
+          <a {...authDataset.attr('true')} href={rpc.inbox[':variant?'].$url({ param: { variant: 'objective-activity' } }).href} class="item anchor">Inbox</a>
+          <a {...authDataset.attr('true')} href={rpc['finance-forms'][':variant?'].$url({ param: { variant: enumFinanceFormPages.ids[0] } }).href} class="item anchor">Finance Forms</a>
+          <a {...authDataset.attr('true')} href={rpc['edit-profile'].$url().href} class="item anchor">Edit Profile</a>
           <a {...authDataset.attr('true')} href={rpc['sign-out'].$url().href} class="item anchor">Sign Out</a>
         </div>
       </div>

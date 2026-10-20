@@ -1,4 +1,4 @@
-// app/src/api/people.api.ts
+// web/src/api/people.api.ts
 
 import { Hono } from 'hono'
 import { queryPeople } from '@src/db'

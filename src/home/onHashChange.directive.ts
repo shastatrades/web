@@ -1,18 +1,18 @@
-// app/src/home/onHashChange.directive.ts
+// web/src/home/onHashChange.directive.ts
 
 import { query } from '@hono-dom'
 import { safeArrayAccess } from '@safely-access'
-import { dsHomeFormIds } from '@src/dataStructures/homeForms.ds'
+import { enumHomeForms } from '@src/enums/homeForms.enum'
 
 
 export default (el: HTMLDivElement) => {
-  const defaultHashKey = safeArrayAccess(dsHomeFormIds, 0)
+  const defaultHashKey = enumHomeForms.array[0].id
 
-  const stepsRegex = new RegExp(`^#(${dsHomeFormIds.join('|')})(?:-(scroll))?$`)
+  const stepsRegex = new RegExp(`^#(${enumHomeForms.ids.join('|')})(?:-(scroll))?$`)
 
   const steps: Step[] = []
 
-  for (const id of dsHomeFormIds) {
+  for (const id of enumHomeForms.ids) {
     steps.push({
       id,
       domForm: query<HTMLDivElement>(`#${id}`).root(el).one(),

@@ -1,4 +1,4 @@
-// app/npm/hono-modal/onModalToggle.directive.ts
+// web/npm/hono-modal/onModalToggle.directive.ts
 
 import { toggleModalDom } from './toggleModalDom'
 

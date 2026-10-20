@@ -1,4 +1,4 @@
-// app/npm/hono-form/src/Field.tsx
+// web/npm/hono-form/src/Field.tsx
 
 import type { FC } from 'hono/jsx'
 
@@ -17,6 +17,7 @@ export const Field: FC<FieldProps> = (props: FieldProps) => {
     case 'email':
     case 'number':
     case 'password':
+    case 'datetime-local':
       field = <input
         type={props.type}
         id={fieldID}
@@ -107,8 +108,8 @@ export const Field: FC<FieldProps> = (props: FieldProps) => {
 
 
 export type FieldOption = {
-  value: string,
-  label: string,
+  readonly value: string,
+  readonly label: string,
 }
 
 export type FieldProps =
@@ -132,18 +133,18 @@ type FieldPropsValue = {
 
 
 type FieldPropsSimple = FieldPropsBase & FieldPropsValue & {
-  type: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'file'
+  type: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'file' | 'datetime-local'
 }
 
 
 type FieldPropsSelect = FieldPropsBase & FieldPropsValue & {
   type: 'select',
-  options: FieldOption[]
+  options: readonly FieldOption[],
 }
 
 
 type FieldPropsCheckbox = FieldPropsBase & {
   type: 'checkbox',
   value?: string | string[],
-  options: FieldOption[]
+  options: readonly FieldOption[],
 }

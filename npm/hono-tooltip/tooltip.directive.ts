@@ -1,19 +1,19 @@
-// app/npm/hono-tooltip/tooltip.directive.ts
+// web/npm/hono-tooltip/tooltip.directive.ts
 
 import { rafSchedule } from '@on-time'
 
 let tooltipIdCounter = 0
 
 
-export default (el: HTMLElement, position: TooltipPosition, content: string) => {
-  createTooltipController(el, position, content)
+export default (el: HTMLElement, position: TooltipPosition, content: string, xArrowTranslate?: number) => {
+  createTooltipController(el, position, content, xArrowTranslate)
 }
 
 
-function createTooltipController(aimElement: HTMLElement, position: TooltipPosition, content: string) {
+function createTooltipController(aimElement: HTMLElement, position: TooltipPosition, content: string, xArrowTranslate?: number) {
   const id = generateTooltipId()
 
-  const tooltipElement = createTooltipElement(id, content)
+  const tooltipElement = createTooltipElement(id, content, xArrowTranslate)
   tooltipElement.classList.add('position-' + position)
   document.body.appendChild(tooltipElement)
 
@@ -107,12 +107,16 @@ function createTooltipController(aimElement: HTMLElement, position: TooltipPosit
 }
 
 
-function createTooltipElement(id: string, content: string) {
+function createTooltipElement(id: string, content: string, xArrowTranslate?: number) {
   const tooltipElement = document.createElement('div')
   tooltipElement.id = id
   tooltipElement.className = 'hono-tooltip'
   tooltipElement.setAttribute('role', 'tooltip')
   tooltipElement.setAttribute('aria-hidden', 'true')
+
+  if (xArrowTranslate !== undefined) {
+    tooltipElement.style.setProperty('--hono-tooltip-arrow-translate', `${xArrowTranslate}px`)
+  }
 
   const arrowElement = document.createElement('div')
   arrowElement.className = 'arrow'

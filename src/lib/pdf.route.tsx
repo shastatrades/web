@@ -1,4 +1,4 @@
-// app/src/lib/pdf.route.tsx
+// web/src/lib/pdf.route.tsx
 
 import { Hono } from 'hono'
 import { css, Style } from 'hono/css'

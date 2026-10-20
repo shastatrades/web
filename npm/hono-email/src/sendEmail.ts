@@ -1,4 +1,4 @@
-// app/npm/send-cloudflare-email/index.ts
+// web/npm/send-cloudflare-email/index.ts
 
 import * as v from 'valibot'
 

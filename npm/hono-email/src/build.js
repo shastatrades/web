@@ -1,4 +1,4 @@
-// app/npm/hono-email/src/build.mjs
+// web/npm/hono-email/src/build.mjs
 
 import fs from 'fs'
 import path from 'path'

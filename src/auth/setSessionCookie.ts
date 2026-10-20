@@ -1,4 +1,4 @@
-// app/src/auth/setSessionCookie.ts
+// web/src/auth/setSessionCookie.ts
 
 import { Context } from 'hono'
 import { env } from 'cloudflare:workers'

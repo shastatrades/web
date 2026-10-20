@@ -1,4 +1,4 @@
-// app/src/db/schema/ObjectiveColumn.ts
+// web/src/db/schema/ObjectiveColumn.ts
 
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
 

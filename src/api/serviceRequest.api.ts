@@ -1,4 +1,4 @@
-// app/src/api/serviceRequest.api.ts
+// web/src/api/serviceRequest.api.ts
 
 import { Hono } from 'hono'
 import { validator, onError, onSuccess } from '@hono-api/be'

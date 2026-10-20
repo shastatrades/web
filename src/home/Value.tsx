@@ -1,4 +1,4 @@
-// app/src/lib/Value.tsx
+// web/src/lib/Value.tsx
 
 import type{ FC } from 'hono/jsx'
 

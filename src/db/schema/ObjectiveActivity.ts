@@ -1,4 +1,4 @@
-// app/src/db/schema/ObjectiveActivity.ts
+// web/src/db/schema/ObjectiveActivity.ts
 
 import { sql } from 'drizzle-orm'
 import { index, integer, sqliteTable } from 'drizzle-orm/sqlite-core'

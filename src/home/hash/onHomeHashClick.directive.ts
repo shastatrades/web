@@ -1,4 +1,4 @@
-// app/src/home/hash/onHomeHashClick.directive.ts
+// web/src/home/hash/onHomeHashClick.directive.ts
 
 import { query } from '@hono-dom'
 import { parseHash, updateDOM } from './updateDOM'

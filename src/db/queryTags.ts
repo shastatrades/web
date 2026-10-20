@@ -1,4 +1,4 @@
-// app/src/db/queryTags.ts
+// web/src/db/queryTags.ts
 
 import { db, ObjectiveTag } from '@src/db'
 import type { InferQuery } from '@drizzle-compose'

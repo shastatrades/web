@@ -1,4 +1,4 @@
-// app/src/db/queryJobLeads.ts
+// web/src/db/queryJobLeads.ts
 
 import { eq } from 'drizzle-orm'
 import { db, Person, Contact, JobLead, LeadStatus, Job, JobStatus, Trade, Trade__JobLead } from '@src/db'

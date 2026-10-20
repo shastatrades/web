@@ -1,4 +1,4 @@
-// app/src/api/profile.api.ts
+// web/src/api/profile.api.ts
 
 import { Hono } from 'hono'
 import { eq } from 'drizzle-orm'

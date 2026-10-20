@@ -1,4 +1,4 @@
-// app/src/db/schema/Trade.ts
+// web/src/db/schema/Trade.ts
 
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
 

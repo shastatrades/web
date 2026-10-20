@@ -1,4 +1,4 @@
-// app/src/api/signUp.api.ts
+// web/src/api/signUp.api.ts
 
 import { Hono } from 'hono'
 import { eq } from 'drizzle-orm'

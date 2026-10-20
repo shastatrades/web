@@ -1,4 +1,4 @@
-// app/src/validators/objectiveComment.validator.ts
+// web/src/validators/objectiveComment.validator.ts
 
 import * as v from 'valibot'
 import { pipeEnoughContent, Validator } from '@hono-form'

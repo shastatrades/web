@@ -1,9 +1,9 @@
-// app/src/lib/Pattern.tsx
+// web/src/lib/Pattern.tsx
 
 import type { FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'
+import { enumFlowSteps } from '@src/enums/flowSteps.enum'
 import { onFlowChange, onWrapChange } from '@hono-directives'
-import { dsFlowSteps } from '@src/dataStructures/flowSteps.ds'
 import { classNameStep, datasetFlowStepButton, datasetFlowStepContainer } from '@src/lib/dom'
 
 
@@ -30,10 +30,10 @@ const Flow: FC = () => {
       <div class="explain">🤔 How does Shasta Trades work?</div>
 
       <div class="buttons">
-        {dsFlowSteps.map(step => <button {...datasetButton.attr(step.id)} class="transparent big" type="button">{step.button}</button>)}
+        {enumFlowSteps.array.map(step => <button {...datasetButton.attr(step.id)} class="transparent big" type="button">{step.button}</button>)}
       </div>
 
-      {dsFlowSteps.map(step => <>
+      {enumFlowSteps.array.map(step => <>
         <div {...datasetContainer.attr(step.id)} data-directive={onWrapChange()} class="steps hidden">
           <div class="line"></div>
 

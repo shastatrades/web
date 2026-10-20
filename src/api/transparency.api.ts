@@ -1,4 +1,4 @@
-// app/src/api/transparency.api.ts
+// web/src/api/transparency.api.ts
 
 import { Hono } from 'hono'
 import { onSuccess } from '@hono-api/be'

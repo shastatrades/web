@@ -1,4 +1,4 @@
-// app/src/api/objective.api.ts
+// web/src/api/objective.api.ts
 
 import { Hono } from 'hono'
 import { eq } from 'drizzle-orm'

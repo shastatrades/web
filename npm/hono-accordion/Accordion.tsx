@@ -1,4 +1,4 @@
-// app/npm/hono-accordion/Accordion.tsx
+// web/npm/hono-accordion/Accordion.tsx
 
 import type { FC, Child } from 'hono/jsx'
 

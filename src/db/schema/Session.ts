@@ -1,4 +1,4 @@
-// app/src/db/schema/Session.ts
+// web/src/db/schema/Session.ts
 
 import { Person } from '@src/db'
 import { sql } from 'drizzle-orm'

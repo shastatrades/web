@@ -1,4 +1,4 @@
-// app/src/auth/signIn.ts
+// web/src/auth/signIn.ts
 
 import { eq } from 'drizzle-orm'
 import { createRPC } from '@hono-api/be'

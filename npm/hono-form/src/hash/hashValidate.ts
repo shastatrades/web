@@ -1,4 +1,4 @@
-// app/npm/hono-form/src/hash/hashValidate.ts
+// web/npm/hono-form/src/hash/hashValidate.ts
 
 import { base64UrlDecodeToBinary } from '@hono-form'
 

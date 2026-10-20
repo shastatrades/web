@@ -1,4 +1,4 @@
-// app/src/auth/getSession.ts
+// web/src/auth/getSession.ts
 
 import { eq } from 'drizzle-orm'
 import type { Context } from 'hono'
@@ -141,3 +141,5 @@ export type GetSessionResult<V extends Variant> =
         ? { status: 200, response: QueryStaffPersonSession }
         : never
   )
+
+export type GetSessionSuccess<V extends Variant> = Extract<GetSessionResult<V>, { status: 200 }>

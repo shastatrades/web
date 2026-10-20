@@ -1,4 +1,4 @@
-// app/npm/hono-api/be/validator.ts
+// web/npm/hono-api/be/validator.ts
 
 import { onError } from './onError'
 import type { ValidationTargets } from 'hono'

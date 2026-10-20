@@ -1,27 +1,28 @@
-// app/src/mastery/mastery.route.tsx
+// web/src/mastery/mastery.route.tsx
 
 import { Hono } from 'hono'
 import { Style } from 'hono/css'
 import { datasetId } from '@src/lib/dom'
 import { md2html } from '@src/md/md2html'
 import { mdStyle } from '@src/md/mdStyle'
-import { tabsStyle,  Tabs, type Tab } from '@hono-tabs'
 import { queryStudyGuide } from './queryStudyGuide'
+import { tabsStyle,  Tabs, type Tab } from '@hono-tabs'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
+import { enumMasteryMarkdowns } from '@src/enums/masteryMarkdowns.enum'
 import { bindAccordionItems, onStudyGuideLoad } from '@hono-directives'
-import { dsMasteryMarkdowns, dsMasteryMarkdownsDefault, dsMasteryMarkdownStudyGuideId } from '@src/dataStructures/masteryMarkdowns.ds'
+import { enumStudyGuideSections } from '@src/enums/studyGuideSections.enum'
 
 
 export default new Hono()
   .get('/:id?', async (c) => {
-    const paramId = c.req.param('id') ?? dsMasteryMarkdownsDefault.id
-    const current = dsMasteryMarkdowns.find(b => b.id === paramId) ?? dsMasteryMarkdownsDefault
+    const paramId = c.req.param('id') ?? enumMasteryMarkdowns.array[0].id
+    const current = enumMasteryMarkdowns.get(paramId) ?? enumMasteryMarkdowns.array[0]
     const html = await md2html(current.md, current)
 
     let subHtml = ''
     let subVerifiedIdQuery = ''
 
-    if (current.id === dsMasteryMarkdownStudyGuideId) {
+    if (current.id === enumMasteryMarkdowns.obj['2025-class-b-study-guide'].id) {
       const { verifiedId, html } = await queryStudyGuide(c.req.query('sub'))
       subVerifiedIdQuery = verifiedId
       subHtml = html
@@ -43,7 +44,7 @@ export default new Hono()
             </div>
 
             <div class="buttons">
-              {dsMasteryMarkdowns.map(v => <a class={paramId === v.id ? 'orange big' : 'transparent big'} href={'/mastery/' + v.id}>{v.title}</a>)}
+              {enumMasteryMarkdowns.array.map(v => <a class={paramId === v.id ? 'orange big' : 'transparent big'} href={'/mastery/' + v.id}>{v.title}</a>)}
             </div>
           </div>
 
@@ -51,11 +52,10 @@ export default new Hono()
             <div dangerouslySetInnerHTML={{ __html: html }}></div>
 
             {
-              subHtml && <Tabs variant="underline" name="study-guide-tabs" tabs={[
-                createTab('acronyms', 'Acronyms', subHtml, subVerifiedIdQuery),
-                createTab('random', 'Random', subHtml, subVerifiedIdQuery),
-                createTab('occupancy_classification', 'Occupancy Classification', subHtml, subVerifiedIdQuery),
-              ]} />
+              subHtml && <Tabs
+                variant="underline"
+                name="study-guide-tabs"
+                tabs={enumStudyGuideSections.array.map(s => createTab(s.id, s.label, subHtml, subVerifiedIdQuery))} />
             }
           </div>
         </div>

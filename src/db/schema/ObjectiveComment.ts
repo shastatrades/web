@@ -1,4 +1,4 @@
-// app/src/db/schema/ObjectiveComment.ts
+// web/src/db/schema/ObjectiveComment.ts
 
 import { sql } from 'drizzle-orm'
 import { Person, Objective } from '@src/db'

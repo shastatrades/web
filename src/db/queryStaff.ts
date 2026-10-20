@@ -1,4 +1,4 @@
-// app/src/db/queryStaff.ts
+// web/src/db/queryStaff.ts
 
 import { eq, or, gt, and, lte, isNull } from 'drizzle-orm'
 import { db, Person, Session, StaffPosition, StaffEndReason, Person__StaffPosition } from '@src/db'

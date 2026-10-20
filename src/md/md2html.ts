@@ -1,4 +1,4 @@
-// app/src/lib/md2html.ts
+// web/src/lib/md2html.ts
 
 import { Marked, type Tokens } from 'marked'
 import { safeArrayAccess } from '@safely-access'

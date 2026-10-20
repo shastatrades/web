@@ -1,4 +1,4 @@
-// app/src/objectives/ObjectiveController.ts
+// web/src/objectives/ObjectiveController.ts
 
 import { query } from '@hono-dom'
 import { AppType } from '@src/index'
@@ -100,7 +100,7 @@ export class ObjectiveController {
     tabsEvents.on('tabChanged', async (v) => {
       if (v.id !== 'activity') return elActivity.innerHTML = '<img class="feed-loading" src="/img/loading.svg" alt = "Loading..." />'
 
-      const res = await this.rpc.api['objective-activity'][':variant'].$get({ param: { variant: 'all' }})
+      const res = await this.rpc.api['objective-activity'].$get()
       elActivity.innerHTML = await res.text()
 
       elActivity.querySelectorAll('time').forEach(elTime => {

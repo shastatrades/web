@@ -1,9 +1,9 @@
-// app/npm/hono-directives/src/plugin.ts
+// web/npm/hono-directives/src/plugin.ts
 
 import fs from 'fs'
 import path from 'path'
 import type { Plugin } from 'vite'
-import { findDirectives, writeGeneratedFiles } from './script.ts'
+import { findDirectives, writeGeneratedFiles } from './pluginScript.ts'
 
 // Helper to search multiple directories
 function findDirectoriesToSearch(): string[] {

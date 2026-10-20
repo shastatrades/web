@@ -1,10 +1,10 @@
-// app/npm/hono-toast/src/util.ts
+// web/npm/hono-toast/src/util.ts
 
 import { vars } from './vars'
-import svgInfo from './info.svg?raw'
-import svgClose from './close.svg?raw'
-import svgDanger from './danger.svg?raw'
-import svgSuccess from './success.svg?raw'
+import svgInfo from './info.html?raw'
+import svgClose from './close.html?raw'
+import svgDanger from './danger.html?raw'
+import svgSuccess from './success.html?raw'
 import type { CSSProperties, ShowToastProps, ToastVariant } from './types'
 import { defaultToastStyle, toastIconStyleDanger, toastIconStyleInfo, toastIconStyleSuccess } from './styleObjects'
 

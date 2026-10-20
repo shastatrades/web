@@ -1,4 +1,4 @@
-// app/src/db/queryContactUsMessages.ts
+// web/src/db/queryContactUsMessages.ts
 
 import { eq } from 'drizzle-orm'
 import { db, Person, Contact, ContactUsMessage } from '@src/db'

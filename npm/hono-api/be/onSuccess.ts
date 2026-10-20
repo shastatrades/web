@@ -1,4 +1,4 @@
-// app/npm/hono-api/be/onSuccess.ts
+// web/npm/hono-api/be/onSuccess.ts
 
 import type { Context } from 'hono'
 import type { ApiSuccess } from '../api.d'

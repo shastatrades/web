@@ -1,4 +1,4 @@
-// app/src/mastery/onStudyGuideLoad.directive.ts
+// web/src/mastery/onStudyGuideLoad.directive.ts
 
 import { query } from '@hono-dom'
 import { AppType } from '@src/index'
@@ -6,14 +6,14 @@ import { tabsEvents } from '@hono-tabs'
 import { createRPC } from '@hono-api/fe'
 import { datasetId } from '@src/lib/dom'
 import { bindAccordionItems } from '@hono-accordion'
-import { dsMasteryMarkdownStudyGuideId } from '@src/dataStructures/masteryMarkdowns.ds'
+import { enumMasteryMarkdowns } from '@src/enums/masteryMarkdowns.enum'
 
 
 export default (el: HTMLDivElement) => {
   const rpc = createRPC<AppType>()
 
   // IF the current route is on the study guide page (not youtube mastery)
-  if (location.pathname === rpc.mastery[':id?'].$url({ param: { id: dsMasteryMarkdownStudyGuideId }}).pathname) {
+  if (location.pathname === rpc.mastery[':id?'].$url({ param: { id: enumMasteryMarkdowns.obj['2025-class-b-study-guide'].id }}).pathname) {
     const idDataset = datasetId()
 
     tabsEvents.on('tabChanged', async ({ id }) => {
@@ -35,7 +35,7 @@ export default (el: HTMLDivElement) => {
       }
 
       // update url
-      const url = rpc.mastery[':id?'].$url({ param: { id: dsMasteryMarkdownStudyGuideId } })
+      const url = rpc.mastery[':id?'].$url({ param: { id: enumMasteryMarkdowns.obj['2025-class-b-study-guide'].id } })
       url.searchParams.set('sub', id)
       history.replaceState(history.state, '', url.pathname + url.search)
     })

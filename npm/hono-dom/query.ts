@@ -1,4 +1,4 @@
-// app/npm/hono-dom/query.ts
+// web/npm/hono-dom/query.ts
 
 export function query<T_Element extends HTMLElement>(query: string): QueryReturn<T_Element> {
   return new QueryReturn<T_Element>(query);

@@ -1,4 +1,4 @@
-// app/src/api/staff.api.ts
+// web/src/api/staff.api.ts
 
 import { Hono } from 'hono'
 import { onSuccess } from '@hono-api/be'

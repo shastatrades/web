@@ -1,4 +1,4 @@
-// app/npm/hono-api/fe/onError.ts
+// web/npm/hono-api/fe/onError.ts
 
 import { showErrorToast } from '@hono-toast'
 

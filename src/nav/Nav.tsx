@@ -1,11 +1,11 @@
-// app/src/nav/Nav.tsx
+// web/src/nav/Nav.tsx
 
 import type { FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'
 import { createRPC } from '@hono-api/be'
 import type { AppType } from '@src/index'
-import svgMenu from '@src/svg/menu.svg?raw'
-import svgPerson from '@src/svg/person.svg?raw'
+import svgMenu from '@src/svg/menu.html?raw'
+import svgPerson from '@src/svg/person.html?raw'
 import { useRequestContext } from 'hono/jsx-renderer'
 import { idNavModal, idAuthModal } from '@src/lib/dom'
 import { tooltip, onHomeClick, onNavModalToggle } from '@hono-directives'
@@ -22,7 +22,7 @@ export default (() => {
       <div class="inner">
         <div class="left">
           <div data-directive={onHomeClick()} href="/" class="logo">
-            <a href="/" class="img" data-directive={tooltip('bottomLeft', 'Navigate to Home Page')}>
+            <a href="/" class="img" data-directive={tooltip('bottomLeft', 'Navigate to Home Page', 12)}>
               <img src="/img/logo.webp" />
             </a>
             <span data-directive={tooltip('bottomLeft', 'Scroll to top of page')}>Shasta Trades</span>
@@ -36,8 +36,13 @@ export default (() => {
           </div>
         </div>
 
-        <button data-directive={onNavModalToggle(idAuthModal().id)} class="auth-modal-btn" type="button" dangerouslySetInnerHTML={{ __html: svgPerson }} />
-        <button data-directive={onNavModalToggle(idNavModal().id)} class="nav-modal-btn" type="button" dangerouslySetInnerHTML={{ __html: svgMenu }} />
+        <div data-directive={tooltip('bottomRight', 'Profile Navigation', -9)} class="auth-modal-btn">
+          <button data-directive={onNavModalToggle(idAuthModal().id)} type="button" dangerouslySetInnerHTML={{ __html: svgPerson }} />
+        </div>
+
+        <div data-directive={tooltip('bottomRight', 'Navigation', -9)} class="nav-modal-btn">
+          <button data-directive={onNavModalToggle(idNavModal().id)} type="button" dangerouslySetInnerHTML={{ __html: svgMenu }} />
+        </div>
       </div>
     </div>
   </>
@@ -120,23 +125,26 @@ const style = css`
 
       .nav-modal-btn,
       .auth-modal-btn {
-        border: none;
-        background-color: transparent;
-        cursor: pointer;
-        transition: var(--transition);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 4.5rem;
-        border-radius: 50%;
-        &:hover {
-          box-shadow: 0px 10px 9px 1px rgba(0 ,0, 0, 0.33);
-          transform: translateY(-0.2rem);
-        }
-        &:active {
-          transform: translateY(0) scale(0.98);
-          box-shadow: 0px 9px 3px 0 rgba(0 ,0, 0, 0.33);
+
+        button {
+          border: none;
+          background-color: transparent;
+          cursor: pointer;
+          transition: var(--transition);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          width: 4.5rem;
+          border-radius: 50%;
+          &:hover {
+            box-shadow: 0px 10px 9px 1px rgba(0 ,0, 0, 0.33);
+            transform: translateY(-0.2rem);
+          }
+          &:active {
+            transform: translateY(0) scale(0.98);
+            box-shadow: 0px 9px 3px 0 rgba(0 ,0, 0, 0.33);
+          }
         }
 
         svg {

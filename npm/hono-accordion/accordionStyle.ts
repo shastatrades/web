@@ -1,4 +1,4 @@
-// app/npm/hono-accordion/accordionStyle.ts
+// web/npm/hono-accordion/accordionStyle.ts
 
 import { css } from 'hono/css'
 
@@ -19,9 +19,15 @@ export const accordionStyle = css`
       padding: 0.5rem 0;
       user-select: none;
       transition: var(--fast-transition);
-
+      background-color: rgba(0, 0, 0, 0.015);
+      border-radius: var(--radius);
       &:hover {
-        background-color: rgba(0, 0, 0, 0.02);
+        box-shadow: 0px 10px 9px 1px rgba(0 ,0, 0, 0.33);
+        transform: translateY(-0.2rem);
+      }
+      &:active {
+        transform: translateY(0) scale(0.98);
+        box-shadow: 0px 9px 3px 0 rgba(0 ,0, 0, 0.33);
       }
     }
 

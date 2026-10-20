@@ -1,4 +1,4 @@
-// app/npm/drizzle-compose/index.ts
+// web/npm/drizzle-compose/index.ts
 
 
 // Overload: w/ groupId → returns object keyed by groupId (placed first)

@@ -1,4 +1,4 @@
-// app/npm/safe-access/safeArrayAccess.ts
+// web/npm/safe-access/safeArrayAccess.ts
 
 
 /**

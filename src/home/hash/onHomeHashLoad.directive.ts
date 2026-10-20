@@ -1,4 +1,4 @@
-// app/src/home/hash/onHomeHashLoad.directive.ts
+// web/src/home/hash/onHomeHashLoad.directive.ts
 
 import { defaultHashKey, parseHash, updateDOM } from './updateDOM'
 

@@ -1,4 +1,4 @@
-// app/npm/hono-dom/field.ts
+// web/npm/hono-dom/field.ts
 
 import { FieldProps } from '@hono-form'
 

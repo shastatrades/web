@@ -1,4 +1,4 @@
-// app/src/db/schema/Person__StaffPosition.ts
+// web/src/db/schema/Person__StaffPosition.ts
 
 import { Person, StaffPosition, StaffEndReason } from '@src/db'
 import { index, integer, uniqueIndex, sqliteTable } from 'drizzle-orm/sqlite-core'

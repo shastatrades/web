@@ -1,4 +1,4 @@
-// app/npm/hono-form/src/form/FormUtil.ts
+// web/npm/hono-form/src/form/FormUtil.ts
 
 import * as v from 'valibot'
 import type { Validator } from './Validator'

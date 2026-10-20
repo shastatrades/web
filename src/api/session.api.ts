@@ -1,4 +1,4 @@
-// app/src/auth/session.api.ts
+// web/src/auth/session.api.ts
 
 import { Hono } from 'hono'
 import * as v from 'valibot'

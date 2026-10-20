@@ -1,4 +1,4 @@
-// app/src/db/schema/Objective.ts
+// web/src/db/schema/Objective.ts
 
 import { sql } from 'drizzle-orm'
 import { ObjectiveColumn, Person } from '@src/db'

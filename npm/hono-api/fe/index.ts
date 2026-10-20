@@ -1,4 +1,4 @@
-// app/npm/hono-api/fe/index.ts
+// web/npm/hono-api/fe/index.ts
 
 export * from './createRPC'
 export * from './onError'

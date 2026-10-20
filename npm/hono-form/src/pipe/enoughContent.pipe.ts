@@ -1,4 +1,4 @@
-// app/npm/hono-form/src/pipe/enoughContent.pipe.ts
+// web/npm/hono-form/src/pipe/enoughContent.pipe.ts
 
 import * as v from 'valibot'
 

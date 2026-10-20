@@ -1,4 +1,4 @@
-// app/npm/hono-dom/index.ts
+// web/npm/hono-dom/index.ts
 
 export * from './id'
 export * from './query'

@@ -1,4 +1,4 @@
-// app/src/db/schema/ContactUsMessage.ts
+// web/src/db/schema/ContactUsMessage.ts
 
 import { Person } from '@src/db'
 import { sql } from 'drizzle-orm'

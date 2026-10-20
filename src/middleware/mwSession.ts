@@ -1,4 +1,4 @@
-// app/src/middleware/mwSession.ts
+// web/src/middleware/mwSession.ts
 
 import { Session } from '@src/db'
 import { onError } from '@hono-api/be'

@@ -1,4 +1,4 @@
-// app/src/lib/Mission.tsx
+// web/src/lib/Mission.tsx
 
 import type{ FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'

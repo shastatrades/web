@@ -1,4 +1,4 @@
-// app/npm/hono-form/src/createPassword.ts
+// web/npm/hono-form/src/createPassword.ts
 
 import { base64UrlEncode } from '@hono-form'
 

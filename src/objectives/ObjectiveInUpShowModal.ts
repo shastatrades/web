@@ -1,4 +1,4 @@
-// app/src/objectives/ObjectiveInUpShowModal.ts
+// web/src/objectives/ObjectiveInUpShowModal.ts
 
 import { showToast } from '@hono-toast'
 import type { AppType } from '@src/index'

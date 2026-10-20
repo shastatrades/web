@@ -1,4 +1,4 @@
-// app/src/auth/signUp.route.tsx
+// web/src/auth/signUp.route.tsx
 
 import { Hono } from 'hono'
 import { Field } from '@hono-form'

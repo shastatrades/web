@@ -1,4 +1,4 @@
-// app/npm/hono-events/index.ts
+// web/npm/hono-events/index.ts
 
 
 /**

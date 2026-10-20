@@ -1,4 +1,4 @@
-// app/src/renderer/RendererHead.tsx
+// web/src/renderer/RendererHead.tsx
 
 import type { FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'

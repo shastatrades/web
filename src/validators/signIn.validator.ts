@@ -1,4 +1,4 @@
-// app/src/validators/signIn.validator.ts
+// web/src/validators/signIn.validator.ts
 
 import * as v from 'valibot'
 import { pipeEmail, Validator } from '@hono-form'

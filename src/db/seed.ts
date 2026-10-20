@@ -1,4 +1,4 @@
-// app/src/db/seed.ts
+// web/src/db/seed.ts
 
 import { db, Trade, JobStatus, LeadStatus, StaffPosition, StaffEndReason, ObjectiveColumn, ObjectiveTag, ObjectiveActivityType } from '@src/db'
 

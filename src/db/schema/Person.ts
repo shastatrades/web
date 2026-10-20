@@ -1,4 +1,4 @@
-// app/src/db/schema/Person.ts
+// web/src/db/schema/Person.ts
 
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
 

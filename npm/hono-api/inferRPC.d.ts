@@ -1,4 +1,4 @@
-// app/npm/hono-api/inferRPC.ts
+// web/npm/hono-api/inferRPC.ts
 
 import type { Hono } from 'hono'
 import type { hc, InferRequestType, InferResponseType } from 'hono/client'

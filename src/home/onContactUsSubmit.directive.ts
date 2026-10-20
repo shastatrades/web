@@ -1,4 +1,4 @@
-// app/src/contactUs/contactUs.directive.ts
+// web/src/contactUs/contactUs.directive.ts
 
 import { showToast } from '@hono-toast'
 import type { AppType } from '@src/index'

@@ -1,4 +1,4 @@
-// app/src/lib/subPageHeroStyle.ts
+// web/src/lib/subPageHeroStyle.ts
 
 import { css } from 'hono/css'
 

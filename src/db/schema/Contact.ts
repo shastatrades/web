@@ -1,4 +1,4 @@
-// app/src/db/schema/Contact.ts
+// web/src/db/schema/Contact.ts
 
 import { Person } from '@src/db'
 import { text, integer, uniqueIndex, sqliteTable } from 'drizzle-orm/sqlite-core'

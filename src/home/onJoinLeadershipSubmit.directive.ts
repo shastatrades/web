@@ -1,4 +1,4 @@
-// app/src/joinLeadership/joinLeadership.directive.ts
+// web/src/joinLeadership/joinLeadership.directive.ts
 
 import { showToast } from '@hono-toast'
 import type { AppType } from '@src/index'

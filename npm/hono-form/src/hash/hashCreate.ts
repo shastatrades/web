@@ -1,4 +1,4 @@
-// app/npm/hono-form/src/hash/hashCreate.ts
+// web/npm/hono-form/src/hash/hashCreate.ts
 
 import { base64UrlEncode } from '@hono-form'
 

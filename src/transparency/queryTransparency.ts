@@ -1,13 +1,13 @@
-// app/src/transparency/queryTransparency.ts
+// web/src/transparency/queryTransparency.ts
 
 import { md2html } from '@src/md/md2html'
-import { dsTransparencyMarkdowns, dsTransparencyMarkdownsDefault, type DsTransparencyMarkdowns } from '@src/dataStructures/transparencyMarkdowns.ds'
+import { enumTransparencyMarkdowns } from '@src/enums/transparencyMarkdowns.enum'
 
 
 export async function queryTransparency(id?: string) {
   const verifiedMarkdown = id
-    ? dsTransparencyMarkdowns.find(v => v.id === id) ?? dsTransparencyMarkdownsDefault
-    : dsTransparencyMarkdownsDefault
+    ? enumTransparencyMarkdowns.get(id) ?? enumTransparencyMarkdowns.array[0]
+    : enumTransparencyMarkdowns.array[0]
 
   const html = await getHtml(verifiedMarkdown)
 
@@ -19,8 +19,8 @@ export async function queryTransparency(id?: string) {
 }
 
 
-async function getHtml(doc: DsTransparencyMarkdowns) {
-  return (Array.isArray(doc.md))
-    ? (await Promise.all(doc.md.map(async md => await md2html(md, doc)))).join('')
-    : await md2html(doc.md, doc)
+async function getHtml(doc: typeof enumTransparencyMarkdowns.$infer) {
+  return typeof doc.md === 'string'
+    ? await md2html(doc.md, doc)
+    : (await Promise.all(doc.md.map(async md => await md2html(md, doc)))).join('')
 }

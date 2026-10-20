@@ -1,4 +1,4 @@
-// app/npm/hono-toast/src/vars.ts
+// web/npm/hono-toast/src/vars.ts
 
 import type { ToastRecord, ToastPosition } from './types'
 

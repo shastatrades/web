@@ -1,4 +1,4 @@
-// app/src/auth/magicLink.route.tsx
+// web/src/auth/magicLink.route.tsx
 
 import { Hono } from 'hono'
 import { eq, and } from 'drizzle-orm'
@@ -81,7 +81,7 @@ export default new Hono()
         )
       }
 
-      const redirect: string = rpc.profile.$url().href // string cast breaks circular depenency error
+      const redirect: string = rpc['edit-profile'].$url().href // string cast breaks circular depenency error
 
       return c.redirect(redirect)
     }

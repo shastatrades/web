@@ -1,4 +1,4 @@
-// app/npm/hono-form/src/time/sec.ts
+// web/npm/hono-form/src/time/sec.ts
 
 /**
  * - 🚨 Important:

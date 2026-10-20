@@ -1,4 +1,4 @@
-// app/npm/hono-form/index.ts
+// web/npm/hono-form/index.ts
 
 // base64
 export * from './src/base64/base64UrlEncode'

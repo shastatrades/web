@@ -1,4 +1,4 @@
-// app/src/validators/profileUpdate.validator.ts
+// web/src/validators/profileUpdate.validator.ts
 
 import * as v from 'valibot'
 import { bytesMB, pipeBoolean, pipeEnoughContent, pipeFile, Validator } from '@hono-form'

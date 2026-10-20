@@ -1,4 +1,4 @@
-// app/src/nav/onNavModalToggle.directive.ts
+// web/src/nav/onNavModalToggle.directive.ts
 
 import { query } from '@hono-dom'
 import { createRPC } from '@hono-api/fe'

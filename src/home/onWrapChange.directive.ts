@@ -1,4 +1,4 @@
-// app/src/home/onWrapChange.directive.ts
+// web/src/home/onWrapChange.directive.ts
 
 import { query } from '@hono-dom'
 import { safeArrayAccess } from '@safely-access'

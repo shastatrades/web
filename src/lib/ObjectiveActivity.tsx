@@ -1,16 +1,15 @@
-// app/src/lib/ObjectiveActivity.tsx
+// web/src/lib/ObjectiveActivity.tsx
 
 import { css } from 'hono/css'
 import type { FC } from 'hono/jsx'
 import { formatTime } from '@hono-directives'
-import { safeObjectAccess } from '@safely-access'
-import svgPersonAdd from '@src/svg/personAdd.svg?raw'
-import svgAddComment from '@src/svg/addComment.svg?raw'
-import svgAddDocument from '@src/svg/addDocument.svg?raw'
-import svgpPersonRemove from '@src/svg/personRemove.svg?raw'
+import svgPersonAdd from '@src/svg/personAdd.html?raw'
+import svgAddComment from '@src/svg/addComment.html?raw'
+import svgAddDocument from '@src/svg/addDocument.html?raw'
+import svgpPersonRemove from '@src/svg/personRemove.html?raw'
+import { enumObjectiveTags } from '@src/enums/objectiveTags.enum'
+import { enumObjectiveColumns } from '@src/enums/objectiveColumns.enum'
 import type { QueryObjectiveActivity, QueryObjectiveActivityItem } from '@src/db'
-import { dsObjectiveTags, dsObjectiveTagsByIds } from '@src/dataStructures/objectiveTags.ds'
-import { dsObjectiveColumns, dsObjectiveColumnsByIds } from '@src/dataStructures/objectiveColumns.ds'
 
 
 export const ObjectiveActivity = (({ res }) => {
@@ -220,6 +219,7 @@ export const objectiveActivityStyle = css`
           font-size: 1.5rem;
           color: #9a9a9a;
           margin-top: 0.4rem;
+          min-height: 2.25rem;
         }
 
         .comment-preview {
@@ -263,13 +263,19 @@ const Chip = ((props) => {
   let key, label
 
   if ('tagId' in props) {
-    key = safeObjectAccess(dsObjectiveTagsByIds, props.tagId)
-    label = safeObjectAccess(dsObjectiveTags, key).label
+    const tag = enumObjectiveTags.get(props.tagId)
+    if (!tag) throw new Error('!tag')
+
+    key = tag.slug
+    label = tag.label
   }
 
   if ('columnId' in props) {
-    key = safeObjectAccess(dsObjectiveColumnsByIds, props.columnId)
-    label = safeObjectAccess(dsObjectiveColumns, key).label
+    const column = enumObjectiveColumns.get(props.columnId)
+    if (!column) throw new Error('!column')
+
+    key = column.slug
+    label = column.label
   }
 
   if (!key) throw new Error('!key', { cause: props })
@@ -294,7 +300,7 @@ const ColumnChanged = (({ actorName, objectiveId, objectiveName, fromColumnId, t
           <span>to</span>
           <Chip columnId={toColumnId} />
         </div>
-        <time data-directive={formatTime(epoch)}>{epoch}</time>
+        <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
@@ -313,7 +319,7 @@ const CommentAdded = (({ actorName, objectiveId, objectiveName, comment, epoch }
           <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
         </div>
         <div class="comment-preview">{comment}</div>
-       <time data-directive={formatTime(epoch)}>{epoch}</time>
+       <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
@@ -333,7 +339,7 @@ const AssigneeAdded = (({ actorName, assigneeName, objectiveId, objectiveName, e
           <span>to</span>
           <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
         </div>
-       <time data-directive={formatTime(epoch)}>{epoch}</time>
+        <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
@@ -353,7 +359,7 @@ const AssigneeRemoved = (({ actorName, assigneeName, objectiveId, objectiveName,
           <span>from</span>
           <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
         </div>
-       <time data-directive={formatTime(epoch)}>{epoch}</time>
+        <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
@@ -373,7 +379,7 @@ const TagAdded = (({ actorName, objectiveId, objectiveName, tagId, epoch }) => {
           <span>to</span>
           <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
         </div>
-       <time data-directive={formatTime(epoch)}>{epoch}</time>
+        <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
@@ -393,7 +399,7 @@ const TagRemoved = (({ actorName, objectiveId, objectiveName, tagId, epoch }) =>
           <span>from</span>
           <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
         </div>
-       <time data-directive={formatTime(epoch)}>{epoch}</time>
+        <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
@@ -413,7 +419,7 @@ const ObjectiveCreated = (({ actorName, columnId, objectiveId, objectiveName, ep
           <span>and placed it into</span>
           <Chip columnId={columnId} />
         </div>
-       <time data-directive={formatTime(epoch)}>{epoch}</time>
+        <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>

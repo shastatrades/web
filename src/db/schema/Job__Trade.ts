@@ -1,4 +1,4 @@
-// app/src/db/schema/Job__Trade.ts
+// web/src/db/schema/Job__Trade.ts
 
 import { Job, Trade } from '@src/db'
 import { index, integer, uniqueIndex, sqliteTable } from 'drizzle-orm/sqlite-core'

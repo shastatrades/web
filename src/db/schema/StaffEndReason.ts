@@ -1,4 +1,4 @@
-// app/src/db/schema/StaffEndReason.ts
+// web/src/db/schema/StaffEndReason.ts
 
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
 

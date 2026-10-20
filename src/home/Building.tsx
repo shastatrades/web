@@ -1,10 +1,10 @@
-// app/src/lib/Building.tsx
+// web/src/lib/Building.tsx
 
 import type{ FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'
-import court from '@src/svg/court.svg?raw'
-import people from '@src/svg/people.svg?raw'
-import personCheck from '@src/svg/personCheck.svg?raw'
+import court from '@src/svg/court.html?raw'
+import people from '@src/svg/people.html?raw'
+import personCheck from '@src/svg/personCheck.html?raw'
 
 
 export default (() => {

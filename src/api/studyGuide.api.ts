@@ -1,4 +1,4 @@
-// app/src/api/studyGuide.api.ts
+// web/src/api/studyGuide.api.ts
 
 import { Hono } from 'hono'
 import { onSuccess } from '@hono-api/be'

@@ -1,4 +1,4 @@
-// app/npm/hono-toast/src/types.d.ts
+// web/npm/hono-toast/src/types.d.ts
 
 import { Vars } from './vars'
 

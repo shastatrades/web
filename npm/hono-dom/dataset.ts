@@ -1,4 +1,4 @@
-// app/npm/hono-dom/dataset.ts
+// web/npm/hono-dom/dataset.ts
 
 export function dataset(camel: string): DatasetReturn {
   const kebab = camel.replace(/([A-Z])/g, '-$1').toLowerCase() // camelCase to kebab-case

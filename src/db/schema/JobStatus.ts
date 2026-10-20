@@ -1,4 +1,4 @@
-// app/src/db/schema/JobStatus.ts
+// web/src/db/schema/JobStatus.ts
 
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
 

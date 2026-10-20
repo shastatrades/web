@@ -1,7 +1,7 @@
-// app/src/db/inupObjective.ts
+// web/src/db/inupObjective.ts
 
 import { eq, and, inArray } from 'drizzle-orm'
-import { dsObjectiveActivityTypes } from '@src/dataStructures/objectiveActivityTypes.ds'
+import { enumObjectiveActivityTypes } from '@src/enums/objectiveActivityTypes.enum'
 import { Objective, ObjectiveActivity, Objective__Tag, Objective__Assignee, type Transaction } from '@src/db'
 import type { insertObjectiveValidator, updateObjectiveValidator } from '@src/validators/inupObjective.validator'
 
@@ -26,7 +26,7 @@ async function insertObjectiveDependants(actorId: number, columnId: number, tx: 
   const promises: Promise<any>[] = [
     tx.insert(ObjectiveActivity).values({
       objectiveId,
-      typeId: dsObjectiveActivityTypes.objectiveCreated,
+      typeId: enumObjectiveActivityTypes.slug.objectiveCreated.id,
       actorId,
       toColumnId: columnId
     })
@@ -48,7 +48,7 @@ async function insertObjectiveDependants(actorId: number, columnId: number, tx: 
       tx.insert(ObjectiveActivity).values(
         assigneeIds.map((assigneeId) => ({
           objectiveId,
-          typeId: dsObjectiveActivityTypes.assigneeAdded,
+          typeId: enumObjectiveActivityTypes.slug.assigneeAdded.id,
           actorId,
           assigneeId,
         })),
@@ -70,7 +70,7 @@ async function insertObjectiveDependants(actorId: number, columnId: number, tx: 
       tx.insert(ObjectiveActivity).values(
         tagIds.map((tagId) => ({
           objectiveId,
-          typeId: dsObjectiveActivityTypes.tagAdded,
+          typeId: enumObjectiveActivityTypes.slug.tagAdded.id,
           actorId,
           tagId
         })),
@@ -100,7 +100,7 @@ export async function updateObjective(actorId: number, tx: Transaction, input: I
   if (existing && existing.columnId !== columnId) {
     await tx.insert(ObjectiveActivity).values({
       objectiveId: id,
-      typeId: dsObjectiveActivityTypes.columnChanged,
+      typeId: enumObjectiveActivityTypes.slug.columnChanged.id,
       actorId,
       fromColumnId: existing.columnId,
       toColumnId: columnId,
@@ -140,7 +140,7 @@ async function updateAssignees(actorId: number, tx: Transaction, objectiveId: nu
       tx.insert(ObjectiveActivity).values(
         toRemove.map((assigneeId) => ({
           objectiveId,
-          typeId: dsObjectiveActivityTypes.assigneeRemoved,
+          typeId: enumObjectiveActivityTypes.slug.assigneeRemoved.id,
           actorId,
           assigneeId,
         })),
@@ -161,7 +161,7 @@ async function updateAssignees(actorId: number, tx: Transaction, objectiveId: nu
       tx.insert(ObjectiveActivity).values(
         toAdd.map((assigneeId) => ({
           objectiveId,
-          typeId: dsObjectiveActivityTypes.assigneeAdded,
+          typeId: enumObjectiveActivityTypes.slug.assigneeAdded.id,
           actorId,
           assigneeId,
         })),
@@ -195,7 +195,7 @@ async function updateTags(actorId: number, tx: Transaction, objectiveId: number,
       tx.insert(ObjectiveActivity).values(
         toRemove.map((tagId) => ({
           objectiveId,
-          typeId: dsObjectiveActivityTypes.tagRemoved,
+          typeId: enumObjectiveActivityTypes.slug.tagRemoved.id,
           actorId,
           tagId,
         })),
@@ -217,7 +217,7 @@ async function updateTags(actorId: number, tx: Transaction, objectiveId: number,
       tx.insert(ObjectiveActivity).values(
         toAdd.map((tagId) => ({
           objectiveId,
-          typeId: dsObjectiveActivityTypes.tagAdded,
+          typeId: enumObjectiveActivityTypes.slug.tagAdded.id,
           actorId,
           tagId,
         })),

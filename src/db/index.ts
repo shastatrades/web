@@ -1,4 +1,4 @@
-// app/src/db/index.ts
+// web/src/db/index.ts
 
 import 'dotenv/config'
 import { drizzle } from 'drizzle-orm/libsql'

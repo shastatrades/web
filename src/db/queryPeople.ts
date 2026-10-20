@@ -1,4 +1,4 @@
-// app/src/db/queryPeople.ts
+// web/src/db/queryPeople.ts
 
 import { db, Person } from '@src/db'
 import type  { InferQuery } from '@drizzle-compose'

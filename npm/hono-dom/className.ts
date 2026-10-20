@@ -1,4 +1,4 @@
-// app/npm/hono-dom/className.ts
+// web/npm/hono-dom/className.ts
 
 export function className(className: string): ClassNameReturn {
   return {

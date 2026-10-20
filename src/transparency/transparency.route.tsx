@@ -1,16 +1,16 @@
-// app/src/lib/transparency.route.tsx
+// web/src/lib/transparency.route.tsx
 
 import { Hono } from 'hono'
 import { css, Style } from 'hono/css'
 import { createRPC } from '@hono-api/be'
 import { mdStyle } from '@src/md/mdStyle'
 import type { AppType } from '@src/index'
-import svgDownload from '@src/svg/download.svg?raw'
+import svgDownload from '@src/svg/download.html?raw'
 import { queryTransparency } from './queryTransparency'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
 import { datasetId, classNameMd, idDownload } from '@src/lib/dom'
 import { bindAccordionItems, onTransparencyLoad } from '@hono-directives'
-import { dsTransparencyMarkdowns } from '@src/dataStructures/transparencyMarkdowns.ds'
+import { enumTransparencyMarkdowns } from '@src/enums/transparencyMarkdowns.enum'
 
 
 export default new Hono()
@@ -36,7 +36,7 @@ export default new Hono()
 
             <div data-directive={onTransparencyLoad()} class="buttons">
               {
-                dsTransparencyMarkdowns.map(v => <>
+                enumTransparencyMarkdowns.array.map(v => <>
                   <a {...idDataset.attr(v.id)} class={verifiedId === v.id ? 'orange big' : 'transparent big'} href={rpc.transparency[':id?'].$url({ param: { id: v.id } }).href}>{v.title}</a>
                 </>)
                 }
@@ -45,7 +45,7 @@ export default new Hono()
 
           <div class={classNameMd().className}>
             {
-              dsTransparencyMarkdowns.map(v => <>
+              enumTransparencyMarkdowns.array.map(v => <>
                 <div {...idDataset.attr(v.id)} dangerouslySetInnerHTML={{ __html: v.id === verifiedId ? html : '' }}></div>
               </>)
             }

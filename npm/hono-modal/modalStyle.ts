@@ -1,4 +1,4 @@
-// app/src/lib/modalStyle.ts
+// web/src/lib/modalStyle.ts
 
 import { css } from 'hono/css'
 

@@ -1,4 +1,4 @@
-// app/src/lib/Hero.tsx
+// web/src/lib/Hero.tsx
 
 import type{ FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'

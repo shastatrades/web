@@ -1,4 +1,4 @@
-// app/src/api/tags.api.ts
+// web/src/api/tags.api.ts
 
 import { Hono } from 'hono'
 import { queryTags } from '@src/db'

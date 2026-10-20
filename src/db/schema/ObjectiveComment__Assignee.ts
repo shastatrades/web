@@ -1,4 +1,4 @@
-// app/src/db/schema/ObjectiveComment__Assignee.ts
+// web/src/db/schema/ObjectiveComment__Assignee.ts
 
 import { Person, ObjectiveComment } from '@src/db'
 import { index, integer, uniqueIndex, sqliteTable } from 'drizzle-orm/sqlite-core'

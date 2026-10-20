@@ -30,6 +30,9 @@
       "@src/*": [
         "./src/*"
       ],
+      "@enum": [
+        "./npm/enum/index"
+      ],
       "@img-webp": [
         "./npm/img-webp/index"
       ],
@@ -65,6 +68,9 @@
       ],
       "@hono-directives": [
         "./npm/hono-directives/dist/index"
+      ],
+      "@hono-directives-run": [
+        "./npm/hono-directives/src/index"
       ],
       "@hono-form": [
         "./npm/hono-form/index"

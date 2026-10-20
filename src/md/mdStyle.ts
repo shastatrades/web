@@ -1,4 +1,4 @@
-// app/src/lib/mdStyle.ts
+// web/src/lib/mdStyle.ts
 
 import { css } from 'hono/css'
 
@@ -63,6 +63,7 @@ export const mdStyle = css`
       -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
       border-radius: var(--radius);
       border: 1px solid #dee2e6;
+      margin-bottom: var(--space-lite);
 
       table {
         width: 100%;

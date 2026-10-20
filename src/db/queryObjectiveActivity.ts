@@ -1,9 +1,9 @@
-// app/src/db/queryObjectiveActivity.ts
+// web/src/db/queryObjectiveActivity.ts
 
 import { alias } from 'drizzle-orm/sqlite-core'
 import { eq, and, or, lt, desc, isNotNull, inArray } from 'drizzle-orm'
-import { dsObjectiveActivityTypesPerVariant } from '@src/dataStructures/objectiveActivityTypes.ds'
-import { prop, leftJoin, createParentShape, createChildren, type InferQuery } from '@drizzle-compose'
+import { enumObjectiveActivityTypes, objectiveActivityTypesByVariant } from '@src/enums/objectiveActivityTypes.enum'
+import { prop, leftJoin, createParentShape, type InferQuery } from '@drizzle-compose'
 import { db, Person, Objective, ObjectiveColumn, ObjectiveComment, ObjectiveTag, ObjectiveActivity, ObjectiveActivityType, Objective__Assignee, ObjectiveComment__Assignee } from '@src/db'
 
 
@@ -122,9 +122,9 @@ function getBaseQuery(props: QueryObjectiveActivityProps & { limit: number }) {
   }
 
   const variantWhere = props.variant === 'all'
-    ? inArray(ObjectiveActivity.typeId, dsObjectiveActivityTypesPerVariant.all)
+    ? inArray(ObjectiveActivity.typeId, objectiveActivityTypesByVariant.all)
     : and(
-      inArray(ObjectiveActivity.typeId, dsObjectiveActivityTypesPerVariant.personal),
+      inArray(ObjectiveActivity.typeId, objectiveActivityTypesByVariant.personal),
       or(
         isNotNull(ObjectiveAssignee.id), // path A: objective the person is assigned to
         isNotNull(CommentAssignee.id),   // path B: comment directly assigned to the person

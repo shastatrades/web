@@ -1,4 +1,4 @@
-// app/src/db/schema/ObjectiveTag.ts
+// web/src/db/schema/ObjectiveTag.ts
 
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 

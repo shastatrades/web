@@ -1,7 +1,7 @@
-// app/npm/hono-modal/ModalConfirm.tsx
+// web/npm/hono-modal/ModalConfirm.tsx
 
 import type { FC } from 'hono/jsx'
-import svgClose from '@src/svg/close.svg?raw'
+import svgClose from '@src/svg/close.html?raw'
 import { onModalToggle, onConfirmSubmit } from '@hono-directives'
 
 

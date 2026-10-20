@@ -1,4 +1,4 @@
-// app/src/api/contactUs.api.ts
+// web/src/api/contactUs.api.ts
 
 import { Hono } from 'hono'
 import { validator, onError, onSuccess } from '@hono-api/be'

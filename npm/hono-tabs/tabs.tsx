@@ -1,4 +1,4 @@
-// app/npm/hono-tabs/tabs.tsx
+// web/npm/hono-tabs/tabs.tsx
 
 import type { Child } from 'hono/jsx'
 import { tabs } from '@hono-directives'

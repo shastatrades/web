@@ -1,13 +1,13 @@
-// app/src/lib/Footer.tsx
+// web/src/lib/Footer.tsx
 
 import type { FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'
 import { createRPC } from '@hono-api/be'
 import type { AppType } from '@src/index'
-import svgTikTok from '@src/svg/tikTok.svg?raw'
-import svgYoutube from '@src/svg/youtube.svg?raw'
-import svgFacebook from '@src/svg/facebook.svg?raw'
-import svgInstagram from '@src/svg/instagram.svg?raw'
+import svgTikTok from '@src/svg/tikTok.html?raw'
+import svgYoutube from '@src/svg/youtube.html?raw'
+import svgFacebook from '@src/svg/facebook.html?raw'
+import svgInstagram from '@src/svg/instagram.html?raw'
 
 
 export default (() => {

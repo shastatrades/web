@@ -15,7 +15,8 @@ export const formStyle = css`
         input[type="file"],
         input[type="email"],
         input[type="number"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="datetime-local"] {
           color: #495057;
           border: 1px solid #ced3d6;
           &:focus {
@@ -44,7 +45,8 @@ export const formStyle = css`
         input[type="file"],
         input[type="email"],
         input[type="number"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="datetime-local"] {
           color: var(--white);
           background-color: rgb(255 255 255 / 0.05);
           border: 1px solid rgba(255, 255, 255, 0.1);
@@ -100,7 +102,8 @@ export const formStyle = css`
       input[type="file"],
       input[type="email"],
       input[type="number"],
-      input[type="password"] {
+      input[type="password"],
+      input[type="datetime-local"] {
         width: 100%;
         display: block;
         border-radius: var(--radius);
@@ -250,6 +253,22 @@ export const formStyle = css`
       font-weight: 600;
       text-align: center;
       margin-bottom: var(--space);
+      &.has-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-lite);
+      }
+
+      .icon {
+        display: inline-block;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &.green {
+          color: var(--primary);
+        }
+      }
     }
 
     a,

@@ -1,4 +1,4 @@
-// app/npm/hono-tabs/tabs.directive.ts
+// web/npm/hono-tabs/tabs.directive.ts
 
 import { query } from '@hono-dom'
 import { tabsEvents } from './tabsEvents'

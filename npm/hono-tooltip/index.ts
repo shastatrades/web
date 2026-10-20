@@ -1,4 +1,4 @@
-// app/npm/hono-tooltip/tooltip.style.ts
+// web/npm/hono-tooltip/tooltip.style.ts
 
 import { css } from 'hono/css'
 
@@ -24,7 +24,7 @@ export const tooltipStyle = css`
       .arrow {
         left: 50%;
         top: 100%;
-        transform: translateX(-50%);
+        transform: translateX(calc(-50% + var(--hono-tooltip-arrow-translate, 0px)));
         clip-path: polygon(50% 100%, 0 0, 100% 0);
       }
     }
@@ -34,7 +34,7 @@ export const tooltipStyle = css`
       .arrow {
         top: 100%;
         right: 0;
-        transform: translateX(-0.9rem);
+        transform: translateX(calc(-0.9rem + var(--hono-tooltip-arrow-translate, 0px)));
         clip-path: polygon(50% 100%, 0 0, 100% 0);
       }
     }
@@ -44,7 +44,7 @@ export const tooltipStyle = css`
       .arrow {
         top: 100%;
         left: 0;
-        transform: translateX(0.9rem);
+        transform: translateX(calc(0.9rem + var(--hono-tooltip-arrow-translate, 0px)));
         clip-path: polygon(50% 100%, 0 0, 100% 0);
       }
     }
@@ -55,7 +55,7 @@ export const tooltipStyle = css`
       .arrow {
         top: 0;
         left: 50%;
-        transform: translate(-50%, -0.6rem);
+        transform: translate(calc(-50% + var(--hono-tooltip-arrow-translate, 0px)), -0.6rem);
         clip-path: polygon(50% 0, 0 100%, 100% 100%);
       }
     }
@@ -65,7 +65,7 @@ export const tooltipStyle = css`
       .arrow {
         top: 0;
         right: 0;
-        transform: translate(-0.9rem, -0.6rem);
+        transform: translate(calc(-0.9rem + var(--hono-tooltip-arrow-translate, 0px)), -0.6rem);
         clip-path: polygon(50% 0, 0 100%, 100% 100%);
       }
     }
@@ -75,7 +75,7 @@ export const tooltipStyle = css`
       .arrow {
         top: 0;
         left: 0;
-        transform: translate(0.9rem, -0.6rem);
+        transform: translate(calc(0.9rem + var(--hono-tooltip-arrow-translate, 0px)), -0.6rem);
         clip-path: polygon(50% 0, 0 100%, 100% 100%);
       }
     }

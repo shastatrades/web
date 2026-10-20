@@ -1,4 +1,4 @@
-// app/src/db/queryObjective.ts
+// web/src/db/queryObjective.ts
 
 import { eq } from 'drizzle-orm'
 import { alias } from 'drizzle-orm/sqlite-core'

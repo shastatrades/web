@@ -1,4 +1,4 @@
-// app/npm/hono-email/src/renderEmail.ts
+// web/npm/hono-email/src/renderEmail.ts
 
 /**
  * Supports:

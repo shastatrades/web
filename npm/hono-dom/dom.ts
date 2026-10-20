@@ -1,4 +1,4 @@
-// app/npm/hono-dom/dom.ts
+// web/npm/hono-dom/dom.ts
 
 import { query } from './query'
 import type { IdReturn } from './id'

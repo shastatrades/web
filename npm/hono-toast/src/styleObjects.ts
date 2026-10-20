@@ -1,4 +1,4 @@
-// app/npm/hono-toast/src/styleObjects.ts
+// web/npm/hono-toast/src/styleObjects.ts
 
 import type { CSSProperties } from './types'
 

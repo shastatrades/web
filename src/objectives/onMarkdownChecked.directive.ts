@@ -1,4 +1,4 @@
-// app/src/objectives/onMarkdownChecked.directive.ts
+// web/src/objectives/onMarkdownChecked.directive.ts
 
 import { query } from '@hono-dom'
 import { md2html } from '@src/md/md2html'

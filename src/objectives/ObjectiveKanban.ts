@@ -1,4 +1,4 @@
-// app/src/objectives/ObjectiveKanban.ts
+// web/src/objectives/ObjectiveKanban.ts
 
 import { onError } from '@hono-api/fe'
 import { toggleModalDom } from '@hono-modal'

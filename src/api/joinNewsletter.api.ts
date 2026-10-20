@@ -1,4 +1,4 @@
-// app/src/api/joinNewsletter.api.ts
+// web/src/api/joinNewsletter.api.ts
 
 import { Hono } from 'hono'
 import { db, putPersonContact } from '@src/db'

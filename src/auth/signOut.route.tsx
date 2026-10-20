@@ -1,4 +1,4 @@
-// app/src/auth/signOut.route.tsx
+// web/src/auth/signOut.route.tsx
 
 import { Hono } from 'hono'
 import { createRPC } from '@hono-api/be'

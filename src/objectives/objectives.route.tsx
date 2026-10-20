@@ -1,4 +1,4 @@
-// app/src/objectives/objectives.route.tsx
+// web/src/objectives/objectives.route.tsx
 
 import { Hono } from 'hono'
 import type { FC } from 'hono/jsx'
@@ -10,7 +10,7 @@ import ObjectiveInUp from '@src/objectives/ObjectiveInUp'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
 import type { ClassNameReturn, DatasetReturn } from '@hono-dom'
 import { objectiveActivityStyle } from '@src/lib/ObjectiveActivity'
-import { dsKanbanColumns } from '@src/dataStructures/kanbanColumns.ds'
+import { enumObjectiveColumns } from '@src/enums/objectiveColumns.enum'
 import { queryObjectives, type QueryObjective } from '@src/db/queryObjective'
 import { classNameAssignees, classNameColumn, classNameCount, classNameObjective, classNameObjectives, classNameTags, classNameTitle, datasetColumnId, datasetId, datasetObjectiveInUpShowModal, datasetOrder, classNameSvg, idObjectiveTemplate, idActivity } from '@src/lib/dom'
 
@@ -63,10 +63,10 @@ export default new Hono()
                   <div data-directive={onObjectivesPageLoad(kanbanData)} class="kanban-board-wrapper">
                     <div class="kanban-board" id="kanbanBoard" aria-label="Kanban Board">
                       <div class="kanban-board-inner">
-                        {dsKanbanColumns.map((column) => (
-                          <section {...columnIdDataset.attr(column.id)} class={columnClassName.className} aria-label={`${column.value} column`}>
+                        {enumObjectiveColumns.array.map((column) => (
+                          <section {...columnIdDataset.attr(column.id)} class={columnClassName.className} aria-label={`${column.label} column`}>
                             <header class="header">
-                              <h2 class="title">{column.value}</h2>
+                              <h2 class="title">{column.label}</h2>
                               <span class={countClassName.className}>
                                 {kanbanData[column.id]?.length || 0}
                               </span>

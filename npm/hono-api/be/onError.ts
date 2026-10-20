@@ -1,4 +1,4 @@
-// app/npm/hono-api/be/onError.ts
+// web/npm/hono-api/be/onError.ts
 
 import type { Context } from 'hono'
 import type { ApiError } from '../api.d'

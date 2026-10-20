@@ -1,4 +1,4 @@
-// app/src/auth/signOut.ts
+// web/src/auth/signOut.ts
 
 import { eq } from 'drizzle-orm'
 import type { Context } from 'hono'

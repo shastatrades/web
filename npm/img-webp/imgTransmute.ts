@@ -1,4 +1,4 @@
-// app/npm/img-webp/imgTransmute.ts
+// web/npm/img-webp/imgTransmute.ts
 
 import { initWasm } from './initWasm'
 import { img_transmute } from './img_webp.js'

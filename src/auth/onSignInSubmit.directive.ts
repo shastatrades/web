@@ -1,4 +1,4 @@
-// app/src/auth/onSignInSubmit.directive.ts
+// web/src/auth/onSignInSubmit.directive.ts
 
 import { showToast } from '@hono-toast'
 import type { AppType } from '@src/index'

@@ -1,4 +1,4 @@
-// app/src/validators/joinNewsletter.validator.ts
+// web/src/validators/joinNewsletter.validator.ts
 
 import * as v from 'valibot'
 import { pipeEmail, pipeEnoughContent, Validator } from '@hono-form'

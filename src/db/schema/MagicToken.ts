@@ -1,4 +1,4 @@
-// app/src/db/schema/MagicToken.ts
+// web/src/db/schema/MagicToken.ts
 
 import { Person } from '@src/db'
 import { text, index, integer, sqliteTable } from 'drizzle-orm/sqlite-core'

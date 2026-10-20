@@ -1,4 +1,4 @@
-// app/npm/img-webp/initWasm.ts
+// web/npm/img-webp/initWasm.ts
 
 import init from './img_webp.js'
 

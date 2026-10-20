@@ -1,4 +1,4 @@
-// app/src/transparency/onTransparencyLoad.directive.ts
+// web/src/transparency/onTransparencyLoad.directive.ts
 
 import { AppType } from '@src/index'
 import { createRPC } from '@hono-api/fe'

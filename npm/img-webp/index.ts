@@ -1,4 +1,4 @@
-// app/npm/img-webp/index.ts
+// web/npm/img-webp/index.ts
  
 export * from './onFileChange'
 export * from './imgTransmute'

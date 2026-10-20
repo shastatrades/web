@@ -1,4 +1,4 @@
-// app/npm/hono-tabs/tabs.style.ts
+// web/npm/hono-tabs/tabs.style.ts
 
 import { css } from 'hono/css'
 

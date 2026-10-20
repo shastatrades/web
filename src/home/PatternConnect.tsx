@@ -1,14 +1,14 @@
-// app/src/lib/Pattern.tsx
+// web/src/lib/Pattern.tsx
 
 import type { FC } from 'hono/jsx'
 import { Field } from '@hono-form'
 import { patience } from '@src/lib/vars'
-import svgLock from '@src/svg/lock.svg?raw'
-import svgFrequency from '@src/svg/frequency.svg?raw'
-import { dsStaff } from '@src/dataStructures/staff.ds'
+import svgLock from '@src/svg/lock.html?raw'
+import { enumStaff } from '@src/enums/staff.enum'
+import { enumTrades } from '@src/enums/trades.enum'
+import svgFrequency from '@src/svg/frequency.html?raw'
 import { datasetScroll, idHomeForm } from '@src/lib/dom'
-import { dsTrades } from '@src/dataStructures/trades.ds'
-import { dsHomeFormIds, dsHomeForms } from '@src/dataStructures/homeForms.ds'
+import { enumHomeForms } from '@src/enums/homeForms.enum'
 import { onContactUsSubmit, onServiceRequestSubmit, onJoinLeadershipSubmit, onJoinNewsletterSubmit, tooltip, onHomeHashLoad, onHomeHashClick } from '@hono-directives'
 
 
@@ -30,7 +30,7 @@ const Forms: FC = () => {
       <div class="explain">🤝 Want to connect with us?</div>
 
       <div class="buttons">
-        {dsHomeForms.map(a => <a {...scrollDataset.attr('false')} href={'#' + a.id} class="transparent big">{a.title}</a>)}
+        {enumHomeForms.array.map(a => <a {...scrollDataset.attr('false')} href={'#' + a.id} class="transparent big">{a.title}</a>)}
       </div>
 
       <ServiceRequest />
@@ -43,8 +43,7 @@ const Forms: FC = () => {
 
 
 const ServiceRequest: FC = () => {
-  const id = dsHomeFormIds[0]
-  if (!id) throw new Error('!id')
+  const id = enumHomeForms.obj['service-request'].id
 
   return <>
     <div id={id} class="form hidden">
@@ -54,7 +53,7 @@ const ServiceRequest: FC = () => {
           <div class="title">Professional Service</div>
           <div class="description">Our master trade professionals lead every project, ensuring lovely results and hands-on education. Our services include:</div>
           <div class="items">
-            {dsTrades.map(item => <>
+            {enumTrades.array.map(item => <>
               <div class="item">
                 <div class="icon" dangerouslySetInnerHTML={{ __html: item.icon }}></div>
                 <div class="info">
@@ -79,7 +78,7 @@ const ServiceRequest: FC = () => {
               <Field name="email" placeholder="Email" type="email" prefix={id} />
 
               <Field name="description" placeholder="Job Description" type="textarea" prefix={id} />
-              <Field name="trade" type="checkbox" options={dsTrades} prefix={id} />
+              <Field name="trade" type="checkbox" options={enumTrades.array.map(v => ({ label: String(v.id), value: v.label }))} prefix={id} />
 
               <button data-directive={tooltip('topCenter', patience)} class="orange wide" type="submit">Hire Trade Professionals</button>
             </form>
@@ -92,8 +91,7 @@ const ServiceRequest: FC = () => {
 
 
 const JoinLeadership: FC = () => {
-  const id = dsHomeFormIds[1]
-  if (!id) throw new Error('!id')
+  const id = enumHomeForms.obj['join-leadership'].id
 
   return <>
     <div id={id} class="form hidden">
@@ -103,7 +101,7 @@ const JoinLeadership: FC = () => {
           <div class="title">Lead by Example</div>
           <div class="description">We are uniting a visionary Board and dedicated Staff to lead by example! Current openings include:</div>
           <div class="items">
-            {dsStaff.map(item => <>
+            {enumStaff.array.map(item => <>
               <div class="item">
                 <div class="icon" dangerouslySetInnerHTML={{__html: item.icon}}></div>
                 <div class="info">
@@ -126,7 +124,7 @@ const JoinLeadership: FC = () => {
               </div>
 
               <Field name="email" placeholder="Email" type="email" prefix={id} />
-              <Field name="interest" placeholder="Select Interested Position" type="select" options={dsStaff} prefix={id} />
+              <Field name="interest" placeholder="Select Interested Position" type="select" options={enumStaff.array.map(v => ({ label: String(v.id), value: v.label }))} prefix={id} />
               <button class="orange wide" type="submit">Join Leadership Team</button>
             </form>
           </div>
@@ -138,8 +136,7 @@ const JoinLeadership: FC = () => {
 
 
 const JoinNewsletter: FC = () => {
-  const id = dsHomeFormIds[2]
-  if (!id) throw new Error('!id')
+  const id = enumHomeForms.obj['join-newsletter'].id
 
   const items = [
     { icon: svgLock, title: 'Security', description: 'Newsletter recipient names & emails are encrypted using industry-standard AEAD algorithms' },
@@ -188,8 +185,7 @@ const JoinNewsletter: FC = () => {
 
 
 const ContactUs: FC = () => {
-  const id = dsHomeFormIds[3]
-  if (!id) throw new Error('!id')
+  const id = enumHomeForms.obj['contact-us'].id
 
   const items = [
     { icon: svgLock, title: 'Security', description: 'Contact names, emails and messages are encrypted using industry-standard AEAD algorithms' },

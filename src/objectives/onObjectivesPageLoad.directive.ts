@@ -1,4 +1,4 @@
-// app/src/objectives/onObjectivesPageLoad.directive.ts
+// web/src/objectives/onObjectivesPageLoad.directive.ts
 
 
 import type { QueryObjectives } from '@src/db/queryObjective'

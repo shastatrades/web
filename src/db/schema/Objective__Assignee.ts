@@ -1,4 +1,4 @@
-// app/src/db/schema/Objective__Assignee.ts
+// web/src/db/schema/Objective__Assignee.ts
 
 import { Objective, Person } from '@src/db'
 import { index, integer, sqliteTable, uniqueIndex } from 'drizzle-orm/sqlite-core'

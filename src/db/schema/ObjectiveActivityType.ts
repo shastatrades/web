@@ -1,4 +1,4 @@
-// app/src/db/schema/ObjectiveActivityType.ts
+// web/src/db/schema/ObjectiveActivityType.ts
 
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core'
 

@@ -1,4 +1,4 @@
-// app/npm/hono-api/be/createRPC.ts
+// web/npm/hono-api/be/createRPC.ts
 
 import { hc } from 'hono/client'
 import type { Hono } from 'hono'

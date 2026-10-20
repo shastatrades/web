@@ -1,4 +1,4 @@
-// app/src/db/schema/LeadStatus.ts
+// web/src/db/schema/LeadStatus.ts
 
 import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
 

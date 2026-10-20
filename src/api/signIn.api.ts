@@ -1,4 +1,4 @@
-// app/src/api/signIn.api.ts
+// web/src/api/signIn.api.ts
 
 import { Hono } from 'hono'
 import { signIn } from '@src/auth/signIn'
