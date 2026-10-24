@@ -38,7 +38,7 @@ export default new Hono()
           <Style>{style}</Style>
           <Style>{searchStyle}</Style>
           <div data-directive={onFinanceNotesLoad()}>
-            <SearchInput svgClose={svgClose} svgSearch={svgSearch} />
+            <SearchInput svgClose={svgClose} svgSearch={svgSearch} placeholder="Search Finance Notes..." />
           </div>
           <div data-directive={bindAccordionItems()} class="md" dangerouslySetInnerHTML={{ __html: md }}></div>
           <div id={noResultsId.id} class="hidden">No search results found</div>

@@ -10,6 +10,7 @@ import { safeArrayAccess } from '@safely-access'
  * 2. Attaches debounce search function to `input` listener on search input
  * 3. Attaches click listener to `c.btnClearInput` if provided (clear input, show hidden search items, focus input)
  * 4. IF `c.focusInputOnLoad` THEN focus search input 
+ * 5. IF `c.resetOnEscape` THEN on escape press we'll reset the 
  * @returns Debounce search function
  */
 export function bindSearch(c: SearchContext) {
