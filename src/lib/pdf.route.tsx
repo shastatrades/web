@@ -28,7 +28,7 @@ export default new Hono()
 
           <body>
             <main>
-              <div dangerouslySetInnerHTML={{ __html: html }} class="md pdf"></div>
+              <div dangerouslySetInnerHTML={{ __html: html }} class="md page-content"></div>
             </main>
           </body>
         </html>
@@ -41,9 +41,4 @@ const style = css`
   body {
     padding-top: var(--space);
   }
-
-  .pdf {
-    margin: 0 auto;
-    max-width: var(--max-width);
-  }  
 `

@@ -1,4 +1,4 @@
-// import ConfirmModal from './ConfirmModal'
+// web/npm/hono-modal/index.ts
 
 export * from './modalStyle'
 export * from './ModalConfirm'

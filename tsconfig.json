@@ -48,6 +48,9 @@
       "@hono-accordion": [
         "./npm/hono-accordion/index"
       ],
+      "@hono-search": [
+        "./npm/hono-search/index"
+      ],
       "@hono-events": [
         "./npm/hono-events/index"
       ],

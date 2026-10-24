@@ -46,9 +46,6 @@ export const accordionStyle = css`
       h1,
       h2,
       h3 {
-        display: flex;
-        align-items: center;
-        gap: 0.45rem;
         margin: 0;
         font-size: 2.4rem; /* optionally keep heading hierarchy */
 

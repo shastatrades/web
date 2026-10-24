@@ -1,74 +1,161 @@
 <!--{"accordionStart":true}-->
-## What are our fundamental finance principles?
+## What are the 5 financial buckets?
 <!--{"accordionBody":true}-->
-- Transactions describe **movement** (cash in, cash out)
-- Agreements describe **intent** (Donation, Pledge, Grant)
-- Funds describe **destination** (which bucket based on legal/accounting restrictions)
-- Receipts describe **paperwork** (tax docs)
-<!--{"accordionEnd":true}-->
-
-
----
-
-
-<!--{"accordionStart":true}-->
-## What is a transaction?
-<!--{"accordionBody":true}-->
-- Transactions describe movement (cash in, cash out)
-- Helps answer the question: Where is the money right now?
+- Assets
+- Liabilities
+- Net Assets
+- Revenue
+- Expenses
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What are our transaction statuses?
+## What is a Ledger Account?
 <!--{"accordionBody":true}-->
-| Status | Meaning | Cash in bank? | Revenue real? | Spendable? |
-|---|---|---|---|---|
-| `expected` | Known to be incoming or outgoing but not initiated | No | No | No |
-| `in_flight` | Payment sent, waiting to settle | No | No | No |
-| `received` | Cash arrived @ bank but not booked yet | Yes | No | No |
-| `recognized` | Booked to general ledger, the moment money becomes real, all before is a promise | Yes | Yes | Yes, per fund |
-| `reconciled` | Matched to statement, locked,  we proved the money is real by matching it to our bank statement | Yes | Yes | Yes |
-| `reversed` | Refunded or charged back, a new row, not an existing row status edit | Reversed | Reversed | No |
+- A Ledger Account tracks a subset of financial transactions w/in one financial bucket
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What does locked mean from a transaction perspective?
+## What is a Journal?
 <!--{"accordionBody":true}-->
-- Locked = a row in the `transactions` table can no longer be changed
-- Locked is not a status we manually set. Locked is an automatic consequence of reconciliation.
-- Once a transaction is locked, all rows are immutable (not allowed to be changed) & enforced via database triggers
-- If something changes, we add a new row instead
-    | Event | What Happens |
-    |---|---|
-    | Transaction status reaches `reconciled` | The row is matched to the bank statement & the row becomes locked |
-    | The accounting period is **permanently closed** | All transactions in that period become locked |
-    | A **trigger** fires on UPDATE or DELETE | Database rejects any attempt to modify the row |
+- A Journal is the chronological log of every transaction
+- Ordered by date
+- The journal is the book of original entry that captures raw transactions in chronological order, and the ledger is a journal that organizes transactions by ledger account
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What are our transaction types?
+## What is a Ledger?
 <!--{"accordionBody":true}-->
-| Type | Direction | Example |
-|---|---|---|
-| `donation` | in | Supporter gives $500 to Community Repair |
-| `pledge_payment` | in | Monthly installment against a $10k pledge |
-| `grant_disbursement` | in | COYA sends $250,000 tranche |
-| `service_fee` | in | Betty pays $21/hr for her sink repair |
-| `disbursement` | out | Apprentice wage / Mentor wage |
-| `refund` | out | Donor asks for money back |
-| `chargeback` | out | Bank reverses a card donation |
-- Notes:
-    - Tranche comes from the French word for "slice." A $1,000,000 grant paid in four tranches is just that grant cut into four slices.
+- A sub-ledger is a Journal for a Leger Account
+- The General Ledger is a Journal for all Ledger Accounts
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What is a functional class?
+## What are Assets?
 <!--{"accordionBody":true}-->
-- A functional class is a column on the transaction's table that answers "Was this spending for our mission, for admin, or for fundraising?"
+- An asset is **true** for all:
+    1. We **own** it
+    2. It has **measurable value**
+    3. It will provide **future benefit** b/c its cash OR b/c it will last beyond one year
+- Examples:
+  - Cash
+  - Vehicles
+  - Equipment
+  - Property
+  - Receivables (pledge, money owed to us)
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What are Liabilities?
+<!--{"accordionBody":true}-->
+- A liability is **true** for all:
+    1. It is an **obligation** to another party
+    2. It arose from a **past transaction** (we already received something)
+    3. It will require **future payment or performance** — either cash, services, or a deliverable
+- Examples:
+    - **Accounts payable** — bills owed to vendors
+    - **Accrued payroll** — wages earned by staff but not yet paid
+    - **Payroll taxes payable** — federal (941/940) and California (EDD) taxes withheld but not yet remitted
+    - **Refundable advances / deferred Revenue** — grant money received before conditions met
+    - **Loans payable** — mortgages, equipment loans, lines of Credit
+    - **Foundation grant with strings attached** A liability until the conditions are met (e.g., report by June or return it)
+        - Conditional grant (must meet a milestone or return it) → Liability until conditions met
+        - Unconditional but restricted grant (must use for wildfire work) → Revenue with donor restriction, not a liability
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is Payable?
+<!--{"accordionBody":true}-->
+- Payable means a sum of money that must be paid
+- Signifies that a debt or obligation is legally due
+- Accounts payable refers to liabilities a company owes to suppliers for goods or services received on credit but not yet paid
+- Example: We ordered $2,000 of lumber from a supplier. The lumber arrived. We have 30 days to pay the invoice.
+- What it is not: 
+    - A bill we haven't received yet (future Expense)
+    - Wages owed to employees (accrued payroll)
+    - Payroll taxes owed to the IRS (payroll taxes payable)
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is Accrued?
+<!--{"accordionBody":true}-->
+- According to accrual accounting, transactions are recorded on the date they incur (occur) rather than the date money changes hands
+- Examples:
+    - Wages earned by staff in December but paid in January
+    - Internet services used during a month are incurred as we consume them, prior to receiving or paying the monthly bill
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is Remitted?
+<!--{"accordionBody":true}-->
+- From a financial perspective, Remitted means to transmit or send funds or payment for a bill, service, or account (e.g., to remit the monthly invoice)
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What are Net Assets?
+<!--{"accordionBody":true}-->
+- What we truly own
+- What we own after we pay our Liabilities
+- Example:
+    - We buy a **$500,000 house** with a **$400,000 mortgage** and **$100,000** of your own cash
+    - **Asset:** = What we own = $500,000 house
+    - **Liability: What you owe:** $400,000 mortgage
+    - **Net assets:** = What we truly own = $100,000
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## How do Nonprofits split Net Assets?
+<!--{"accordionBody":true}-->
+- **Net assets without donor restrictions**
+    - Money the board can spend freely
+    - **Unrestricted** funds (General Operating)
+    - **Board-designated** funds (Operating Reserve, Capital & Equipment)
+- **Net assets with donor restrictions**
+    — Money legally restricted by donors or grantors
+    - All our Restricted funds (Wildfire Repair, Elderly Assistance, Opportunity Youth, etc.)
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is Revenue?
+<!--{"accordionBody":true}-->
+- Value that comes in from outside our oganization (like a liability), with no obligation to give something back (unlike a liability)
+- **Examples for Shasta Trades:**
+    - Donations
+    - Grants
+    - Service fees (trades invoices)
+    - In-kind gifts
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is an Expense?
+<!--{"accordionBody":true}-->
+- The cost of resources consumed to fulfill our mission
+- Examples:
+    - **Program Expenses** — apprentice wages, mentor wages, program materials, tools consumed on jobs
+    - **Admin Expenses** — rent, insurance, software, salary, board meetings
+    - **Fundraising Expenses** — donor emails, grant writing, event costs, thank-you cards
+- Every Expense gets one functional class
+    — `mission`
+    - `admin`
+    - `fundraising`
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is a Functional Class?
+<!--{"accordionBody":true}-->
+- A Functional Class is a column on the transaction's table that answers "Was this spending for our mission, for admin, or for fundraising?"
 - Required by the IRS on **Form 990 Part IX** (Statement of Functional Expenses)
 - Every transaction gets exactly one functional class
 - Helps us tell the IRS (and our board) whether each dollar we spent was on the `mission`, on `admin`, or on `fundraising`
@@ -80,77 +167,192 @@
 <!--{"accordionEnd":true}-->
 
 
----
-
-
 <!--{"accordionStart":true}-->
-## What is a donor?
+## What is Receivable?
 <!--{"accordionBody":true}-->
-- A donor is a person or organization that voluntarily gives money, property, goods, services, or other assets to a nonprofit without receiving equal value in return
-- A donor is the source of a charitable contribution
-- **Donor types:**
-    | Type | Meaning |
-    |---|---|
-    | `individual` | One person giving personal funds, can be anonymous |
-    | `staff` | Current staff |
-    | `board-member` | Current board director, must be disclosed on 990 |
-    | `corporation` | Business giving from company funds |
-    | `nonprofit` | A 501(c)(3) giving funds |
-    | `foundation` | Charitable entity that uses its assets to fund charitable work |
-    | `government` | City, county, state, federal agency |
+- Receivable tracks assets owed to us for goods or services we have already provided
+- Examples:
+    - Sarah (the realtor) hired us for a $4,000 kitchen rehab. The work is done. **$4,000 in accounts receivable**
+    - A grant funder approved $25,000 and the award letter is signed, but the check hasn't arrived. → **$25,000 in grants receivable** (a subtype of AR)
+    - A donor pledged $10,000 and signed a written promise. No cash yet. → **Pledges receivable** (a subtype of AR)
+- What it is not: 
+    - Not a promise someone might make someday (prospect)
+    - Not cash in the bank (cash)
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What is a donation?
+## What are the optimal Ledger Account number ranges?
 <!--{"accordionBody":true}-->
-- A donation is a gift of cash or cash-equivalent from a donor to Shasta Trades
-- **Donation statuses:**
-    | Status | Meaning | Revenue recognized? | Spendable? | Receipt issued? |
-    |---|---|---|---|---|
-    | `draft` | Created internally, not submitted. Editable. | No | No | No |
-    | `pending` | Submitted, awaiting payment, verification, or review. | No | No | No |
-    | `posted` | Finalized. Money recognized and fund allocated. | Yes | Yes | Yes |
-    | `failed` | Rejected, declined, or verification failed. | No | No | No |
-    | `canceled` | Withdrawn before completion. | No | No | No |
+- Assets: **1000 – 1999**
+- Liabilities: **2000 – 2999**
+- Net Assets: **3000 – 3999**
+- Revenue: **4000 – 4999**
+- Expenses: **5000 – 5999+**
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What is a pledge?
+## What is the Chart of Accounts?
 <!--{"accordionBody":true}-->
-- A pledge is a promise to give, so it's never cash
-- **Pledge statuses:**
-    | Status | Meaning | Revenue recognized? | Cash received? | Notes |
-    |---|---|---|---|---|
-    | `pledged` | Donor promised a gift. No cash yet. | Only if unconditional | No | GAAP: unconditional = revenue now |
-    | `partially_fulfilled` | Some of the pledge has been paid. | Proportional | Partial | Track remaining balance |
-    | `fulfilled` | Pledge paid in full. | Yes | Yes | Convert to Donation |
-    | `overdue` | Past due date. | Yes (if unconditional) | No | Follow-up required |
-    | `written_off` | Deemed uncollectible. | Reversed | No | Board approval recommended |
-    | `canceled` | Donor withdrew the promise. | Reversed | No | Log reason |
+- The list of every Ledger Account that we use
+- Examples:
+    - 1010 · Checking
+    - 1020 · Savings
+    - 1500 · Vehicles
+    - 1510 · Vehicles Accumulated Depreciation
+    - 2010 · Accounts Payable
+    - 2020 · Credit Card Payable
+    - 2030 · Accrued Payroll
+    - 3010 · Net Assets, General Operating
+    - 3020 · Net Assets, Operating Reserve
+    - 3020 · Net Assets, Capital & Equipment
+    - 3030 · Net Assets, Restricted
+    - 4010 · Individual Donations
+    - 4020 · Corporate Donations
+    - 4030 · Foundation Grants
+    - 5010 · Admin Wages
+    - 5020 · Mentor Wages
+    - 5030 · Apprentice Wages
+    - 5210 · Tools & Consumables
+    - 5700 · Depreciation Expense
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What is a grant?
+## What is a Transaction?
 <!--{"accordionBody":true}-->
-- Institutional funding (e.g., Government, Foundations, Home Depot)
-- Separate lifecycle from Donation b/c grants have reporting and compliance
-- **Grant statuses:**
-    | Status | Meaning | Funds received? | Spendable? | Reporting due? |
-    |---|---|---|---|---|
-    | `prospect` | Identified, not yet applied. | No | No | No |
-    | `applied` | Application submitted. | No | No | No |
-    | `declined` | Application rejected. | No | No | No |
-    | `awarded` | Approved, award letter signed. | No | No | Soon |
-    | `pending_funds` | Waiting for disbursement. | No | No | Soon |
-    | `active` | Funds received and spendable per grant terms. | Yes | Yes | Yes |
-    | `reporting` | Spending underway or complete; reports due. | Yes | Yes | Yes |
-    | `closed` | All reports accepted. Funds fully spent or returned. | Yes | No | No |
-    | `terminated` | Ended early by grantor or grantee. | Partial | No | Final report |
-- Notes:
-    - `terminated` is when the grant ended early, before it was supposed to (e.g., we missed a milestone, they ran out of money)
+- A single economic event that changes two ledger accounts at the same time, b/c every Transaction answers 2 questions:
+    1. **Where did the value come from? (Credit)**
+    2. **Where does the value sit now? (Debit)**
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is Credit?
+<!--{"accordionBody":true}-->
+- From Latin *creditum*
+- No connection to "credit card"
+- In every transaction, **total debits must equal total credits**
+- **Credit** = Where did the value come from? AND **Debit** = Where is the value now? Examples:
+    - Paid Wages:
+        - $10,000 Credit @ `1010 · Checking` AND $10,000 Debit @ `5010 · Admin Wages`
+    - Bought Tools w/ Credit Card:
+        - $500 Credit @ `2020 · Credit Card Payable` AND $500 Debit @ `5210 · Tools & Consumables`
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is Debit?
+<!--{"accordionBody":true}-->
+- From Latin *debitum*
+- No connection to "debit card"
+- In every transaction, **total debits must equal total credits**
+- **Credit** = Where did the value come from? AND **Debit** = Where is the value now? Examples:
+    - Received a Grant:
+        - $50,000 Credit @ `4030 · Foundation Grants` AND $50,000 Debit @ `1010 · Checking`
+    - Purchased a Vehicle w/ Cash:
+        - $30,000 Credit @ `1010 · Checking` AND $30,000 Debit @ `1500 · Vehicles`
+    - Monthly Vehicle Depreciation
+        - $30,000 vehicle, 5 year useful life, $6,000/year = $500/month
+        - Vehicle is $500 less valuable b/c we used $500 of its value this month
+        - $500 Credit @ `1510 · Vehicles Accumulated Depreciation` AND $500 Debit @ `5700 · Depreciation Expense`
+    - Monthly Office Depreciation
+        - $500,000 office, $468,000 building, $32,000 land (land does not depreciate)
+        - $468,000 building, 39 year useful life = $1,000/month
+        - Office is $1,000 less valuable b/c we used $1,000 of its value this month
+        - $1,000 Credit @ `1810 · Building Accumulated Depreciation` AND $1,000 Debit @ `5700 · Depreciation Expense`
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is a Balance Sheet?
+<!--{"accordionBody":true}-->
+- Point in time
+- Never a range
+- Equation:
+    - Net Assets = Assets - Liabilities
+        - What we truly own = (What we own) - (What we owe)
+        - Example: $100,000 down payment = $500,000 house - $400,000 mortgage
+    - Assets = Net Assets + Liabilities
+        - What we own = (What we truly own) + (What we owe)
+        - Example: $500,000 house = $100,000 down payment + $400,000 mortgage
+- The layout matches the **Balance Sheet equation**
+    - **Left side:** Assets
+    - **Right side:** Net Assets + Liabilities
+    - The two sides must be equal
+        - That is why it is called a *balance* sheet
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is an Income Statement?
+<!--{"accordionBody":true}-->
+- Statement of Activities
+- Tracks Revenue and Expenses over a period (e.g., month, quarter, year)
+- Equation:
+    - Beginning Net Assets + Revenue − Expenses = Ending Net Assets
+        - (What we truly owned at the start) + (What came in) − (What we used up) = What we truly own at the end
+        - $50,000 (Beginning Net Assets) + $200,000 (Revenue) - $180,000 (Expenses) = $70,000 (Ending Net Assets)
+- Answers: *"How richer or poorer did we become during this period?"*
+    - Surplus: Revenue > Expenses
+    - Deficit: Revenue < Expenses
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## How do a Balance Sheet and Income Statement relate?
+<!--{"accordionBody":true}-->
+- Balance Sheet:
+    - Snapshot equation
+    - Net Assets = Assets - Liabilities
+    - Describes where we stand on a day
+    - **Start-of-period Balance Sheet:** (e.g., January 1, 2026) provides beginning of period Net Assets
+    - **End-of-period Balance Sheet:** (e.g., December 31, 2026) provides end of period Net Assets
+- Income Statement:
+    - Period equation
+    - Beginning Net Assets + Revenue - Expenses = Ending Net Assets
+    - Describes how our wealth changed during a period
+    - Uses the **beginning net assets** as its starting input and produces **ending net assets** as its output
+- The Income Statement is the **bridge** between the starting period and ending period Balance Sheets
+- Example:
+    1. January 1, 2026
+        - Start-of-period Balance Sheet
+        - Assets - Liabilities = Net Assets
+        - $500,000 (office) - $400,000 (mortgage) = $100,000
+    1. January 6, 2026
+        - A $50,000 grant arrives in cash
+        - Income Statement:
+            - $50,000 Credit @ `4030 · Foundation Grants`
+        — Balance Sheet:
+            - $50,000 Debit @ `1010 · Checking`
+            - $550,000 (Assets) - $400,000 (Liabilities) = $150,000 (Net Assets)
+    1. January 15, 2026
+        — We pay $10,000 in wages
+        - Income Statement:
+            - $10,000 Debit @ `5010 · Admin Wages`
+        — Balance Sheet:
+            - $10,000 Credit @ `1010 · Checking`
+            - $540,000 (Assets) - $400,000 (Liabilities) = $140,000 (Net Assets)
+    1. January 21, 2026
+        — We buy a $30,000 truck with cash
+        — Balance Sheet:
+            - $30,000 Credit @ `1010 · Checking`
+            - $30,000 Debit @ `1500 · Vehicles`
+            - $540,000 (Assets) - $400,000 (Liabilities) = $140,000 (Net Assets)
+        - Income Statement: No Revenue or Expense alterations
+    1. January 27, 2026
+        — We buy $500 of tools on Credit
+            - $500 Credit @ `2020 · Credit Card Payable`
+            - $540,000 (Assets) - $400,500 (Liabilities) = $139,500 (Net Assets)
+        - Income Statement:
+            - $500 Debit @ `5210 · Tools & Consumables`
+    1. End-of-period Income Statement
+        - $50,000 (Revenue) - $10,500 (Expenses) = $39,500 (Surplus)
+    1. End-of-period Balance Sheet
+        - $540,000 (Assets) - $400,500 (Liabilities) = $139,500 (Net Assets)
+    1. Conclusion (Period Equation):
+        - Beginning Net Assets ($100k) + Revenue ($50k) − Expenses ($10,500) = Ending Net Assets ($139,500)
 <!--{"accordionEnd":true}-->
 
 
@@ -241,33 +443,18 @@
 <!--{"accordionEnd":true}-->
 
 
----
-
-
 <!--{"accordionStart":true}-->
-## What are receipts?
+## What is the relationship between ledger account, bank account and fund?
 <!--{"accordionBody":true}-->
-- A receipt is the legal document that proves a donation happened
-- Without it, our donor cannot claim a tax deduction and we expose the organization to compliance risk
-<!--{"accordionEnd":true}-->
-
-
-<!--{"accordionStart":true}-->
-## When is a receipt required?
-<!--{"accordionBody":true}-->
-- When a donation is for $250 or more
-- When a donor receives goods or services worth more than $75
-<!--{"accordionEnd":true}-->
-
-
-<!--{"accordionStart":true}-->
-## What must a receipt include?
-<!--{"accordionBody":true}-->
-- Name of our organization
-- Date of the contribution
-- Amount of the contribution (cash) or description of property (noncash)
-- Whether any goods or services were provided in exchange
-- If goods/services were provided, a description and good-faith estimate of their value
+- A single dollar carries all three stickers at once
+    - They are not competing answers
+    - They are three separate facts about the same dollar
+    - That is why they never contradict each other
+    | Item | What it adds | Shasta Trades count |
+    |---|---|---|
+    | **Bank account** | The **physical location** of cash | 2 |
+    | **Ledger account** | The **category** of value | ~50 |
+    | **Fund** | The **restriction label** on value | 11 |
 <!--{"accordionEnd":true}-->
 
 
@@ -275,41 +462,55 @@
 
 
 <!--{"accordionStart":true}-->
-## What is Federal IRS Form 990?
+## What is Depreciation?
 <!--{"accordionBody":true}-->
--  A public disclosure document that tells the IRS (and the public) how we earn and spend money
-- Due the 15th day of the 5th month after our tax year ends (May 15 for calendar-year filers)
-- Failure to file for 3 consecutive years = automatic loss of tax-exempt status
-    | Form | Gross receipts | Total assets |
-    |---| --- | --- |
-    | 990-N | ≤ $50,000 | N/A |
-    | 990-EZ | < $200,000 | < $500,000 |
-    | 990 (full) | ≥ $200,000 | ≥ $500,000 |
+- Depreciation is the way we spread the cost of a long-lasting asset across the years it actually helps us
+- The problem it solves:
+    - We buy a $30,000 truck on January 21 and pay all $30,000 in cash that day. But the truck serves the mission for **five years**. If we recorded the whole $30,000 as an expense in January, that one month would look terrible and the next four years would look free. Neither is true
+    - Depreciation fixes the timing: We record **$6,000 of expense each year for five years**, so each year carries its fair share of the truck's cost
+- **The rule:**
+    - IF an asset will help us for **more than one year** AND costs at least our capitalization threshold (**$2,500**) THEN we **capitalize** it on the balance sheet and **depreciate** it over its useful life
+- Depreciation is an allocation of a past payment, not a new payment
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What is the California Form 199?
+## What is Useful Life?
 <!--{"accordionBody":true}-->
-- California's version of Form 990
-- Due the 15th day of the 5th month after our tax year ends (May 15 for calendar-year filers)
-    | Form | Gross receipts |
-    |---| --- |
-    | FTB 199N  | Normally ≤ $50,000 |
-    | Form 199 | > $50,000, or private foundations / trusts regardless of size |
+- Useful life is how many years we expect the asset to serve us before it needs replacing
+- Examples:
+    | Asset | Useful life |
+    |---|---|
+    | Laptops, software equipment | 3 years |
+    | Power tools, hand tools capitalized | 3–5 years |
+    | Vehicles (truck, van, trailer) | 5–7 years |
+    | Furniture | 7 years |
+    | Building | 39 years (IRS convention for nonresidential real property) |
+    | **Land** | **Never depreciated** |
 <!--{"accordionEnd":true}-->
 
 
----
+<!--{"accordionStart":true}-->
+## What is accumulated depreciation?
+<!--{"accordionBody":true}-->
+- Accumulated depreciation is the running total of all depreciation we have ever recorded on an asset, from the day we bought it until today
+- Depreciation expense is **this period's slice**
+- Accumulated depreciation is **every slice ever taken, added up**
+<!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What is our investment strategy?
+## What is a contra-asset?
 <!--{"accordionBody":true}-->
-| Level | What it is | Example | Effort |
-|---|---|---|---|
-| **Don't invest yet** | Keep money in a savings account | Operating Reserve in a high-yield savings account | None |
-| **Negative screening** | Just avoid bad stuff | "We won't invest in fossil fuels or predatory lenders" | Low |
-| **Positive screening** | Prefer good stuff | "We'll look for affordable housing bonds" | Low |
-| **Mission-related investments** | Investments that also help the mission | Loan to a nonprofit that builds affordable homes | Medium |
+- "Contra" means "against"
+- A contra-asset is an account that reduces total assets
+- Examples:
+    | Account | Type | What it shows |
+    |---|---|---|
+    | **1500 · Vehicles** | Debit | What we **paid** (original cost) |
+    | **1510 · Vehicles Accumulated Depreciation** | **Credit** | How much of that cost has been **used up** |
+    | **1600 · Equipment** | Debit | What we **paid** (original cost) |
+    | **1610 · Equipment Accumulated Depreciation** | **Credit** | **Credit** | How much of that cost has been **used up** |
+    | **1800 · Building** | Debit | What we **paid** (original cost) |
+    | **1810 · Building Accumulated Depreciation** | **Credit** | **Credit** | How much of that cost has been **used up** |
 <!--{"accordionEnd":true}-->

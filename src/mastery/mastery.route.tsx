@@ -48,7 +48,7 @@ export default new Hono()
             </div>
           </div>
 
-          <div class="md" data-directive={onStudyGuideLoad()}>
+          <div class="md page-content" data-directive={onStudyGuideLoad()}>
             <div dangerouslySetInnerHTML={{ __html: html }}></div>
 
             {

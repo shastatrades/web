@@ -5,9 +5,6 @@ import { css } from 'hono/css'
 
 export const mdStyle = css`
   .md {
-    margin: 0 auto;
-    max-width: var(--max-width);
-    padding: 0 var(--space-lite) var(--space-huge) var(--space-lite);
 
     h1,
     h2 {

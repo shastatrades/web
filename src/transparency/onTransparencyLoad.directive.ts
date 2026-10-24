@@ -100,7 +100,7 @@ function setContentClass(idDataset: DatasetReturn, elContents: Map<string, HTMLD
 function setDownloadAnchors(elDownload: HTMLDivElement, elGithubAnchor: HTMLAnchorElement, elPdfAnchor: HTMLAnchorElement, activeMdId: string) {
   elDownload.classList.toggle('hidden', (activeMdId === 'schema'))
 
-  elGithubAnchor.setAttribute('href', `https://github.com/chris-carrington/app/blob/main/src/transparency/${activeMdId}.md`)
+  elGithubAnchor.setAttribute('href', `https://github.com/shastatrades/web/blob/main/src/transparency/${activeMdId}.md`)
 
   elPdfAnchor.setAttribute('href', `/pdf/${activeMdId}.pdf`)
   elPdfAnchor.setAttribute('download', `${activeMdId}.pdf`)

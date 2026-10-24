@@ -43,7 +43,7 @@ export default new Hono()
             </div>
           </div>
 
-          <div class={classNameMd().className}>
+          <div class={classNameMd().className + " page-content"}>
             {
               enumTransparencyMarkdowns.array.map(v => <>
                 <div {...idDataset.attr(v.id)} dangerouslySetInnerHTML={{ __html: v.id === verifiedId ? html : '' }}></div>
@@ -52,7 +52,7 @@ export default new Hono()
           </div>
 
           <div id={idDownload().id} class={`${verifiedId === 'schema' ? 'hidden' : ''}`}>
-            <a href={`https://github.com/chris-carrington/app/blob/main/src/transparency/${verifiedId}.md`} target="_blank" class="orange big">View on GitHub</a>
+            <a href={`https://github.com/shastatrades/web/blob/main/src/transparency/${verifiedId}.md`} target="_blank" class="orange big">View on GitHub</a>
             <a href={`/pdf/${verifiedId}.pdf`} download={`${verifiedId}.pdf`} class="primary big">
               <span dangerouslySetInnerHTML={{ __html: svgDownload }} class="svg"></span>
               <span>Download {title} as PDF</span>

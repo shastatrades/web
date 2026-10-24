@@ -22,6 +22,7 @@ export default defineConfig({
       '@hono-email': path.resolve(__dirname, 'npm/hono-email/index'),
       '@hono-toast': path.resolve(__dirname, 'npm/hono-toast/index'),
       '@hono-modal': path.resolve(__dirname, 'npm/hono-modal/index'),
+      '@hono-search': path.resolve(__dirname, 'npm/hono-search/index'),
       '@hono-api/be': path.resolve(__dirname, 'npm/hono-api/be/index'),
       '@hono-api/fe': path.resolve(__dirname, 'npm/hono-api/fe/index'),
       '@hono-events': path.resolve(__dirname, 'npm/hono-events/index'),
