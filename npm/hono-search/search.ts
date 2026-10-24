@@ -9,8 +9,8 @@ import { safeArrayAccess } from '@safely-access'
  * 1. Adds a debounce to the search function so we only search c.debounceDelay milliseconds after they someone stops typing
  * 2. Attaches debounce search function to `input` listener on search input
  * 3. Attaches click listener to `c.btnClearInput` if provided (clear input, show hidden search items, focus input)
- * 4. IF `c.focusInputOnLoad` THEN focus search input 
- * 5. IF `c.resetOnEscape` THEN on escape press we'll reset the 
+ * 4. IF `c.resetOnEscape` THEN on escape press we'll reset the 
+ * @param c {@link SearchContext}
  * @returns Debounce search function
  */
 export function bindSearch(c: SearchContext) {
@@ -27,10 +27,6 @@ export function bindSearch(c: SearchContext) {
   c.input.addEventListener('input', onInput)
 
   c.btnClearInput?.addEventListener('click', clearInput)
-
-  if (c.focusInputOnLoad) {
-    c.input.focus()
-  }
 
   if (c.resetOnEscape) {
     c.input.addEventListener('keydown', (e) => {
@@ -89,19 +85,21 @@ export function search(c: SearchContext): void {
   const tokens = tokenize(c)
 
   if (tokens.length === 0) { // IF empty query THEN reset marks + unhide all accordions
-    for (const accordion of c.searchItems) {
-      if (accordion.hasMarkNodes) {
-        resetHeading(accordion)
-        accordion.hasMarkNodes = false
+    for (const serchItem of c.searchItems) {
+      if (serchItem.hasMarkNodes) {
+        resetHeading(serchItem)
+        serchItem.hasMarkNodes = false
       }
 
-      if (accordion.hidden) {
-        accordion.elToggleable.classList.remove('hidden')
-        accordion.hidden = false
+      if (serchItem.hidden) {
+        serchItem.elToggleable.classList.remove('hidden')
+        serchItem.hidden = false
       }
     }
 
-    if (c.onSearch) c.onSearch({ value: c.input.value, tokens, matchCount: 0 })
+    if (c.onSearch) {
+      c.onSearch({ value: c.input.value, tokens, matchCount: c.searchItems.length })
+    }
 
     return
   }
@@ -112,20 +110,20 @@ export function search(c: SearchContext): void {
 
   let matchCount = 0
 
-  for (const accordion of c.searchItems) {
-    if (accordion.hasMarkNodes) { // IF we have mark nodes b/c of the previous search THEN clear them
-      resetHeading(accordion)
-      accordion.hasMarkNodes = false
+  for (const searchItem of c.searchItems) {
+    if (searchItem.hasMarkNodes) { // IF we have mark nodes b/c of the previous search THEN clear them
+      resetHeading(searchItem)
+      searchItem.hasMarkNodes = false
     }
 
     const isMatch = firstAndOnlyToken !== null
-      ? accordion.lowerText.includes(firstAndOnlyToken) // uno token => isHit if token is w/in accordion header
-      : tokens.some((w) => accordion.lowerText.includes(w)) // multiple tokens => isHit on first match
+      ? searchItem.lowerText.includes(firstAndOnlyToken) // uno token => isMatch if token is w/in lowerText
+      : tokens.some((w) => searchItem.lowerText.includes(w)) // multiple tokens => isMatch on first match
 
     if (!isMatch) {
-      if (!accordion.hidden) {
-        accordion.elToggleable.classList.add('hidden')
-        accordion.hidden = true
+      if (!searchItem.hidden) {
+        searchItem.elToggleable.classList.add('hidden')
+        searchItem.hidden = true
       }
 
       continue
@@ -133,16 +131,18 @@ export function search(c: SearchContext): void {
 
     matchCount++
 
-    if (accordion.hidden) {
-      accordion.elToggleable.classList.remove('hidden')
-      accordion.hidden = false
+    if (searchItem.hidden) {
+      searchItem.elToggleable.classList.remove('hidden')
+      searchItem.hidden = false
     }
 
-    if (regex) accordion.hasMarkNodes = markWithRegex(accordion, regex)
-    else if (firstAndOnlyToken) accordion.hasMarkNodes = markDOM(c, accordion, firstAndOnlyToken)
+    if (regex) searchItem.hasMarkNodes = markWithRegex(searchItem, regex)
+    else if (firstAndOnlyToken) searchItem.hasMarkNodes = markDOM(c, searchItem, firstAndOnlyToken)
   }
 
-  if (c.onSearch) c.onSearch({ value: c.input.value, tokens, matchCount })
+  if (c.onSearch) {
+    c.onSearch({ value: c.input.value, tokens, matchCount })
+  }
 }
 
 
@@ -210,8 +210,8 @@ function resetHeading(e: SearchItem): void {
 
 
 /** Add <mark /> to DOM */
-function markDOM(c: SearchContext, accordion: SearchItem, token: string): boolean {
-  const textNode = accordion.elSearchable.firstChild as Text | null
+function markDOM(c: SearchContext, searchItem: SearchItem, token: string): boolean {
+  const textNode = searchItem.elSearchable.firstChild as Text | null
   if (!textNode || textNode.nodeType !== Node.TEXT_NODE) return false
 
   /** helpful for <mark /> slice */
@@ -223,7 +223,7 @@ function markDOM(c: SearchContext, accordion: SearchItem, token: string): boolea
   // assumption being verified: lower[i] corresponds to value[i], which holds only if toLowerCase() is length-preserving
   // IF lowercasing changed the length THEN our index arithmetic is invalid, so hand off to the regex engine, which works on the original string with the i flag and never relies on index alignment
   if (lower.length !== value.length) {
-    return markWithRegex(accordion, getRegex(c, [token]))
+    return markWithRegex(searchItem, getRegex(c, [token]))
   }
 
   // verify we need to <mark /> anythng
@@ -312,10 +312,13 @@ export type SearchContext = {
   input: HTMLInputElement,
   /** Optional, IF defined THEN when clicked then we will 1) clear input 2) show all hidden items 3) focus input */
   btnClearInput?: HTMLButtonElement,
-  /** Optional, helpful when you'd love to add additional functionality on each search, `value` is the current input value, `tokens` is the parsed input value, `matchCount` is how many search items match the current `tokens` */
+  /** 
+   * ### Optional, helpful when you'd love to add additional functionality on each search
+   * @param props.value the current input value
+   * @param props.tokens the parsed input value
+   * @param props.matchCount how many search items match the current `tokens` and if the search is empty then the `matchCount` is the total number of search items
+   */
   onSearch?: ({ value, tokens, matchCount }: { value: string, tokens: string[], matchCount: number }) => void | Promise<void>
-  /** Optional, defaults to false, IF true then we will focus the input on load @ `bindSearch()` */
-  focusInputOnLoad?: boolean
   /** Optional, defaults to false, IF true THEN pressing Escape inside `input` will 1) clear the input 2) reset search results 3) focus the input. */
   resetOnEscape?: boolean,
 }

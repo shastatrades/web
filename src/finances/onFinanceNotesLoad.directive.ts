@@ -8,6 +8,9 @@ import { bindSearch, getSearchItems } from '@hono-search'
 
 export default (el: HTMLDivElement) => {
   const hrs = query<HTMLHRElement>('hr').all()
+
+  const input = query<HTMLInputElement>('input').root(el).one()
+
   const divNoSearchResults = query<HTMLDivElement>(idNoResults().query).one()
 
   const searchItems = getSearchItems({
@@ -16,17 +19,20 @@ export default (el: HTMLDivElement) => {
   })
 
   bindSearch({
+    input,
     searchItems,
     resetOnEscape: true,
     regexCache: new Map(),
-    focusInputOnLoad: true,
-    input: query<HTMLInputElement>('input').root(el).one(),
     btnClearInput: query<HTMLButtonElement>('button').root(el).one(),
     onSearch ({ value, matchCount }) {
       if (value) hrs.forEach(hr => hr.classList.add('hidden'))
       else hrs.forEach(hr => hr.classList.remove('hidden'))
 
-      divNoSearchResults.classList.toggle('hidden', matchCount !== 0)
+      divNoSearchResults.classList.toggle('hidden', Boolean(matchCount)) // hide when there are matches
     }
   })
+
+  if (window.scrollY <= 0) { // avoids the page scrolling to the top on back navigation when in the middle of the page
+    input.focus()
+  }
 }
