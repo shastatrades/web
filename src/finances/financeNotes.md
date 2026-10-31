@@ -304,16 +304,16 @@
 <!--{"accordionStart":true}-->
 ## What is a Balance Sheet?
 <!--{"accordionBody":true}-->
-- Point in time
-- Never a range
+- Financial report for a point (moment) in time
+- Never a date range
 - Equation:
     - Net Assets = Assets - Liabilities
         - What we truly own = (What we own) - (What we owe)
         - Example: $100,000 down payment = $500,000 house - $400,000 mortgage
+- The Balance Sheet layout matches the **Equation**
     - Assets = Net Assets + Liabilities
         - What we own = (What we truly own) + (What we owe)
         - Example: $500,000 house = $100,000 down payment + $400,000 mortgage
-- The layout matches the **Balance Sheet equation**
     - **Left side:** Assets
     - **Right side:** Net Assets + Liabilities
     - The two sides must be equal
@@ -329,7 +329,7 @@
 - Equation:
     - Beginning Net Assets + Revenue − Expenses = Ending Net Assets
         - (What we truly owned at the start) + (What came in) − (What we used up) = What we truly own at the end
-        - $50,000 (Beginning Net Assets) + $200,000 (Revenue) - $180,000 (Expenses) = $70,000 (Ending Net Assets)
+        - $60,000 (Beginning Net Assets) + $210,000 (Revenue) - $180,000 (Expenses) = $90,000 (Ending Net Assets)
 - Answers: *"How richer or poorer did we become during this period?"*
     - Surplus: Revenue > Expenses
     - Deficit: Revenue < Expenses
@@ -354,41 +354,83 @@
 - Example:
     1. January 1, 2026
         - Start-of-period Balance Sheet
-        - Assets - Liabilities = Net Assets
-        - $500,000 (office) - $400,000 (mortgage) = $100,000
+            | Assets | Liabilities | Net Assets |
+            |---|---|---|
+            | $500,000 Office | $400,000 Mortgage | $100,000 |
     1. January 6, 2026
-        - A $50,000 grant arrives in cash
-        - Income Statement:
-            - $50,000 Credit @ `4030 · Foundation Grants`
-        — Balance Sheet:
-            - $50,000 Debit @ `1010 · Checking`
-            - $550,000 (Assets) - $400,000 (Liabilities) = $150,000 (Net Assets)
+        - A $50,000 grant arrives in cash, transaction:
+            | Account | Entry |
+            |---|---|
+            | `4030 · Foundation Grants` | $50,000 **Credit** |
+            | `1010 · Checking` | $50,000 **Debit** |
+        - Balance Sheet:
+            | Assets | Liabilities | Net Assets |
+            |---|---|---|
+            | $500,000 Office |  | |
+            |  | $400,000 Mortgage | |
+            | $50,000 Cash |  |  |
+            | **$550,000** | **$400,000** | **$150,000** |
     1. January 15, 2026
-        — We pay $10,000 in wages
-        - Income Statement:
-            - $10,000 Debit @ `5010 · Admin Wages`
-        — Balance Sheet:
-            - $10,000 Credit @ `1010 · Checking`
-            - $540,000 (Assets) - $400,000 (Liabilities) = $140,000 (Net Assets)
+        - We pay $10,000 in wages, transaction:
+            | Account | Entry |
+            |---|---|
+            | `1010 · Checking` | $10,000 **Credit** |
+            | `5030 · Administrative Salaries` | $10,000 **Debit** |
+        - Balance Sheet:
+            | Assets | Liabilities | Net Assets |
+            |---|---|---|
+            | $500,000 Office |  | |
+            |  | $400,000 Mortgage | |
+            | $40,000 Cash |  |  |
+            | **$540,000** | **$400,000** | **$140,000** |
     1. January 21, 2026
-        — We buy a $30,000 truck with cash
-        — Balance Sheet:
-            - $30,000 Credit @ `1010 · Checking`
-            - $30,000 Debit @ `1500 · Vehicles`
-            - $540,000 (Assets) - $400,000 (Liabilities) = $140,000 (Net Assets)
+        - We buy a $30,000 truck with cash, transaction:
+            | Account | Entry |
+            |---|---|
+            | `1010 · Checking` | $30,000 **Credit** |
+            | `1500 · Vehicles` | $30,000 **Debit** |
+        - Balance Sheet:
+            | Assets | Liabilities | Net Assets |
+            |---|---|---|
+            | $500,000 Office |  | |
+            |  | $400,000 Mortgage | |
+            | $10,000 Cash |  |  |
+            | $30,000 Vehicle |  |  |
+            | **$540,000** | **$400,000** | **$140,000** |
         - Income Statement: No Revenue or Expense alterations
     1. January 27, 2026
-        — We buy $500 of tools on Credit
-            - $500 Credit @ `2020 · Credit Card Payable`
-            - $540,000 (Assets) - $400,500 (Liabilities) = $139,500 (Net Assets)
-        - Income Statement:
-            - $500 Debit @ `5210 · Tools & Consumables`
-    1. End-of-period Income Statement
-        - $50,000 (Revenue) - $10,500 (Expenses) = $39,500 (Surplus)
-    1. End-of-period Balance Sheet
-        - $540,000 (Assets) - $400,500 (Liabilities) = $139,500 (Net Assets)
-    1. Conclusion (Period Equation):
-        - Beginning Net Assets ($100k) + Revenue ($50k) − Expenses ($10,500) = Ending Net Assets ($139,500)
+        - We buy $500 of tools w/ a Credit Card, transaction:
+            | Account | Entry |
+            |---|---|
+            | `2020 · Credit Card Payable` | $500 **Credit** |
+            | `5210 · Tools & Consumables` | $500 **Debit** |
+        - Balance Sheet:
+            | Assets | Liabilities | Net Assets |
+            |---|---|---|
+            | $500,000 Office |  | |
+            |  | $400,000 Mortgage | |
+            | $10,000 Cash |  |  |
+            | $30,000 Vehicle |  |  |
+            | | $500 Tools  |  |
+            | **$540,000** | **$400,500** | **$139,500** |
+    1. Conclusion:
+        - Start-of-period Balance Sheet
+            | Assets | Liabilities | Net Assets |
+            |---|---|---|
+            | $500,000 Office | $400,000 Mortgage | $100,000 |
+        - Period Income Statement:
+            | Revenue | Expenses | Net Income |
+            |---|---|---|
+            | $50,000 Grant | $10,000 Wages + $500 Tools | $39,500 (Surplus) |
+        - End-of-period Balance Sheet
+            | Assets | Liabilities | Net Assets |
+            |---|---|---|
+            | $500,000 Office |  | |
+            |  | $400,000 Mortgage | |
+            | $10,000 Cash |  |  |
+            | $30,000 Vehicle |  |  |
+            | | $500 Tools  |  |
+            | **$540,000** | **$400,500** | **$139,500** |
 <!--{"accordionEnd":true}-->
 
 
