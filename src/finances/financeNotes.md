@@ -1,7 +1,7 @@
 <!--{"accordionStart":true}-->
 ## What is a Ledger Account?
 <!--{"accordionBody":true}-->
-- A Ledger Account tracks a collection of financial transactions
+- A Ledger Account is a collection of financial transactions
 <!--{"accordionEnd":true}-->
 
 
@@ -250,7 +250,8 @@
 - From Latin's *creditum*
 - No connection to "credit card"
 - In every transaction, **total debits must equal total credits**
-- **Credit** = Where did the value come from? AND **Debit** = Where is the value now? Examples:
+- **Credit** = Where did the value come from? **Debit** = Where is the value now?
+- Just remember C comes before D **alphabetically** and **financially**, examples:
     - Paid Wages:
         | Account | Entry |
         |---|---|
@@ -270,7 +271,8 @@
 - From Latin's *debitum*
 - No connection to "debit card"
 - In every transaction, **total debits must equal total credits**
-- **Credit** = Where did the value come from? AND **Debit** = Where is the value now? Examples:
+- **Credit** = Where did the value come from? **Debit** = Where is the value now?
+- Just remember C comes before D **alphabetically** and **financially**, examples:
     - Received a Grant:
         | Account | Entry |
         |---|---|
@@ -397,7 +399,6 @@
             | $10,000 Cash |  |  |
             | $30,000 Vehicle |  |  |
             | **$540,000** | **$400,000** | **$140,000** |
-        - Income Statement: No Revenue or Expense alterations
     1. January 27, 2026
         - We buy $500 of tools w/ a Credit Card, transaction:
             | Account | Entry |
@@ -440,7 +441,7 @@
 <!--{"accordionStart":true}-->
 ## What is a Fund?
 <!--{"accordionBody":true}-->
-- A pool of money or resources set aside for a specific purpose, restriction, or accounting track
+- A Fund is a pool of money or resources set aside for a specific purpose
 - A way for a nonprofit to track and prove that money is being used according to:
     - Donor intent
     - Legal restrictions
@@ -452,27 +453,14 @@
 <!--{"accordionStart":true}-->
 ## What is an Unrestricted Fund?
 <!--{"accordionBody":true}-->
-- Fund money is available for general mission use
+- An Unrestricted Fund has money our Board can spend freely (e.g., General Operating, Operating Reserve, Capital & Equipment)
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
 ## What is an Restricted Fund?
 <!--{"accordionBody":true}-->
-- Donor or law limits how the fund's money can be used
-<!--{"accordionEnd":true}-->
-
-
-<!--{"accordionStart":true}-->
-## Is it optimal for each fund to be its own bank account?
-<!--{"accordionBody":true}-->
-- It is almost never required or advisable to have a separate bank account for every fund
-- Our accounting system is where we achieve the strict fund separation required by us, donors and grants
-- Our bank accounts is for managing cash flow
-- Open additional bank accounts only when it serves a practical purpose, such as:
-    - **Safeguarding a Reserve:** To prevent the Board from accidentally spending our 6-month operating cushion, it can be in a separate savings or investment account
-    - **Maximizing Earning:** Long-term or endowed funds can be in investment accounts, not a checking account, to generate returns
-    - **Funder Mandate:** A rare grant might explicitly require a dedicated account. If so, we must weigh the administrative burden against the value of the grant
+- A Restricted Fund has money legally restricted by Donors (e.g., Wildfire Repair, Elderly Assistance, Opportunity Youth)
 <!--{"accordionEnd":true}-->
 
 
@@ -481,7 +469,7 @@
 <!--{"accordionBody":true}-->
 | Fund | Type | Why does this fund exist? |
 |---|---|---|
-| General Operating | Unrestricted | **General Operating** pays the bills that no grant will cover (e.g., rent, insurance, software) and the staff time that holds everything together |
+| General Operating | Unrestricted | **General Operating** is our unrestricted primary bucket of money covering general expenses (e.g., rent, insurance, software) |
 | Operating Reserve | Board-Designated | **Operating Reserve** holds 3 months of operating expenses so a lost grant or a slow quarter never forces us to lay off apprentices mid-cohort. It is the same cash as General Operating, but with a governance lock the Board cannot casually undo. |
 | Capital & Equipment | Board-Designated | **Capital & Equipment** buys and replaces the trucks, tools, laptops, and training-space buildout that outlive a single year. It turns a broken truck from a crisis into a scheduled line item the Board already planned for. |
 | Workforce Development | Restricted | **Workforce Development** lets us recruit, train, and pay skilled tradespeople. Foundations focused on **optimal community employment** love this fund. |
