@@ -6,6 +6,13 @@
 
 
 <!--{"accordionStart":true}-->
+## What is the Chart of Accounts?
+<!--{"accordionBody":true}-->
+- The list of every Ledger Account that we use
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
 ## What is a Journal?
 <!--{"accordionBody":true}-->
 - A Journal is the chronological log of every transaction
@@ -16,9 +23,9 @@
 <!--{"accordionStart":true}-->
 ## What is a Ledger?
 <!--{"accordionBody":true}-->
+- A **journal** captures raw transactions in chronological order and a **ledger** organizes these transactions by **ledger account(s)**
 - A **sub-ledger** is a Journal for a Leger Account
 - A **General Ledger** is a Journal for all Ledger Accounts
-- A **journal** captures raw transactions in chronological order and a **ledger** organizes these transactions by **ledger account(s)**
 <!--{"accordionEnd":true}-->
 
 
@@ -39,7 +46,7 @@
 - An asset is **true** for all:
     1. We **own** it
     2. It has **measurable value**
-    3. It will provide **future benefit** b/c its cash OR b/c it will last beyond one year
+    3. It will provide **future benefit** b/c it is cash OR b/c it will last beyond one year of use
 - Examples:
   - Cash
   - Vehicles
@@ -57,12 +64,11 @@
     2. It arose from a **past transaction** (we already received something)
     3. It will require **future payment or performance** — either cash, services, or a deliverable
 - Examples:
-    - **Accounts payable** — bills owed to vendors
-    - **Accrued payroll** — wages earned by staff but not yet paid
-    - **Payroll taxes payable** — Taxes withheld but not yet remitted
-    - **Refundable advances / deferred Revenue** — grant money received before conditions met
-    - **Loans payable** — mortgages, equipment loans, lines of Credit
-    - **Foundation grant with strings attached** A liability until the conditions are met (e.g., report by June or return it)
+    - **Accounts payable:** Bills we owe to vendors
+    - **Accrued payroll:** Wages earned by staff but not yet paid
+    - **Payroll taxes payable:** Taxes withheld but not yet remitted
+    - **Loans payable:** Mortgages, equipment loans, lines of Credit, etc.,
+    - **Foundation grant with strings attached:** A liability until the conditions are met
         - Conditional grant (must meet a milestone or return it) → Liability until conditions met
         - Unconditional but restricted grant (must use for wildfire work) → Revenue with donor restriction, not a liability
 <!--{"accordionEnd":true}-->
@@ -78,42 +84,39 @@
 - What it is not: 
     - A bill we haven't received yet (future Expense)
     - Wages owed to employees (accrued payroll)
-    - Payroll taxes owed to the IRS (payroll taxes payable)
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
 ## What is Accrued?
 <!--{"accordionBody":true}-->
-- According to accrual accounting, transactions are recorded on the date they incur (occur) rather than the date money changes hands
+- According to accrual accounting, transactions are **recorded** on the date they **incur** (occur) rather than the date **money changes hands**
 - Examples:
-    - Wages earned by staff in December but paid in January
     - Internet services used during a month are incurred as we consume them, prior to receiving or paying the monthly bill
+    - Wages earned by staff in December but paid in January
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
 ## What is Remitted?
 <!--{"accordionBody":true}-->
-- From a financial perspective, Remitted means to transmit or send funds or payment for a bill, service, or account (e.g., to remit the monthly invoice)
+- From a financial perspective, Remitted means to send funds (e.g., to remit the monthly invoice means to to send the money to pay the invoice)
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What does "withheld" mean?
+## What does "Withheld" mean?
 <!--{"accordionBody":true}-->
-- **Withheld** means money we deduct from an employee's paycheck before paying them, and hold on to temporarily because we owe it to the government
-- The employee never sees this money in their bank account. We keep it, and later **remit** (send) it to the IRS and the EDD on their behalf
+- **Withheld** means money we deduct from an employee's paycheck before paying them. We hold these funds because we owe it (must send the funds to) the government
+- The employee never sees this money in their bank account. We keep it, and later **remit** it to the IRS and the EDD on their behalf
 - **Withheld is not our money.** It is the employee's money that we are holding in trust. We are a **pass-through** between the employee's paycheck and the tax agencies
 - **Withholding is legally required.** If we fail to withhold, or withhold and fail to remit, **we are liable** — not the employee
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## Which taxes are "withheld" and which are "employer-paid"?
+## Which taxes are "Withheld" and which are "Employer-paid"?
 <!--{"accordionBody":true}-->
-- **Not all payroll taxes work the same way.** This is the key distinction:
-
 | Tax | Who pays it | Is it withheld from the employee? |
 |---|---|---|
 | **Federal income tax** | Employee | **Yes — withheld** |
@@ -135,11 +138,12 @@
 <!--{"accordionBody":true}-->
 - What we truly own
 - What we own after we pay our Liabilities
+- **Net Assets = Assets - Liabilities**
 - Example:
-    - We buy a **$500,000 house** with a **$400,000 mortgage** and **$100,000** cash down payment
-    - **Asset:** What we own = $500,000 house
+    - We buy a **$500,000 office** with a **$400,000 mortgage** and **$100,000** cash down payment
+    - **Asset:** What we own = $500,000 office
     - **Liability:** What you owe = $400,000 mortgage
-    - **Net Assets:** What we truly own = $100,000
+    - **Net Asset:** What we truly own = $100,000
 <!--{"accordionEnd":true}-->
 
 
@@ -147,9 +151,9 @@
 ## How do Nonprofits split Net Assets?
 <!--{"accordionBody":true}-->
 - Net assets **without** donor restrictions:
-    - Money the board can spend freely (e.g., General Operating, Operating Reserve, Capital & Equipment)
+    - Money our Board can spend freely (e.g., General Operating, Operating Reserve, Capital & Equipment)
 - Net assets **with** donor restrictions:
-    - Money legally restricted by donors or grantors (e.g., Wildfire Repair, Elderly Assistance, Opportunity Youth)
+    - Money legally restricted by Donors (e.g., Wildfire Repair, Elderly Assistance, Opportunity Youth)
 <!--{"accordionEnd":true}-->
 
 
@@ -171,11 +175,11 @@
 <!--{"accordionBody":true}-->
 - The cost of resources consumed to fulfill our mission
 - Examples:
-    - **Program Expenses** — apprentice wages, mentor wages, program materials, tools consumed on jobs
-    - **Admin Expenses** — rent, insurance, software, salary, board meetings
-    - **Fundraising Expenses** — donor emails, grant writing, event costs, thank-you cards
-- Every Expense gets one functional class
-    — `mission`
+    - **Program Expenses:** Apprentice wages, mentor wages, program materials, tools consumed on jobs
+    - **Admin Expenses:** Rent, insurance, software, salary, Board meetings
+    - **Fundraising Expenses:** Donor emails, grant writing, event costs, thank-you cards
+- Every Expense gets one functional class:
+    - `mission`
     - `admin`
     - `fundraising`
 <!--{"accordionEnd":true}-->
@@ -187,11 +191,11 @@
 - A Functional Class is a column on the transaction's table that answers "Was this spending for our mission, for admin, or for fundraising?"
 - Required by the IRS on **Form 990 Part IX** (Statement of Functional Expenses)
 - Every transaction gets exactly one functional class
-- Helps us tell the IRS (and our board) whether each dollar we spent was on the `mission`, on `admin`, or on `fundraising`
+- Helps us tell the IRS (and our Board) whether each dollar we spent was for `mission`, `admin`, or `fundraising`
     | Class | Meaning | Examples |
     |---|---|---|
     | `mission` | Directly advances the mission | Apprentice wages, mentor wages, tools & materials |
-    | `admin` | Keeps the lights on | Rent, insurance, accounting software, CTO salary, board meetings |
+    | `admin` | Keeps the lights on | Rent, insurance, accounting software, CTO salary, Board meetings |
     | `fundraising` | Raises money | Donor emails, grant writing, event costs, thank-you cards |
 <!--{"accordionEnd":true}-->
 
@@ -213,38 +217,21 @@
 <!--{"accordionStart":true}-->
 ## What are the optimal Ledger Account number ranges?
 <!--{"accordionBody":true}-->
-- Assets: **1000 – 1999**
-- Liabilities: **2000 – 2999**
-- Net Assets: **3000 – 3999**
-- Revenue: **4000 – 4999**
-- Expenses: **5000 – 5999+**
-<!--{"accordionEnd":true}-->
-
-
-<!--{"accordionStart":true}-->
-## What is the Chart of Accounts?
-<!--{"accordionBody":true}-->
-- The list of every Ledger Account that we use
-- Examples:
+- **Assets: 1000 - 1999**, examples:
     - 1010 · Checking
     - 1020 · Savings
-    - 1500 · Vehicles
-    - 1510 · Vehicles Accumulated Depreciation
-    - 2010 · Accounts Payable
-    - 2020 · Credit Card Payable
-    - 2030 · Accrued Payroll
-    - 3010 · Net Assets, General Operating
-    - 3020 · Net Assets, Operating Reserve
-    - 3020 · Net Assets, Capital & Equipment
-    - 3030 · Net Assets, Restricted
-    - 4010 · Individual Donations
-    - 4020 · Corporate Donations
-    - 4030 · Foundation Grants
-    - 5010 · Admin Wages
-    - 5020 · Mentor Wages
-    - 5030 · Apprentice Wages
-    - 5210 · Tools & Consumables
-    - 5700 · Depreciation Expense
+- **Liabilities: 2000 - 2999**, examples:
+    - 2010 · Accounts payable
+    - 2020 · Credit card payable
+- **Net Assets: 3000 - 3999**, examples:
+    - 3010 · General Operating
+    - 3020 · Operating Reserve
+- **Revenue: 4000 - 4999**, examples:
+    - 4010 · Individual donations
+    - 4020 · Corporate donations
+- **Expenses: 5000 - 5999+**, examples:
+    - 5010 · Apprentice wages
+    - 5020 · Mentor wages
 <!--{"accordionEnd":true}-->
 
 
@@ -260,37 +247,57 @@
 <!--{"accordionStart":true}-->
 ## What is Credit?
 <!--{"accordionBody":true}-->
-- From Latin *creditum*
+- From Latin's *creditum*
 - No connection to "credit card"
 - In every transaction, **total debits must equal total credits**
 - **Credit** = Where did the value come from? AND **Debit** = Where is the value now? Examples:
     - Paid Wages:
-        - $10,000 Credit @ `1010 · Checking` AND $10,000 Debit @ `5010 · Admin Wages`
-    - Bought Tools w/ Credit Card:
-        - $500 Credit @ `2020 · Credit Card Payable` AND $500 Debit @ `5210 · Tools & Consumables`
+        | Account | Entry |
+        |---|---|
+        | `1010 · Checking` | $10,000 **Credit** |
+        | `5030 · Administrative Salaries` | $10,000 **Debit** |
+    - Bought Tools w/ a Credit Card:
+        | Account | Entry |
+        |---|---|
+        | `2020 · Credit Card Payable` | $500 **Credit** |
+        | `5210 · Tools & Consumables` | $500 **Debit** |
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
 ## What is Debit?
 <!--{"accordionBody":true}-->
-- From Latin *debitum*
+- From Latin's *debitum*
 - No connection to "debit card"
 - In every transaction, **total debits must equal total credits**
 - **Credit** = Where did the value come from? AND **Debit** = Where is the value now? Examples:
     - Received a Grant:
-        - $50,000 Credit @ `4030 · Foundation Grants` AND $50,000 Debit @ `1010 · Checking`
+        | Account | Entry |
+        |---|---|
+        | `4030 · Foundation Grants` | $50,000 **Credit** |
+        | `1010 · Checking` | $50,000 **Debit** |
     - Purchased a Vehicle w/ Cash:
-        - $30,000 Credit @ `1010 · Checking` AND $30,000 Debit @ `1500 · Vehicles`
-    - Monthly Vehicle Depreciation
-        - $30,000 vehicle, 5 year useful life, $6,000/year = $500/month
-        - Vehicle is $500 less valuable b/c we used $500 of its value this month
-        - $500 Credit @ `1510 · Vehicles Accumulated Depreciation` AND $500 Debit @ `5700 · Depreciation Expense`
-    - Monthly Office Depreciation
-        - $500,000 office, $468,000 building, $32,000 land (land does not depreciate)
-        - $468,000 building, 39 year useful life = $1,000/month
-        - Office is $1,000 less valuable b/c we used $1,000 of its value this month
-        - $1,000 Credit @ `1810 · Building Accumulated Depreciation` AND $1,000 Debit @ `5700 · Depreciation Expense`
+        | Account | Entry |
+        |---|---|
+        | `1010 · Checking` | $30,000 **Credit** |
+        | `1500 · Vehicles` | $30,000 **Debit** |
+    - Monthly Vehicle Depreciation:
+        | Account | Entry |
+        |---|---|
+        | `1510 · Vehicles Accumulated Depreciation` | $500 **Credit** |
+        | `5700 · Depreciation Expense` | $500 **Debit** |
+        - Explanation:
+            - $30,000 vehicle purchase price, 5 year useful life, $6,000/year = $500/month
+            - Vehicle is $500 less valuable b/c we used $500 of its value this month
+    - Monthly Office Depreciation:
+        | Account | Entry |
+        |---|---|
+        | `1810 · Building Accumulated Depreciation` | $1,000 **Credit** |
+        | `5700 · Depreciation Expense` | $1,000 **Debit** |
+        - Explanation:
+            - $500,000 office, $468,000 building, $32,000 land (land does not depreciate)
+            - $468,000 building, 39 year useful life = $1,000/month
+            - Office is $1,000 less valuable b/c we used $1,000 of its value this month
 <!--{"accordionEnd":true}-->
 
 
@@ -433,8 +440,8 @@
 | Fund | Type | Why does this fund exist? |
 |---|---|---|
 | General Operating | Unrestricted | **General Operating** pays the bills that no grant will cover (e.g., rent, insurance, software) and the staff time that holds everything together |
-| Operating Reserve | Board-Designated | **Operating Reserve** holds 3 months of operating expenses so a lost grant or a slow quarter never forces us to lay off apprentices mid-cohort. It is the same cash as General Operating, but with a governance lock the board cannot casually undo. |
-| Capital & Equipment | Board-Designated | **Capital & Equipment** buys and replaces the trucks, tools, laptops, and training-space buildout that outlive a single year. It turns a broken truck from a crisis into a scheduled line item the board already planned for. |
+| Operating Reserve | Board-Designated | **Operating Reserve** holds 3 months of operating expenses so a lost grant or a slow quarter never forces us to lay off apprentices mid-cohort. It is the same cash as General Operating, but with a governance lock the Board cannot casually undo. |
+| Capital & Equipment | Board-Designated | **Capital & Equipment** buys and replaces the trucks, tools, laptops, and training-space buildout that outlive a single year. It turns a broken truck from a crisis into a scheduled line item the Board already planned for. |
 | Workforce Development | Restricted | **Workforce Development** lets us recruit, train, and pay skilled tradespeople. Foundations focused on **optimal community employment** love this fund. |
 | Opportunity Youth | Restricted | **Opportunity Youth** are young adults (age 16-24) who are not in school and not working. Foundations focused on **opportunity youth** love this fund. |
 | Apprenticeship Training | Restricted | **Apprenticeship Training** lets us cover the structured training costs that sit outside or inside wages (e.g., study guide creation, safety certifications, exam prep). Foundations focused on **apprenticeship programs** love this fund. |
@@ -496,7 +503,7 @@
 | 1110 · Grants receivable | Asset | — | Restricted funds, General Operating | Awarded but not disbursed |
 | 1200 · Inventory — materials for resale | Asset | — | Any fund | Only for inventoryForResale |
 | 1500 · Vehicles | Asset | — | Capital & Equipment, Community Repair | Cost |
-| 1510 · Accumulated depreciation — vehicles | Contra-asset | — | Same fund as the vehicle | Reduces 1500 |
+| 1510 · Vehicles Accumulated Depreciation | Contra-asset | — | Same fund as the vehicle | Reduces 1500 |
 | 1600 · Equipment, tools, laptops | Asset | — | Workforce Development, Apprenticeship Training, General Operating | Cost |
 | 1610 · Accumulated depreciation — equipment | Contra-asset | — | Same fund as the item | Reduces 1600 |
 | 1700 · Intangible assets — software, licenses | Asset | — | General Operating, Apprenticeship Training | Cost |
@@ -526,7 +533,7 @@
 | **Expense** | | | | |
 | 5010 · Apprentice wages | Expense | — | Workforce Development, Opportunity Youth, Apprenticeship Training | |
 | 5020 · Mentor wages | Expense | — | Mentor Development, Workforce Development | |
-| 5030 · Administrative salaries | Expense | — | General Operating | ED, CTO, bookkeeper |
+| 5030 · Administrative Salaries | Expense | — | General Operating | ED, CTO, bookkeeper |
 | 5100 · Payroll taxes & benefits | Expense | — | Any fund with wages | |
 | 5200 · Program materials & supplies | Expense | — | Elderly Assistance, Community Repair, Wildfire Repair, Low & Moderate Income | Lumber, paint, siding |
 | 5210 · Tools & consumables | Expense | — | Workforce Development, Apprenticeship Training | Hand tools, PPE |
@@ -536,7 +543,7 @@
 | 5400 · Professional fees | Expense | — | General Operating, Mentor Development | Legal, accounting, consulting |
 | 5500 · Software & subscriptions | Expense | — | General Operating, Apprenticeship Training | |
 | 5600 · Vehicle operating | Expense | — | Capital & Equipment, Community Repair | Fuel, maintenance |
-| 5700 · Depreciation expense | Expense | — | Capital & Equipment, General Operating (allocated) | Noncash |
+| 5700 · Depreciation Expense | Expense | — | Capital & Equipment, General Operating (allocated) | Noncash |
 | 5800 · Event & fundraising costs | Expense | — | General Operating | |
 | 5810 · Donor communications | Expense | — | General Operating | |
 | 5900 · Bank & processing fees | Expense | — | General Operating | |
@@ -616,7 +623,7 @@
     |---|---|
     | `individual` | One person giving personal funds, can be anonymous |
     | `staff` | Current staff |
-    | `board-member` | Current board director, must be disclosed on 990 |
+    | `board-member` | Current Board director, must be disclosed on 990 |
     | `corporation` | Business giving from company funds |
     | `nonprofit` | A 501(c)(3) giving funds |
     | `foundation` | Charitable entity that uses its assets to fund charitable work |
