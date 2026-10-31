@@ -1,18 +1,7 @@
 <!--{"accordionStart":true}-->
-## What are the 5 financial buckets?
-<!--{"accordionBody":true}-->
-- Assets
-- Liabilities
-- Net Assets
-- Revenue
-- Expenses
-<!--{"accordionEnd":true}-->
-
-
-<!--{"accordionStart":true}-->
 ## What is a Ledger Account?
 <!--{"accordionBody":true}-->
-- A Ledger Account tracks a subset of financial transactions w/in one financial bucket
+- A Ledger Account tracks a collection of financial transactions
 <!--{"accordionEnd":true}-->
 
 
@@ -21,15 +10,26 @@
 <!--{"accordionBody":true}-->
 - A Journal is the chronological log of every transaction
 - Ordered by date
-- The journal is the book of original entry that captures raw transactions in chronological order, and the ledger is a journal that organizes transactions by ledger account
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
 ## What is a Ledger?
 <!--{"accordionBody":true}-->
-- A sub-ledger is a Journal for a Leger Account
-- The General Ledger is a Journal for all Ledger Accounts
+- A **sub-ledger** is a Journal for a Leger Account
+- A **General Ledger** is a Journal for all Ledger Accounts
+- A **journal** captures raw transactions in chronological order and a **ledger** organizes these transactions by **ledger account(s)**
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What are the 5 financial buckets?
+<!--{"accordionBody":true}-->
+- Assets
+- Liabilities
+- Net Assets
+- Revenue
+- Expenses
 <!--{"accordionEnd":true}-->
 
 
@@ -59,7 +59,7 @@
 - Examples:
     - **Accounts payable** — bills owed to vendors
     - **Accrued payroll** — wages earned by staff but not yet paid
-    - **Payroll taxes payable** — federal (941/940) and California (EDD) taxes withheld but not yet remitted
+    - **Payroll taxes payable** — Taxes withheld but not yet remitted
     - **Refundable advances / deferred Revenue** — grant money received before conditions met
     - **Loans payable** — mortgages, equipment loans, lines of Credit
     - **Foundation grant with strings attached** A liability until the conditions are met (e.g., report by June or return it)
@@ -100,29 +100,58 @@
 
 
 <!--{"accordionStart":true}-->
+## What does "withheld" mean?
+<!--{"accordionBody":true}-->
+- **Withheld** means money we deduct from an employee's paycheck before paying them, and hold on to temporarily because we owe it to the government
+- The employee never sees this money in their bank account. We keep it, and later **remit** (send) it to the IRS and the EDD on their behalf
+- **Withheld is not our money.** It is the employee's money that we are holding in trust. We are a **pass-through** between the employee's paycheck and the tax agencies
+- **Withholding is legally required.** If we fail to withhold, or withhold and fail to remit, **we are liable** — not the employee
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## Which taxes are "withheld" and which are "employer-paid"?
+<!--{"accordionBody":true}-->
+- **Not all payroll taxes work the same way.** This is the key distinction:
+
+| Tax | Who pays it | Is it withheld from the employee? |
+|---|---|---|
+| **Federal income tax** | Employee | **Yes — withheld** |
+| **California Personal Income Tax (PIT)** | Employee | **Yes — withheld** |
+| **Social Security** | Split 50/50 | **Yes — employee half withheld**; employer pays the other half directly |
+| **Medicare** | Split 50/50 | **Yes — employee half withheld**; employer pays the other half directly |
+| **State Disability Insurance (SDI)** | Employee | **Yes — withheld** |
+| **Federal Unemployment (FUTA)** | Employer only | **No — employer pays directly** |
+| **California Unemployment (UI)** | Employer only | **No — employer pays directly** |
+| **Employment Training Tax (ETT)** | Employer only | **No — employer pays directly** |
+
+- **Withheld taxes** appear as a **liability** (we owe them to the government) until we remit them
+- **Employer-paid taxes** appear as an **expense** from day one, because they are our cost, not the employee's
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
 ## What are Net Assets?
 <!--{"accordionBody":true}-->
 - What we truly own
 - What we own after we pay our Liabilities
 - Example:
-    - We buy a **$500,000 house** with a **$400,000 mortgage** and **$100,000** of your own cash
-    - **Asset:** = What we own = $500,000 house
-    - **Liability: What you owe:** $400,000 mortgage
-    - **Net assets:** = What we truly own = $100,000
+    - We buy a **$500,000 house** with a **$400,000 mortgage** and **$100,000** cash down payment
+    - **Asset:** What we own = $500,000 house
+    - **Liability:** What you owe = $400,000 mortgage
+    - **Net Assets:** What we truly own = $100,000
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
 ## How do Nonprofits split Net Assets?
 <!--{"accordionBody":true}-->
-- **Net assets without donor restrictions**
-    - Money the board can spend freely
-    - **Unrestricted** funds (General Operating)
-    - **Board-designated** funds (Operating Reserve, Capital & Equipment)
-- **Net assets with donor restrictions**
-    — Money legally restricted by donors or grantors
-    - All our Restricted funds (Wildfire Repair, Elderly Assistance, Opportunity Youth, etc.)
+- Net assets **without** donor restrictions:
+    - Money the board can spend freely (e.g., General Operating, Operating Reserve, Capital & Equipment)
+- Net assets **with** donor restrictions:
+    - Money legally restricted by donors or grantors (e.g., Wildfire Repair, Elderly Assistance, Opportunity Youth)
 <!--{"accordionEnd":true}-->
+
 
 
 <!--{"accordionStart":true}-->
@@ -444,17 +473,75 @@
 
 
 <!--{"accordionStart":true}-->
-## What is the relationship between Ledger Account, Bank Account and a Fund?
+## What is the relationship between Ledger Account, Bank Account and Fund?
 <!--{"accordionBody":true}-->
-- A single dollar carries all three stickers at once
-    - They are not competing answers
-    - They are three separate facts about the same dollar
-    - That is why they never contradict each other
-    | Item | What it adds | Shasta Trades count |
-    |---|---|---|
-    | **Bank account** | The **physical location** of cash | 2 |
-    | **Ledger account** | The **category** of value | ~50 |
-    | **Fund** | The **restriction label** on value | 11 |
+| Ledger account | Type | Bank account | Fund(s) served | Notes |
+|---|---|---|---|---|
+| 3010 · General Operating | Fund | Checking | General Operating | Board can spend freely |
+| 3020 · Operating Reserve | Fund | Savings | Operating Reserve | Same cash as General Operating, governance lock |
+| 3030 · Capital & Equipment | Fund | Checking | Capital & Equipment | Set aside for trucks, tools, buildout |
+| 3110 · Workforce Development | Fund | Checking | Workforce Development | Restricted |
+| 3120 · Opportunity Youth | Fund | Checking | Opportunity Youth | Restricted (COYA, etc.) |
+| 3130 · Apprenticeship Training | Fund | Checking | Apprenticeship Training | Restricted |
+| 3140 · Mentor Development | Fund | Checking | Mentor Development | Restricted |
+| 3150 · Low & Moderate Income | Fund | Checking | Low & Moderate Income | Restricted |
+| 3160 · Elderly Assistance | Fund | Checking | Elderly Assistance | Restricted |
+| 3170 · Community Repair | Fund | Checking | Community Repair | Restricted |
+| 3180 · Wildfire Repair | Fund | Checking | Wildfire Repair | Restricted |
+| **Asset** | | | | |
+| 1010 · Checking | Asset | Checking | Any fund | 10 of 11 funds commingle cash here |
+| 1020 · Savings | Asset | Savings | Operating Reserve | Holds the reserve |
+| 1030 · Investments — brokerage | Asset | — | Any fund (per donor) | Only if we hold securities |
+| 1100 · Pledges receivable | Asset | — | Any fund | Promised but not received |
+| 1110 · Grants receivable | Asset | — | Restricted funds, General Operating | Awarded but not disbursed |
+| 1200 · Inventory — materials for resale | Asset | — | Any fund | Only for inventoryForResale |
+| 1500 · Vehicles | Asset | — | Capital & Equipment, Community Repair | Cost |
+| 1510 · Accumulated depreciation — vehicles | Contra-asset | — | Same fund as the vehicle | Reduces 1500 |
+| 1600 · Equipment, tools, laptops | Asset | — | Workforce Development, Apprenticeship Training, General Operating | Cost |
+| 1610 · Accumulated depreciation — equipment | Contra-asset | — | Same fund as the item | Reduces 1600 |
+| 1700 · Intangible assets — software, licenses | Asset | — | General Operating, Apprenticeship Training | Cost |
+| 1800 · Land & building | Asset | — | Capital & Equipment | Cost; land never depreciates |
+| 1810 · Accumulated depreciation — building | Contra-asset | — | Capital & Equipment | Reduces 1800 |
+| **Liability** | | | | |
+| 2010 · Accounts payable | Liability | — | Any fund | Vendors we owe |
+| 2020 · Credit card payable | Liability | — | Any fund | Card issuer — not a vendor |
+| 2100 · Accrued payroll | Liability | — | Any fund with wages | Wages earned, not yet paid |
+| 2110 · Federal payroll taxes payable | Liability | — | Any fund with wages | 941/940 portion |
+| 2120 · CA payroll taxes payable (EDD) | Liability | — | Any fund with wages | DE 9 portion |
+| 2200 · Refundable advances / deferred revenue | Liability | — | Any restricted fund | Grant conditions unmet |
+| 2300 · Sales tax payable | Liability | — | General Operating | Only if CDTFA applies |
+| 2700 · Mortgage payable | Liability | — | Capital & Equipment | Long-term debt |
+| **Revenue** | | | | |
+| 4010 · Individual donations | Revenue | — | Any fund (per donor designation) | |
+| 4020 · Corporate donations | Revenue | — | Any fund | |
+| 4030 · Foundation grants | Revenue | — | Restricted funds, General Operating | |
+| 4040 · Government grants | Revenue | — | Opportunity Youth, Workforce Development, Wildfire Repair | COYA, state, federal |
+| 4050 · In-kind donations — goods | Revenue | — | Any fund | Paired with asset or expense |
+| 4060 · In-kind donations — services | Revenue | — | Any fund | Paired with expense |
+| 4070 · In-kind donations — facilities use | Revenue | — | Any fund | Paired with rent expense |
+| 4100 · Service fee revenue — full rate | Revenue | — | Community Repair, General Operating | Betty, Sarah, Jake at full rate |
+| 4110 · Program service revenue — subsidized | Revenue | — | Low & Moderate Income, Elderly Assistance, Community Repair | Discounted portion |
+| 4200 · Investment income | Revenue | — | General Operating or donor-restricted fund | Interest, dividends |
+| 4300 · Gain on sale of donated assets | Revenue | — | Fund that held the asset | |
+| **Expense** | | | | |
+| 5010 · Apprentice wages | Expense | — | Workforce Development, Opportunity Youth, Apprenticeship Training | |
+| 5020 · Mentor wages | Expense | — | Mentor Development, Workforce Development | |
+| 5030 · Administrative salaries | Expense | — | General Operating | ED, CTO, bookkeeper |
+| 5100 · Payroll taxes & benefits | Expense | — | Any fund with wages | |
+| 5200 · Program materials & supplies | Expense | — | Elderly Assistance, Community Repair, Wildfire Repair, Low & Moderate Income | Lumber, paint, siding |
+| 5210 · Tools & consumables | Expense | — | Workforce Development, Apprenticeship Training | Hand tools, PPE |
+| 5300 · Rent | Expense | — | General Operating (office), Apprenticeship Training (training bay) | Includes in-kind facilities |
+| 5310 · Utilities | Expense | — | General Operating | |
+| 5320 · Insurance | Expense | — | General Operating | |
+| 5400 · Professional fees | Expense | — | General Operating, Mentor Development | Legal, accounting, consulting |
+| 5500 · Software & subscriptions | Expense | — | General Operating, Apprenticeship Training | |
+| 5600 · Vehicle operating | Expense | — | Capital & Equipment, Community Repair | Fuel, maintenance |
+| 5700 · Depreciation expense | Expense | — | Capital & Equipment, General Operating (allocated) | Noncash |
+| 5800 · Event & fundraising costs | Expense | — | General Operating | |
+| 5810 · Donor communications | Expense | — | General Operating | |
+| 5900 · Bank & processing fees | Expense | — | General Operating | |
+| 5950 · Loss on disposal of donated assets | Expense | — | Fund that held the asset | Triggers Form 8282 check |
+| 5990 · Miscellaneous | Expense | — | Any fund (use sparingly) | |
 <!--{"accordionEnd":true}-->
 
 

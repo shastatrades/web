@@ -8,6 +8,7 @@ import svgMenu from '@src/svg/menu.html?raw'
 import svgPerson from '@src/svg/person.html?raw'
 import { useRequestContext } from 'hono/jsx-renderer'
 import { idNavModal, idAuthModal } from '@src/lib/dom'
+import { currentObjectiveBoard } from '@src/enums/objectiveBoards.enum'
 import { tooltip, onHomeClick, onNavModalToggle } from '@hono-directives'
 
 
@@ -31,7 +32,7 @@ export default (() => {
           <div class="links">
             <a href={rpc['index'].$url().href} class={c.req.path === '/' ? 'active' : ''}>Home</a>
             <a href={rpc['mastery'][':id?'].$url({ param: { id: '' } }).href} class={c.req.path.includes('/mastery') ? 'active' : ''}>Mastery</a>
-            <a href={rpc['objectives'].$url().href} class={c.req.path === '/objectives' ? 'active' : ''}>Objectives</a>
+            <a href={rpc['objectives'][':slug'].$url({ param: { slug: currentObjectiveBoard.slug } }).href} class={c.req.path === '/objectives' ? 'active' : ''}>Objectives</a>
             <a href={rpc['transparency'][':id?'].$url({ param: { id: '' } }).href} class={c.req.path.includes('/transparency') ? 'active' : ''}>Transparency</a>
           </div>
         </div>

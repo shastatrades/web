@@ -1,0 +1,1 @@
+DROP INDEX `Objective__boardId__index`;

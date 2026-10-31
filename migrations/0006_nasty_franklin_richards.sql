@@ -1,0 +1,2 @@
+CREATE UNIQUE INDEX `ObjectiveBoard__slug__unique` ON `ObjectiveBoard` (`slug`);--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveBoard__isCurrent__unique` ON `ObjectiveBoard` (`isCurrent`) WHERE "ObjectiveBoard"."isCurrent" = 1;

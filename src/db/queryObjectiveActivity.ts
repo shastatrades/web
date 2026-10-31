@@ -1,9 +1,9 @@
 // web/src/db/queryObjectiveActivity.ts
 
 import { alias } from 'drizzle-orm/sqlite-core'
-import { eq, and, or, lt, desc, isNotNull, inArray } from 'drizzle-orm'
-import { enumObjectiveActivityTypes, objectiveActivityTypesByVariant } from '@src/enums/objectiveActivityTypes.enum'
-import { prop, leftJoin, createParentShape, type InferQuery } from '@drizzle-compose'
+import { eq, and, or, lt, desc, inArray, isNotNull } from 'drizzle-orm'
+import { objectiveActivityTypesByVariant } from '@src/enums/objectiveActivityTypes.enum'
+import { prop, epoch, leftJoin, createParentShape, type InferQuery } from '@drizzle-compose'
 import { db, Person, Objective, ObjectiveColumn, ObjectiveComment, ObjectiveTag, ObjectiveActivity, ObjectiveActivityType, Objective__Assignee, ObjectiveComment__Assignee } from '@src/db'
 
 
@@ -11,8 +11,8 @@ import { db, Person, Objective, ObjectiveColumn, ObjectiveComment, ObjectiveTag,
 // vite blows up if alias proxy's are not w/in a function
 const ActorAlias = () => alias(Person, 'Actor')
 const AssigneeAlias = () => alias(Person, 'Assignee')
-const FromColumnAlias = () => alias(ObjectiveColumn, 'FromColumn')
 const ToColumnAlias = () => alias(ObjectiveColumn, 'ToColumn')
+const FromColumnAlias = () => alias(ObjectiveColumn, 'FromColumn')
 const ObjectiveAssigneeAlias = () => alias(Objective__Assignee, 'ObjectiveAssignee')
 const CommentAssigneeAlias = () => alias(ObjectiveComment__Assignee, 'CommentAssignee')
 
@@ -50,7 +50,7 @@ export async function queryObjectiveActivity(props: QueryObjectiveActivityProps)
   return {
     items,
     nextCursor: hasMore && last // `null` = no more pages
-      ? { createdAt: last.createdAtMs, id: last.id }
+      ? { createdAt: last.createdAt, id: last.id }
       : null,
   }
 }
@@ -74,6 +74,7 @@ function getBaseQuery(props: QueryObjectiveActivityProps & { limit: number }) {
 
       objectiveId: Objective.id,
       objectiveTitle: Objective.title,
+      objectiveBoardId: Objective.boardId,
 
       actorId: Actor.id,
       actorImageId: Actor.imageId,
@@ -122,7 +123,10 @@ function getBaseQuery(props: QueryObjectiveActivityProps & { limit: number }) {
   }
 
   const variantWhere = props.variant === 'all'
-    ? inArray(ObjectiveActivity.typeId, objectiveActivityTypesByVariant.all)
+    ? and(
+      eq(Objective.boardId, props.boardId),
+      inArray(ObjectiveActivity.typeId, objectiveActivityTypesByVariant.all),
+    )
     : and(
       inArray(ObjectiveActivity.typeId, objectiveActivityTypesByVariant.personal),
       or(
@@ -159,12 +163,12 @@ const parentShape = createParentShape(getBaseQuery).fn(row => ({
   id: row.id,
   typeId: row.typeId,
   type: row.typeValue,
-  createdAt: row.createdAt as unknown as string, // post api layer it'll be a string
-  createdAtMs: +row.createdAt, // ms epoch, helpful for nextCursor
+  createdAt: epoch(row.createdAt),
 
   objective: {
     id: row.objectiveId,
     title: row.objectiveTitle,
+    boardId: row.objectiveBoardId,
   },
 
   actor: row.actorId === null ? null : {
@@ -213,6 +217,7 @@ export type QueryObjectiveActivityItem = QueryObjectiveActivity['items'][number]
 export type QueryObjectiveActivityProps = 
   | {
     variant: 'all'
+    boardId: number 
     limit?: number
     /** Pass `nextCursor` from the previous page. Omit for the first page. */
     cursor?: ObjectiveActivityCursor

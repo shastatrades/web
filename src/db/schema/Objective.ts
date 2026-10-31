@@ -1,7 +1,7 @@
 // web/src/db/schema/Objective.ts
 
 import { sql } from 'drizzle-orm'
-import { ObjectiveColumn, Person } from '@src/db'
+import { Person, ObjectiveBoard, ObjectiveColumn } from '@src/db'
 import { text, real, integer, index, uniqueIndex, sqliteTable } from 'drizzle-orm/sqlite-core'
 
 
@@ -10,6 +10,9 @@ export const Objective = sqliteTable(
   'Objective',
   {
     id: integer('id').primaryKey({ autoIncrement: true }),
+    boardId: integer('boardId')
+      .notNull()
+      .references(() => ObjectiveBoard.id),
     columnId: integer('columnId')
       .notNull()
       .references(() => ObjectiveColumn.id),
@@ -26,6 +29,6 @@ export const Objective = sqliteTable(
   (table) => [
     index('Objective__columnId__index').on(table.columnId),
     index('Objective__order__index').on(table.order),
-    uniqueIndex('Objective__title__unique').on(table.title),
+    uniqueIndex('Objective__boardId__title__unique').on(table.boardId, table.title),
   ]
 )

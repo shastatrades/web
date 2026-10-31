@@ -300,15 +300,33 @@ Staff end reason lookup table
 <!--{"accordionBody":true}-->
 Stores objectives on our Kanban
 
-| Field       | Type     | Notes                                             |
-|-------------|----------|---------------------------------------------------|
-| id          | INTEGER  | PK, AI                                            |
+| Field       | Type     | Notes                                              |
+|-------------|----------|----------------------------------------------------|
+| id          | INTEGER  | PK, AI                                             |
+| boardId     | INTEGER  | INDEX, NOT NULL, FK &rarr; **ObjectiveBoard(id)**  |
 | columnId    | INTEGER  | INDEX, NOT NULL, FK &rarr; **ObjectiveColumn(id)** |
 | createdBy   | INTEGER  | NOT NULL, FK &rarr; **Person(id)**, CASCADE DELETE |
-| title       | TEXT     | UNQUE INDEX, NOT NULL                             |
-| description | TEXT     |                                                   |
-| order       | DECIMAL  | INDEX, NOT NULL                                   |
-| createdAt   | DATETIME | NOT NULL, DEFAULT = NOW                           |
+| title       | TEXT     | NOT NULL                                           |
+| description | TEXT     |                                                    |
+| order       | DECIMAL  | INDEX, NOT NULL                                    |
+| createdAt   | DATETIME | NOT NULL, DEFAULT = NOW                            |
+| -           | -        | UNIQUE_INDEX(boardId, title)                              |
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## ObjectiveBoard
+<!--{"accordionBody":true}-->
+ Objective board (e.g. "Q3 2026", "Q4 2026") lookup table
+
+| Field     | Type    | Notes                                   |
+|-----------|---------|-----------------------------------------|
+| id        | INTEGER | PK, AI                                  |
+| value     | TEXT    | NOT NULL                                |
+| slug      | TEXT    | UNIQUE INDEX, NOT NULL                  |
+| isActive  | BOOLEAN | NOT NULL, DEFAULT = 1                   |
+| isCurrent | BOOLEAN | UNIQUE INDEX (1), NOT NULL, DEFAULT = 0 |
+| -         | -       | INDEX(objectiveId, createdAt)           |
 <!--{"accordionEnd":true}-->
 
 

@@ -2,7 +2,7 @@
 
 import { eq, or, gt, and, lte, isNull } from 'drizzle-orm'
 import { db, Person, Session, StaffPosition, StaffEndReason, Person__StaffPosition } from '@src/db'
-import { prop, leftJoin, createParentShape, createChildren, type InferQuery } from '@drizzle-compose'
+import { prop, epoch, leftJoin, createParentShape, createChildren, type InferQuery } from '@drizzle-compose'
 
 
 function getBaseQuery() {
@@ -52,8 +52,8 @@ function getChildren() {
       shape: (row) => ({
         id: prop(row.positionId, StaffPosition.id),
         value: prop(row.positionValue, StaffPosition.value),
-        startDate: row.startDate as unknown as string, // post api layer it'll be a string
-        endDate: row.endDate as unknown as string | null, // post api layer it'll be a string | null
+        startDate: epoch(row.startDate),
+        endDate: epoch(row.endDate),
         endReasonId: prop(row.endReasonId, StaffEndReason.id),
         endReasonValue: prop(row.endReasonValue, StaffEndReason.value),
       }),
@@ -158,8 +158,8 @@ export async function queryStaffPersonSession(sessionId: number) {
       shape: (row) => ({
         id: prop(row.positionId, StaffPosition.id),
         value: prop(row.positionValue, StaffPosition.value),
-        startDate: row.startDate as unknown as string, // post api layer it'll be a string
-        endDate: row.endDate as unknown as string | null, // post api layer it'll be a string | null
+        startDate: epoch(row.startDate),
+        endDate: epoch(row.endDate),
         endReasonId: prop(row.endReasonId, StaffEndReason.id),
         endReasonValue: prop(row.endReasonValue, StaffEndReason.value),
       }),

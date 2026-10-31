@@ -1,0 +1,1 @@
+ALTER TABLE `ObjectiveBoard` ADD `isCurrent` integer DEFAULT false NOT NULL;

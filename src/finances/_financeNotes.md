@@ -481,7 +481,7 @@
 
 
 <!--{"accordionStart":true}-->
-## What is a resale certificate?
+## What is a Resale Certificate?
 <!--{"accordionBody":true}-->
 - A **resale certificate** is a document a **buyer** gives a **seller** to purchase goods **without paying sales tax** because the buyer intends to **resell** those goods in the regular course of business
 - In California, the common form is **CDTFA-230** (Resale Certificate)

@@ -1,6 +1,7 @@
 // web/src/db/seed.ts
 
-import { db, Trade, JobStatus, LeadStatus, StaffPosition, StaffEndReason, ObjectiveColumn, ObjectiveTag, ObjectiveActivityType } from '@src/db'
+import { enumObjectiveBoards } from '@src/enums/objectiveBoards.enum'
+import { db, Trade, JobStatus, LeadStatus, StaffPosition, StaffEndReason, ObjectiveColumn, ObjectiveTag, ObjectiveActivityType, ObjectiveBoard } from '@src/db'
 
 
 const trades = [
@@ -75,6 +76,8 @@ const jobStatuses = [
   { value: 'Lost', description: 'Client chose someone else' },
 ]
 
+const objectiveBoards = enumObjectiveBoards.array
+
 const objectiveColumns = [
   { value: 'To Do' },
   { value: 'In Progress' },
@@ -107,6 +110,7 @@ await Promise.all([
   db.insert(LeadStatus).values(leadStatuses),
   db.insert(StaffEndReason).values(staffEndReasons),
   db.insert(JobStatus).values(jobStatuses),
+  db.insert(ObjectiveBoard).values([...objectiveBoards]), // readonly to mutateable
   db.insert(ObjectiveColumn).values(objectiveColumns),
   db.insert(ObjectiveTag).values(objectiveTags),
   db.insert(ObjectiveActivityType).values(objectiveActivityTypes),

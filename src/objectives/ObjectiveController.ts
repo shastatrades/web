@@ -6,10 +6,10 @@ import { FormUtil } from '@hono-form'
 import { showToast } from '@hono-toast'
 import { tabsEvents } from '@hono-tabs'
 import { idActivity } from '@src/lib/dom'
-import { createRPC, onError } from '@hono-api/fe'
 import formatTime from '@src/time/formatTime.directive'
 import { QueryObjective } from '@src/db/queryObjective'
 import type { QueryTags, QueryStaffPeople } from '@src/db'
+import { createRPC, onError, getParam } from '@hono-api/fe'
 import { toggleModalDom, onConfirmEvents } from '@hono-modal'
 import { datasetId, classNameObjective, idObjectiveInUpModal, datasetObjectiveInUpShowModal } from '@src/lib/dom'
 
@@ -97,10 +97,13 @@ export class ObjectiveController {
   #bindTabChanged() {
     const elActivity = query(idActivity().query).one()
 
+    const slug = getParam()
+    if (!slug) throw new Error('!slug')
+
     tabsEvents.on('tabChanged', async (v) => {
       if (v.id !== 'activity') return elActivity.innerHTML = '<img class="feed-loading" src="/img/loading.svg" alt = "Loading..." />'
 
-      const res = await this.rpc.api['objective-activity'].$get()
+      const res = await this.rpc.api['objective-activity'][':slug'].$get({ param: { slug } })
       elActivity.innerHTML = await res.text()
 
       elActivity.querySelectorAll('time').forEach(elTime => {

@@ -254,7 +254,7 @@ export class ObjectiveInUpShowModal {
   }
 
 
-  #addCommentToDom(firstName: string, lastName: string, comment: string, createdAt: string, imageId: string | null) {
+  #addCommentToDom(firstName: string, lastName: string, comment: string, createdAt: number, imageId: string | null) {
     dom('one', idObjectiveInUpModalComment(), HTMLDivElement)
       .on(classNameValue(), el => el.textContent = comment)
       .on(classNameName(), el => el.textContent = `${firstName} ${lastName}`)
@@ -320,7 +320,7 @@ export class ObjectiveInUpShowModal {
       if (res.success) {
         showToast({ variant: 'success', value: 'Success!' })
         this.formComment.reset()
-        this.#addCommentToDom(res.firstName, res.lastName, result.data.comment, new Date().toISOString(), res.imageId)
+        this.#addCommentToDom(res.firstName, res.lastName, result.data.comment, Date.now(), res.imageId)
         this.divComments.style.display = 'block'
 
         // update comment count

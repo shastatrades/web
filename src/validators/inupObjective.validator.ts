@@ -6,6 +6,7 @@ import { pipeEnoughContent, Validator } from '@hono-form'
 
 export const formObjectiveValidator = new Validator(
   v.object({
+    boardId: v.number(),
     columnId: v.string(),
     title: pipeEnoughContent({ count: 6, error: 'Please enter at least 6 characters' }),
     description: v.optional(v.string()),
@@ -17,6 +18,7 @@ export const formObjectiveValidator = new Validator(
 
 export const insertObjectiveValidator = new Validator(
   v.object({
+    boardId: v.number(),
     columnId: v.number(),
     title: pipeEnoughContent({ count: 6, error: 'Please enter at least 6 characters' }),
     description: v.optional(v.string()),
@@ -30,6 +32,7 @@ export const insertObjectiveValidator = new Validator(
 export const updateObjectiveValidator = new Validator(
   v.object({
     id: v.number(),
+    boardId: v.optional(v.number()),
     columnId: v.optional(v.number()),
     title: v.optional(pipeEnoughContent({ count: 6, error: 'Please enter at least 6 characters' })),
     description: v.optional(v.string()),

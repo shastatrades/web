@@ -8,6 +8,7 @@ import svgTikTok from '@src/svg/tikTok.html?raw'
 import svgYoutube from '@src/svg/youtube.html?raw'
 import svgFacebook from '@src/svg/facebook.html?raw'
 import svgInstagram from '@src/svg/instagram.html?raw'
+import { currentObjectiveBoard } from '@src/enums/objectiveBoards.enum'
 
 
 export default (() => {
@@ -27,7 +28,7 @@ export default (() => {
           <div class="links">
             <a href={rpc['index'].$url().href}>Home</a>
             <a href={rpc['mastery'][':id?'].$url({ param: { id: '' } }).href}>Mastery</a>
-            <a href={rpc['objectives'].$url().href}>Objectives</a>
+            <a href={rpc['objectives'][':slug'].$url({param: { slug: currentObjectiveBoard.slug} }).href}>Objectives</a>
             <a href={rpc['transparency'][':id?'].$url({ param: { id: '' } }).href}>Transparency</a>
           </div>
         </div>

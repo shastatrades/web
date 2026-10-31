@@ -2,8 +2,8 @@
 
 import { eq } from 'drizzle-orm'
 import { alias } from 'drizzle-orm/sqlite-core'
+import { prop, leftJoin, createParentShape, createChildren, type InferQuery, epoch } from '@drizzle-compose'
 import { db, Person, Objective, ObjectiveTag, ObjectiveComment, Objective__Tag, Objective__Assignee } from '@src/db'
-import { prop, leftJoin, createParentShape, createChildren, type InferQuery } from '@drizzle-compose'
 
 
 const CommenterAlias = () => alias(Person, 'Commenter') // vite blows up if alias proxy is not w/in a function
@@ -15,6 +15,7 @@ function getBaseQuery() {
   return db
     .select({
       id: Objective.id,
+      boardId: Objective.boardId,
       columnId: Objective.columnId,
       title: Objective.title,
       description: Objective.description,
@@ -60,11 +61,12 @@ function getBaseQuery() {
 const parentShape = createParentShape(getBaseQuery)
   .fn(row => ({
     id: row.id,
+    boardId: row.boardId,
     columnId: row.columnId,
     title: row.title,
     description: row.description,
     order: row.order,
-    createdAt: row.createdAt as unknown as string, // post api layer it'll be a string
+    createdAt: epoch(row.createdAt)
   }))
 
 
@@ -98,7 +100,7 @@ function getChildren() {
         shape: (row) => ({
           id: prop(row.commentId, ObjectiveComment.id),
           value: prop(row.commentValue, ObjectiveComment.value),
-          createdAt: row.commentCreatedAt as unknown as string, // post api layer it'll be a string
+          createdAt: epoch(prop(row.commentCreatedAt, ObjectiveComment.createdAt)),
           createdBy: {
             id: prop(row.commenterId, Commenter.id),
             imageId: prop(row.commenterImageId, Commenter.imageId),
@@ -113,8 +115,11 @@ function getChildren() {
 
 
 /** Get all objectives */
-export async function queryObjectives() {
-  return leftJoin(await getBaseQuery(), {
+export async function queryObjectives(boardId: number) {
+  const rows = await getBaseQuery()
+    .where(eq(Objective.boardId, boardId))
+
+  return leftJoin(rows, {
     children: getChildren(),
     parent: { shape: parentShape, groupId: (row) => row.columnId },
   })

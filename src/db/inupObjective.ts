@@ -8,11 +8,11 @@ import type { insertObjectiveValidator, updateObjectiveValidator } from '@src/va
 
 /** Insert a new Objective */
 export async function insertObjective(actorId: number, tx: Transaction, input: InupObjectiveInput<'insert'>): Promise<number> {
-  const { columnId, createdBy, title, description, order } = input
+  const { boardId, columnId, createdBy, title, description, order } = input
 
   const objective = await tx // insert objective
     .insert(Objective)
-    .values({ columnId, createdBy, title, description, order })
+    .values({ boardId, columnId, createdBy, title, description, order })
     .returning({ id: Objective.id })
     .get()
 

@@ -7,6 +7,7 @@ import svgClose from '@src/svg/close.html?raw'
 import { onNavModalToggle } from '@hono-directives'
 import { datasetAuth, idNavModal } from '@src/lib/dom'
 import { enumFinanceFormPages } from '@src/enums/financeFormPages.enum'
+import { currentObjectiveBoard } from '@src/enums/objectiveBoards.enum'
 
 
 export default (() => {
@@ -31,7 +32,7 @@ export default (() => {
         <div class="scroll">
           <a href={rpc['index'].$url().href} class="item anchor">Home</a>
           <a href={rpc['mastery'][':id?'].$url({ param: { id: '' } }).href} class="item anchor">Mastery</a>
-          <a href={rpc['objectives'].$url().href} class="item anchor">Objectives</a>
+          <a href={rpc['objectives'][':slug'].$url({ param: { slug: currentObjectiveBoard.slug } }).href} class="item anchor">Objectives</a>
           <a href={rpc['transparency'][':id?'].$url({ param: { id: '' } }).href} class="item anchor">Transparency</a>
 
           <div {...authDataset.attr('loading')} class="item title">Loading...</div>

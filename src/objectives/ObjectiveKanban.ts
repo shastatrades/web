@@ -6,6 +6,7 @@ import { showErrorToast } from '@hono-toast'
 import type { InferJson } from '@hono-api/fe'
 import { FormUtil, Loading } from '@hono-form'
 import { safeObjectAccess, safeArrayAccess } from '@safely-access'
+import { currentObjectiveBoard } from '@src/enums/objectiveBoards.enum'
 import { ObjectiveController } from '@src/objectives/ObjectiveController'
 import { dom, query, type DomBuilder, type FieldReturn } from '@hono-dom'
 import type { QueryObjectives, QueryObjective } from '@src/db/queryObjective'
@@ -439,6 +440,7 @@ export class ObjectiveKanban {
     const order = ObjectiveKanban.#getObjectiveOrder(safeObjectAccess(this.kanbanData, columnId), 0)
 
     const json: InferJson<typeof this.controller.rpc.api.objective.$post> = {
+      boardId: currentObjectiveBoard.id,
       description: data.description,
       columnId,
       tagIds,
@@ -489,12 +491,13 @@ export class ObjectiveKanban {
   #onInupModalSuccess(data: typeof formObjectiveValidator.data, id: number, json: InferJson<typeof this.controller.rpc.api.objective.$post>) {
     const objective: QueryObjective = {
       id,
+      boardId: currentObjectiveBoard.id,
       comments: [],
       title: data.title,
       description: data.description ?? '',
       order: json.order,
       columnId: json.columnId,
-      createdAt: new Date().toISOString(),
+      createdAt: Date.now(),
       tags: this.controller.tags.filter(tag => json.tagIds.includes(tag.id)),
       assignees: this.controller.staff.filter(person => json.assigneeIds.includes(person.id)),
     }

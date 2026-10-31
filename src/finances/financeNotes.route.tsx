@@ -4,13 +4,13 @@ import { Hono } from 'hono'
 import { css, Style } from 'hono/css'
 import { mdStyle } from '@src/md/mdStyle'
 import { md2html } from '@src/md/md2html'
+import { idNoResults } from '@src/lib/dom'
 import svgClose from '@src/svg/close.html?raw'
 import svgSearch from '@src/svg/search.html?raw'
 import { searchStyle, SearchInput } from '@hono-search'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
 import mdFinanceNotes from '@src/finances/financeNotes.md?raw'
 import { bindAccordionItems, onFinanceNotesLoad } from '@hono-directives'
-import { idNoResults } from '@src/lib/dom'
 
 
 const noResultsId = idNoResults()

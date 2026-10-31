@@ -2,6 +2,8 @@
 
 import { css } from 'hono/css'
 import type { FC } from 'hono/jsx'
+import { AppType } from '@src/index'
+import { createRPC, InferRpc } from '@hono-api/be'
 import { formatTime } from '@hono-directives'
 import svgPersonAdd from '@src/svg/personAdd.html?raw'
 import svgAddComment from '@src/svg/addComment.html?raw'
@@ -10,12 +12,15 @@ import svgpPersonRemove from '@src/svg/personRemove.html?raw'
 import { enumObjectiveTags } from '@src/enums/objectiveTags.enum'
 import { enumObjectiveColumns } from '@src/enums/objectiveColumns.enum'
 import type { QueryObjectiveActivity, QueryObjectiveActivityItem } from '@src/db'
+import { enumObjectiveBoards } from '@src/enums/objectiveBoards.enum'
 
 
 export const ObjectiveActivity = (({ res }) => {
+  const rpc = createRPC<AppType>()
+
   return <>
     <div class="feed">
-      {res.items.map(item => <ObjectiveActivityItem item={item} />)}
+      {res.items.map(item => <ObjectiveActivityItem item={item} rpc={rpc} />)}
     </div>
 
     {
@@ -31,29 +36,32 @@ export const ObjectiveActivity = (({ res }) => {
 
 
 
-export const ObjectiveActivityItem = (({ item }) => {
+export const ObjectiveActivityItem = (({ item, rpc }) => {
+  const objectiveBoard = enumObjectiveBoards.get(item.objective.boardId)
+  if (!objectiveBoard) throw new Error('!objectiveBoard')
+
   switch (item.typeId) {
-    case 1: return <AssigneeAdded actorName={item.actor?.firstName + ' ' + item.actor?.lastName} assigneeName={item.assignee?.firstName + ' ' + item.assignee?.lastName} objectiveId={item.objective.id} objectiveName={item.objective.title} epoch={item.createdAtMs} />
-    case 2: return <AssigneeRemoved actorName={item.actor?.firstName + ' ' + item.actor?.lastName} assigneeName={item.assignee?.firstName + ' ' + item.assignee?.lastName} objectiveId={item.objective.id} objectiveName={item.objective.title} epoch={item.createdAtMs} />
+    case 1: return <AssigneeAdded rpc={rpc} objective={item.objective} objectiveBoardSlug={objectiveBoard.slug} actorName={item.actor?.firstName + ' ' + item.actor?.lastName} assigneeName={item.assignee?.firstName + ' ' + item.assignee?.lastName} epoch={item.createdAt} />
+    case 2: return <AssigneeRemoved rpc={rpc} objective={item.objective} objectiveBoardSlug={objectiveBoard.slug} actorName={item.actor?.firstName + ' ' + item.actor?.lastName} assigneeName={item.assignee?.firstName + ' ' + item.assignee?.lastName} epoch={item.createdAt} />
     case 4:
       if (!item.tag?.id) throw new Error('!item.tag?.id', { cause: item })
-      return <TagAdded actorName={item.actor?.firstName + ' ' + item.actor?.lastName} tagId={item.tag.id} objectiveId={item.objective.id} objectiveName={item.objective.title} epoch={item.createdAtMs} />
+      return <TagAdded rpc={rpc} objective={item.objective} objectiveBoardSlug={objectiveBoard.slug} actorName={item.actor?.firstName + ' ' + item.actor?.lastName} tagId={item.tag.id} epoch={item.createdAt} />
     case 5:
       if (!item.tag?.id) throw new Error('!item.tag?.id', { cause: item })
-      return <TagRemoved actorName={item.actor?.firstName + ' ' + item.actor?.lastName} tagId={item.tag.id} objectiveId={item.objective.id} objectiveName={item.objective.title} epoch={item.createdAtMs} />
+      return <TagRemoved rpc={rpc} objective={item.objective} objectiveBoardSlug={objectiveBoard.slug} actorName={item.actor?.firstName + ' ' + item.actor?.lastName} tagId={item.tag.id} epoch={item.createdAt} />
     case 6:
       if (!item.comment) throw new Error('!item.comment', { cause: item })
-      return <CommentAdded actorName={item.actor?.firstName + ' ' + item.actor?.lastName} objectiveId={item.objective.id} objectiveName={item.objective.title} comment={item.comment.value} epoch={item.createdAtMs} />
+      return <CommentAdded rpc={rpc} objective={item.objective} objectiveBoardSlug={objectiveBoard.slug} actorName={item.actor?.firstName + ' ' + item.actor?.lastName} comment={item.comment.value} epoch={item.createdAt} />
     case 7:
       if (!item.toColumn?.id) throw new Error('!item.toColumn?.id', { cause: item })
-      return <ObjectiveCreated actorName={item.actor?.firstName + ' ' + item.actor?.lastName} columnId={item.toColumn.id} objectiveId={item.objective.id} objectiveName={item.objective.title} epoch={item.createdAtMs} />
+      return <ObjectiveCreated rpc={rpc} objective={item.objective} objectiveBoardSlug={objectiveBoard.slug} actorName={item.actor?.firstName + ' ' + item.actor?.lastName} columnId={item.toColumn.id} epoch={item.createdAt} />
     case 3:
       if (!item.toColumn?.id) throw new Error('!item.toColumn?.id', { cause: item })
       if (!item.fromColumn?.id) throw new Error('!item.fromColumn?.id', { cause: item })
-      return <ColumnChanged actorName={item.actor?.firstName + ' ' + item.actor?.lastName} fromColumnId={item.fromColumn.id} toColumnId={item.toColumn.id} objectiveId={item.objective.id} objectiveName={item.objective.title} epoch={item.createdAtMs} />
+      return <ColumnChanged rpc={rpc} objective={item.objective} objectiveBoardSlug={objectiveBoard.slug} actorName={item.actor?.firstName + ' ' + item.actor?.lastName} fromColumnId={item.fromColumn.id} toColumnId={item.toColumn.id} epoch={item.createdAt} />
     default: return <></>
   }
-}) satisfies FC<{ item: QueryObjectiveActivityItem }>
+}) satisfies FC<{ item: QueryObjectiveActivityItem, rpc: InferRpc<AppType> }>
 
 
 
@@ -286,7 +294,15 @@ const Chip = ((props) => {
 
 
 
-const ColumnChanged = (({ actorName, objectiveId, objectiveName, fromColumnId, toColumnId, epoch }) => {
+const Anchor = (({ rpc, objective, objectiveBoardSlug }) => {
+  return <>
+    <a href={rpc.objectives[':slug'].$url({ param: { slug: objectiveBoardSlug }, query: { id: objective.id } }).href}>{objective.title}</a>
+  </> 
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'] }>
+
+
+
+const ColumnChanged = (({ rpc, objective, objectiveBoardSlug, actorName, fromColumnId, toColumnId, epoch }) => {
   return <>
     <div class="event">
       <div class="icon move" aria-hidden="true">→</div>
@@ -294,7 +310,7 @@ const ColumnChanged = (({ actorName, objectiveId, objectiveName, fromColumnId, t
         <div class="text">
           <strong>{actorName}</strong>
           <span>moved</span>
-          <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
+          <Anchor rpc={rpc} objective={objective} objectiveBoardSlug={objectiveBoardSlug} />
           <span>from</span>
           <Chip columnId={fromColumnId} />
           <span>to</span>
@@ -304,11 +320,11 @@ const ColumnChanged = (({ actorName, objectiveId, objectiveName, fromColumnId, t
       </div>
     </div>
   </>
-}) satisfies FC<{ actorName: string, objectiveId: number, objectiveName: string, fromColumnId: number, toColumnId: number, epoch: number }>
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'], actorName: string, fromColumnId: number, toColumnId: number, epoch: number }>
 
 
 
-const CommentAdded = (({ actorName, objectiveId, objectiveName, comment, epoch }) => {
+const CommentAdded = (({ rpc, objective, objectiveBoardSlug, actorName, comment, epoch }) => {
   return <>
     <div class="event">
       <div class="icon add" aria-hidden="true" dangerouslySetInnerHTML={{ __html: svgAddComment }} />
@@ -316,18 +332,18 @@ const CommentAdded = (({ actorName, objectiveId, objectiveName, comment, epoch }
         <div class="text">
           <strong>{actorName}</strong>
           <span>commented on</span>
-          <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
+          <Anchor rpc={rpc} objective={objective} objectiveBoardSlug={objectiveBoardSlug} />
         </div>
         <div class="comment-preview">{comment}</div>
        <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
-}) satisfies FC<{ actorName: string, objectiveId: number, objectiveName: string, comment: string, epoch: number }>
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'], actorName: string, comment: string, epoch: number }>
 
 
 
-const AssigneeAdded = (({ actorName, assigneeName, objectiveId, objectiveName, epoch }) => {
+const AssigneeAdded = (({ rpc, objective, objectiveBoardSlug, actorName, assigneeName, epoch }) => {
   return <>
     <div class="event">
       <div class="icon add" aria-hidden="true" dangerouslySetInnerHTML={{ __html: svgPersonAdd }} />
@@ -337,17 +353,17 @@ const AssigneeAdded = (({ actorName, assigneeName, objectiveId, objectiveName, e
           <span>assigned</span>
           <strong>{assigneeName}</strong>
           <span>to</span>
-          <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
+          <Anchor rpc={rpc} objective={objective} objectiveBoardSlug={objectiveBoardSlug} />
         </div>
         <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
-}) satisfies FC<{ actorName: string, assigneeName: string, objectiveId: number, objectiveName: string, epoch: number }>
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'], actorName: string, assigneeName: string, epoch: number }>
 
 
 
-const AssigneeRemoved = (({ actorName, assigneeName, objectiveId, objectiveName, epoch }) => {
+const AssigneeRemoved = (({ rpc, objective, objectiveBoardSlug, actorName, assigneeName, epoch }) => {
   return <>
     <div class="event">
       <div class="icon remove" aria-hidden="true" dangerouslySetInnerHTML={{ __html: svgpPersonRemove }} />
@@ -357,17 +373,17 @@ const AssigneeRemoved = (({ actorName, assigneeName, objectiveId, objectiveName,
           <span>removed</span>
           <strong>{assigneeName}</strong>
           <span>from</span>
-          <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
+          <Anchor rpc={rpc} objective={objective} objectiveBoardSlug={objectiveBoardSlug} />
         </div>
         <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
-}) satisfies FC<{ actorName: string, assigneeName: string, objectiveId: number, objectiveName: string, epoch: number }>
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'], actorName: string, assigneeName: string, epoch: number }>
 
 
 
-const TagAdded = (({ actorName, objectiveId, objectiveName, tagId, epoch }) => {
+const TagAdded = (({ rpc, objective, objectiveBoardSlug, actorName, tagId, epoch }) => {
   return <>
     <div class="event">
       <div class="icon add" aria-hidden="true">✦</div>
@@ -377,17 +393,17 @@ const TagAdded = (({ actorName, objectiveId, objectiveName, tagId, epoch }) => {
           <span>added the tag</span>
           <Chip tagId={tagId} />
           <span>to</span>
-          <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
+          <Anchor rpc={rpc} objective={objective} objectiveBoardSlug={objectiveBoardSlug} />
         </div>
         <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
-}) satisfies FC<{ actorName: string, objectiveId: number, objectiveName: string, tagId: number, epoch: number }>
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'], actorName: string, tagId: number, epoch: number }>
 
 
 
-const TagRemoved = (({ actorName, objectiveId, objectiveName, tagId, epoch }) => {
+const TagRemoved = (({ rpc, objective, objectiveBoardSlug, actorName, tagId, epoch }) => {
   return <>
     <div class="event">
       <div class="icon remove" aria-hidden="true">✦</div>
@@ -397,17 +413,17 @@ const TagRemoved = (({ actorName, objectiveId, objectiveName, tagId, epoch }) =>
           <span>removed the tag</span>
           <Chip tagId={tagId} />
           <span>from</span>
-          <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
+          <Anchor rpc={rpc} objective={objective} objectiveBoardSlug={objectiveBoardSlug} />
         </div>
         <time data-directive={formatTime(epoch)} />
       </div>
     </div>
   </>
-}) satisfies FC<{ actorName: string, objectiveId: number, objectiveName: string, tagId: number, epoch: number }>
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'], actorName: string, tagId: number, epoch: number }>
 
 
 
-const ObjectiveCreated = (({ actorName, columnId, objectiveId, objectiveName, epoch }) => {
+const ObjectiveCreated = (({ rpc, objective, objectiveBoardSlug, actorName, columnId, epoch }) => {
   return <>
     <div class="event">
       <div dangerouslySetInnerHTML={{ __html: svgAddDocument }} class="icon add" aria-hidden="true" />
@@ -415,7 +431,7 @@ const ObjectiveCreated = (({ actorName, columnId, objectiveId, objectiveName, ep
         <div class="text">
           <strong>{actorName}</strong>
           <span>created</span>
-          <a href={`/objectives?id=${objectiveId}`} target="_blank">{objectiveName}</a>
+          <Anchor rpc={rpc} objective={objective} objectiveBoardSlug={objectiveBoardSlug} />
           <span>and placed it into</span>
           <Chip columnId={columnId} />
         </div>
@@ -423,4 +439,4 @@ const ObjectiveCreated = (({ actorName, columnId, objectiveId, objectiveName, ep
       </div>
     </div>
   </>
-}) satisfies FC<{ actorName: string, columnId: number, objectiveId: number, objectiveName: string, epoch: number }>
+}) satisfies FC<{ rpc: InferRpc<AppType>, objective: QueryObjectiveActivity['items'][number]['objective'], objectiveBoardSlug: typeof enumObjectiveBoards.$infer['slug'], actorName: string, columnId: number, epoch: number }>

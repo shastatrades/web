@@ -22,7 +22,7 @@ export function runDirectivesOnPageLoad() {
 /**
  * Run directives on demand for a dynamically added root elements children
  */
-export async function runDirectivesOnDemand(root: Element) {
+export async function runDirectivesOnDemand(root: Document | Element = document) {
   const elements: Element[] = []
 
   // Find all descendant elements with the directive

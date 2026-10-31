@@ -15,6 +15,48 @@
       "when": 1789604825451,
       "tag": "0001_parallel_loners",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1792949974551,
+      "tag": "0002_wet_shotgun",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1792951213040,
+      "tag": "0003_breezy_wild_child",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1792964143662,
+      "tag": "0004_secret_sabra",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1792964493234,
+      "tag": "0005_massive_nomad",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1792964618806,
+      "tag": "0006_nasty_franklin_richards",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1792978780740,
+      "tag": "0007_busy_enchantress",
+      "breakpoints": true
     }
   ]
 }

@@ -1,10 +1,14 @@
 // web/src/objectives/objectives.route.tsx
 
 import { Hono } from 'hono'
+import * as v from 'valibot'
 import type { FC } from 'hono/jsx'
 import { css, Style } from 'hono/css'
+import { pipeSelect } from '@hono-form'
+import { AppType } from '@src/index'
 import { ModalConfirm } from '@hono-modal'
 import { tabsStyle, Tabs } from '@hono-tabs'
+import { createRPC, validator } from '@hono-api/be'
 import { onObjectivesPageLoad } from '@hono-directives'
 import ObjectiveInUp from '@src/objectives/ObjectiveInUp'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
@@ -12,119 +16,135 @@ import type { ClassNameReturn, DatasetReturn } from '@hono-dom'
 import { objectiveActivityStyle } from '@src/lib/ObjectiveActivity'
 import { enumObjectiveColumns } from '@src/enums/objectiveColumns.enum'
 import { queryObjectives, type QueryObjective } from '@src/db/queryObjective'
+import { currentObjectiveBoard, enumObjectiveBoards, objectiveBoardSlugs } from '@src/enums/objectiveBoards.enum'
 import { classNameAssignees, classNameColumn, classNameCount, classNameObjective, classNameObjectives, classNameTags, classNameTitle, datasetColumnId, datasetId, datasetObjectiveInUpShowModal, datasetOrder, classNameSvg, idObjectiveTemplate, idActivity } from '@src/lib/dom'
 
 
 export default new Hono()
-  .get('/', async (c) => {
-    const kanbanData = await queryObjectives()
+  .get(
+    '/:slug',
+    validator('param', v.object({
+      slug: pipeSelect({
+        values: objectiveBoardSlugs,
+        errorMissing: 'Please provide a valid slug',
+        errorInvalid: 'Please provide a valid board slug',
+      })
+    })),
+    async (c) => {
+      const rpc = createRPC<AppType>()
+      const { slug } = c.req.valid('param')
+      const board = slug ? enumObjectiveBoards.slug[slug] : currentObjectiveBoard
 
-    const idDataset = datasetId()
-    const orderDataset = datasetOrder()
-    const svgClassName = classNameSvg()
-    const tagsClassName = classNameTags()
-    const titleClassName = classNameTitle()
-    const countClassName = classNameCount()
-    const columnClassName = classNameColumn()
-    const columnIdDataset = datasetColumnId()
-    const assigneesClassName = classNameAssignees()
-    const objectiveClassName = classNameObjective()
-    const objectivesClassName = classNameObjectives()
-    const datasetShowModal = datasetObjectiveInUpShowModal()
+      const kanbanData = await queryObjectives(board.id)
 
-    return c.render(
-      <>
-        <title>Shasta Trades · Objectives</title>
-        <Style>{tabsStyle}</Style>
-        <Style>{subPageHeroStyle}</Style>
-        <Style>{objectiveActivityStyle}</Style>
-        <Style>{style}</Style>
+      const idDataset = datasetId()
+      const orderDataset = datasetOrder()
+      const svgClassName = classNameSvg()
+      const tagsClassName = classNameTags()
+      const titleClassName = classNameTitle()
+      const countClassName = classNameCount()
+      const columnClassName = classNameColumn()
+      const columnIdDataset = datasetColumnId()
+      const assigneesClassName = classNameAssignees()
+      const objectiveClassName = classNameObjective()
+      const objectivesClassName = classNameObjectives()
+      const datasetShowModal = datasetObjectiveInUpShowModal()
 
-        <div class="objectives">
-          <div class="sub-page-hero">
-            <div class="bg"></div>
-            <div class="header">
-              <h1>Objectives</h1>
-              <div class="sub-title">Our objectives are publicly available here, we're making progress and we invite all to see, celebrate, and hold us accountable!</div>
+      return c.render(
+        <>
+          <title>Shasta Trades · Objectives</title>
+          <Style>{tabsStyle}</Style>
+          <Style>{subPageHeroStyle}</Style>
+          <Style>{objectiveActivityStyle}</Style>
+          <Style>{style}</Style>
+
+          <div class="objectives">
+            <div class="sub-page-hero">
+              <div class="bg"></div>
+              <div class="header">
+                <h1>Objectives</h1>
+                <div class="sub-title">Our objectives are publicly available here, we're making progress and we invite all to see, celebrate, and hold us accountable!</div>
+              </div>
+
+              <div class="buttons">
+                <button {...datasetObjectiveInUpShowModal().attr()} class="transparent big" type="button">Create</button>
+                {
+                  enumObjectiveBoards.array.map(b => <a href={rpc.objectives[':slug'].$url({ param: { slug: b.slug } }).href} class={'big ' + (b.id === board.id ? 'orange' : 'transparent')} type="button">{String(b.value)}</a>)
+                }
+              </div>
             </div>
 
-            <div class="buttons">
-              <button {...datasetObjectiveInUpShowModal().attr()} class="transparent big" type="button">Create</button>
-              <button class="orange big" type="button">Q3 2026</button>
-            </div>
-          </div>
-
-          <div class="page-content">
-            <Tabs variant="underline" name="objectives" tabs={[
-              {
-                id: 'kanban',
-                label: 'Kanban',
-                content: <>
-                  <div data-directive={onObjectivesPageLoad(kanbanData)} class="kanban-board-wrapper">
-                    <div class="kanban-board" id="kanbanBoard" aria-label="Kanban Board">
-                      <div class="kanban-board-inner">
-                        {enumObjectiveColumns.array.map((column) => (
-                          <section {...columnIdDataset.attr(column.id)} class={columnClassName.className} aria-label={`${column.label} column`}>
-                            <header class="header">
-                              <h2 class="title">{column.label}</h2>
-                              <span class={countClassName.className}>
-                                {kanbanData[column.id]?.length || 0}
-                              </span>
-                            </header>
-                            <div class={objectivesClassName.className} {...columnIdDataset.attr(column.id)}>
-                              {kanbanData[column.id] && kanbanData[column.id]?.map((o) => (
-                                <ObjectiveCard
-                                  objective={o}
-                                  idDataset={idDataset}
-                                  orderDataset={orderDataset}
-                                  svgClassName={svgClassName}
-                                  tagsClassName={tagsClassName}
-                                  countClassName={countClassName}
-                                  titleClassName={titleClassName}
-                                  datasetShowModal={datasetShowModal}
-                                  assigneesClassName={assigneesClassName}
-                                  objectiveClassName={objectiveClassName} />
-                              ))}
-                            </div>
-                          </section>
-                        ))}
+            <div class="page-content">
+              <Tabs variant="underline" name="objectives" tabs={[
+                {
+                  id: 'kanban',
+                  label: 'Kanban',
+                  content: <>
+                    <div data-directive={onObjectivesPageLoad(kanbanData)} class="kanban-board-wrapper">
+                      <div class="kanban-board" id="kanbanBoard" aria-label="Kanban Board">
+                        <div class="kanban-board-inner">
+                          {enumObjectiveColumns.array.map((column) => (
+                            <section {...columnIdDataset.attr(column.id)} class={columnClassName.className} aria-label={`${column.label} column`}>
+                              <header class="header">
+                                <h2 class="title">{column.label}</h2>
+                                <span class={countClassName.className}>
+                                  {kanbanData[column.id]?.length || 0}
+                                </span>
+                              </header>
+                              <div class={objectivesClassName.className} {...columnIdDataset.attr(column.id)}>
+                                {kanbanData[column.id] && kanbanData[column.id]?.map((o) => (
+                                  <ObjectiveCard
+                                    objective={o}
+                                    idDataset={idDataset}
+                                    orderDataset={orderDataset}
+                                    svgClassName={svgClassName}
+                                    tagsClassName={tagsClassName}
+                                    countClassName={countClassName}
+                                    titleClassName={titleClassName}
+                                    datasetShowModal={datasetShowModal}
+                                    assigneesClassName={assigneesClassName}
+                                    objectiveClassName={objectiveClassName} />
+                                ))}
+                              </div>
+                            </section>
+                          ))}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </>
-              },
-              {
-                id: 'activity',
-                label: 'Activity',
-                content: <>
-                  <div id={idActivity().id}>
-                    <img class="feed-loading" src="/img/loading.svg" alt="Loading..." />
-                  </div>
-                </>
-              }
-            ]} />
+                  </>
+                },
+                {
+                  id: 'activity',
+                  label: 'Activity',
+                  content: <>
+                    <div id={idActivity().id}>
+                      <img class="feed-loading" src="/img/loading.svg" alt="Loading..." />
+                    </div>
+                  </>
+                }
+              ]} />
+            </div>
           </div>
-        </div>
 
-        <ObjectiveInUp />
-        <ModalConfirm message="Are you sure you'd love to delete this objective?" />
+          <ObjectiveInUp />
+          <ModalConfirm message="Are you sure you'd love to delete this objective?" />
 
-        <template id={idObjectiveTemplate().id}>
-          <ObjectiveCard
-            objective={null}
-            idDataset={idDataset}
-            orderDataset={orderDataset}
-            svgClassName={svgClassName}
-            tagsClassName={tagsClassName}
-            countClassName={countClassName}
-            titleClassName={titleClassName}
-            datasetShowModal={datasetShowModal}
-            assigneesClassName={assigneesClassName}
-            objectiveClassName={objectiveClassName} />
-        </template>
-      </>
-    )
-  })
+          <template id={idObjectiveTemplate().id}>
+            <ObjectiveCard
+              objective={null}
+              idDataset={idDataset}
+              orderDataset={orderDataset}
+              svgClassName={svgClassName}
+              tagsClassName={tagsClassName}
+              countClassName={countClassName}
+              titleClassName={titleClassName}
+              datasetShowModal={datasetShowModal}
+              assigneesClassName={assigneesClassName}
+              objectiveClassName={objectiveClassName} />
+          </template>
+        </>
+      )
+    })
 
 
 const ObjectiveCard: FC<{
