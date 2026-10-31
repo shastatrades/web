@@ -287,7 +287,7 @@
         | `1510 · Vehicles Accumulated Depreciation` | $500 **Credit** |
         | `5700 · Depreciation Expense` | $500 **Debit** |
         - Explanation:
-            - $30,000 vehicle purchase price, 5 year useful life, $6,000/year = $500/month
+            - $30,000 vehicle purchase price, 5 year useful life, $6,000/year, $500/month
             - Vehicle is $500 less valuable b/c we used $500 of its value this month
     - Monthly Office Depreciation:
         | Account | Entry |
@@ -295,8 +295,8 @@
         | `1810 · Building Accumulated Depreciation` | $1,000 **Credit** |
         | `5700 · Depreciation Expense` | $1,000 **Debit** |
         - Explanation:
-            - $500,000 office, $468,000 building, $32,000 land (land does not depreciate)
-            - $468,000 building, 39 year useful life = $1,000/month
+            - $500,000 office, $468,000 building, $32,000 land **(land does not depreciate)**
+            - $468,000 building, 39 year useful life (standard) = $1,000/month
             - Office is $1,000 less valuable b/c we used $1,000 of its value this month
 <!--{"accordionEnd":true}-->
 
