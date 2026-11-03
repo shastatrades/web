@@ -206,11 +206,12 @@
 - Receivable tracks assets owed to us for goods or services we have already provided
 - Examples:
     - Sarah (the realtor) hired us for a $4,000 kitchen rehab. The work is done. **$4,000 in accounts receivable**
-    - A grant funder approved $25,000 and the award letter is signed, but the check hasn't arrived. → **$25,000 in grants receivable** (a subtype of AR)
-    - A donor pledged $10,000 and signed a written promise. No cash yet. → **Pledges receivable** (a subtype of AR)
+    - A grant funder approved $25,000 and the award letter is signed, but the check hasn't arrived. → **$25,000 in 1110 · Grants Receivable** (a subtype of AR)
+    - A donor pledged $10,000 and signed a written promise. No cash yet. → **Pledges Receivable** (a subtype of AR)
 - What it is not: 
     - Not a promise someone might make someday (prospect)
     - Not cash in the bank (cash)
+- Just remember that Payable & Receivable sound similair b/c they are, **payable** is when we are scheduled to **pay** and **receivable** is when we are scheduled to **receive**
 <!--{"accordionEnd":true}-->
 
 
@@ -227,7 +228,7 @@
     - 3010 · General Operating
     - 3020 · Operating Reserve
 - **Revenue: 4000 - 4999**, examples:
-    - 4010 · Individual donations
+    - 4010 · Individual Donations
     - 4020 · Corporate donations
 - **Expenses: 5000 - 5999+**, examples:
     - 5010 · Apprentice wages
@@ -235,12 +236,31 @@
 <!--{"accordionEnd":true}-->
 
 
+---
+
+
 <!--{"accordionStart":true}-->
 ## What is a Transaction?
 <!--{"accordionBody":true}-->
-- A single economic event that changes two ledger accounts at the same time, b/c every Transaction answers 2 questions:
-    1. **Where did the value come from? (Credit)**
-    2. **Where does the value sit now? (Debit)**
+- A single economic event
+- Transaction Formula:
+    1. List each transaction line
+        - Every transaction has at least 2 lines
+        - Every line has:
+            - Amount
+            - Account (e.g., `1010 · Checking`)
+            - Fund (e.g., `General Operating`)
+            - Direction
+                - Asset: Did we **gain** or **lose**?
+                - Liability: We owe **more** or **less**?
+                - Expense: We consume **more** or **less**?
+                - Net Asset: Did we **gain** or **lose**?
+                - Revenue: We earn **more** or **less**?
+    2. Set Credit / Debit for each line:
+        - **All Elephants Dance**
+            - Increasing Assets or Expenses = Debit
+        - **Little Ninjas Ride Chickens**
+            - Increaseing Liabilities, Net Assets or Revenue = Credit
 <!--{"accordionEnd":true}-->
 
 
@@ -354,84 +374,300 @@
     - Uses the **beginning net assets** as its starting input and produces **ending net assets** as its output
 - The Income Statement is the **bridge** between the starting period and ending period Balance Sheets
 - Example:
-    1. January 1, 2026
-        - Start-of-period Balance Sheet
-            | Assets | Liabilities | Net Assets |
-            |---|---|---|
-            | $500,000 Office | $400,000 Mortgage | $100,000 |
-    1. January 6, 2026
-        - A $50,000 grant arrives in cash, transaction:
-            | Account | Entry |
+    1. January 1, 2026 = **Start-of-period Balance Sheet**
+        - **Assets:**
+            | Account | Amount |
             |---|---|
-            | `4030 · Foundation Grants` | $50,000 **Credit** |
-            | `1010 · Checking` | $50,000 **Debit** |
-        - Balance Sheet:
-            | Assets | Liabilities | Net Assets |
-            |---|---|---|
-            | $500,000 Office |  | |
-            |  | $400,000 Mortgage | |
-            | $50,000 Cash |  |  |
-            | **$550,000** | **$400,000** | **$150,000** |
-    1. January 15, 2026
-        - We pay $10,000 in wages, transaction:
-            | Account | Entry |
+            | `1800 · Land & Building` | $500,000 |
+            | **Total** | $500,000 |
+        - **Liabilities:**
+            | Account | Amount |
             |---|---|
-            | `1010 · Checking` | $10,000 **Credit** |
-            | `5030 · Administrative Salaries` | $10,000 **Debit** |
-        - Balance Sheet:
-            | Assets | Liabilities | Net Assets |
-            |---|---|---|
-            | $500,000 Office |  | |
-            |  | $400,000 Mortgage | |
-            | $40,000 Cash |  |  |
-            | **$540,000** | **$400,000** | **$140,000** |
-    1. January 21, 2026
-        - We buy a $30,000 truck with cash, transaction:
-            | Account | Entry |
+            | `2700 · Mortgage Payable` | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
             |---|---|
-            | `1010 · Checking` | $30,000 **Credit** |
-            | `1500 · Vehicles` | $30,000 **Debit** |
-        - Balance Sheet:
-            | Assets | Liabilities | Net Assets |
-            |---|---|---|
-            | $500,000 Office |  | |
-            |  | $400,000 Mortgage | |
-            | $10,000 Cash |  |  |
-            | $30,000 Vehicle |  |  |
-            | **$540,000** | **$400,000** | **$140,000** |
-    1. January 27, 2026
-        - We buy $500 of tools w/ a Credit Card, transaction:
-            | Account | Entry |
+            | `3030 · Capital & Equipment` | $100,000 |
+            | **Total** | $100,000 |
+    1. January 6, 2026 = **$50,000 unrestricted donation from an individual**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `4010 · Individual Donations` | $50,000 | Revenue | General Operating | Credit |
+            | Destination | `1010 · Checking`             | $50,000 | Asset   | General Operating | Debit  |
+        - **Assets:**
+            | Account | Amount |
             |---|---|
-            | `2020 · Credit Card Payable` | $500 **Credit** |
-            | `5210 · Tools & Consumables` | $500 **Debit** |
-        - Balance Sheet:
-            | Assets | Liabilities | Net Assets |
-            |---|---|---|
-            | $500,000 Office |  | |
-            |  | $400,000 Mortgage | |
-            | $10,000 Cash |  |  |
-            | $30,000 Vehicle |  |  |
-            | | $500 Tools  |  |
-            | **$540,000** | **$400,500** | **$139,500** |
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $50,000  |
+            | **Total** | $550,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable` | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment` | $100,000 |
+            | `3010 · General Operating`   | $50,000  |
+            | **Total** | $150,000 |
+    1. January 9, 2026 = **$15,000 restricted donation to Wildfire Repair from a foundation**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `4030 · Foundation Grants` | $15,000 | Revenue | Wildfire Repair | Credit |
+            | Destination | `1010 · Checking`          | $15,000 | Asset   | Wildfire Repair | Debit  |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $65,000  |
+            | **Total** | $565,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable` | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $50,000  |
+            | `3180 · Wildfire Repair`    | $15,000  |
+            | **Total** | $165,000 |
+    1. January 12, 2026 = **Spent $3,000 on fire-resistant siding**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `1010 · Checking`                     | $3,000 | Asset   | Wildfire Repair | Credit |
+            | Destination | `5200 · Program Materials & Supplies` | $3,000 | Expense | Wildfire Repair | Debit  |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $62,000  |
+            | **Total** | $562,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable` | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $50,000  |
+            | `3180 · Wildfire Repair`    | $12,000  |
+            | **Total** | $162,000 |
+    1. January 15, 2026 = **We pay $10,000 in wages**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `1010 · Checking`                | $10,000 | Asset   | General Operating | Credit |
+            | Destination | `5030 · Administrative Salaries` | $10,000 | Expense | General Operating | Debit  |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $52,000  |
+            | **Total** | $552,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable` | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $40,000  |
+            | `3180 · Wildfire Repair`    | $12,000  |
+            | **Total** | $152,000 |
+    1. January 18, 2026 = **We buy a $30,000 truck with cash**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `1010 · Checking` | $30,000 | Asset | Capital & Equipment | Credit |
+            | Destination | `1500 · Vehicles` | $30,000 | Asset | Capital & Equipment | Debit  |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $22,000  |
+            | `1500 · Vehicles`        | $30,000  |
+            | **Total** | $552,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable` | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $40,000  |
+            | `3180 · Wildfire Repair`    | $12,000  |
+            | **Total** | $152,000 |
+    1. January 21, 2026 = **We buy $1,000 of tools w/ a Credit Card**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `2020 · Credit Card Payable` | $1,000 | Liability | General Operating | Credit |
+            | Destination | `5210 · Tools & Consumables` | $1,000 | Expense   | General Operating | Debit  |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $22,000  |
+            | `1500 · Vehicles`        | $30,000  |
+            | **Total** | $552,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable`    | $400,000 |
+            | `2020 · Credit Card Payable` | $1,000 |
+            | **Total** | $401,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $39,000  |
+            | `3180 · Wildfire Repair`    | $12,000  |
+            | **Total** | $151,000 |
+    1. January 24, 2026 = **We move $3,000 into Operating Reserve**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `3010 · General Operating` | $3,000 | Net Asset | General Operating | Debit  |
+            | Destination | `3020 · Operating Reserve` | $3,000 | Net Asset | Operating Reserve | Credit |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $22,000  |
+            | `1500 · Vehicles`        | $30,000  |
+            | **Total** | $552,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable`    | $400,000 |
+            | `2020 · Credit Card Payable` | $1,000 |
+            | **Total** | $401,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $36,000  |
+            | `3180 · Wildfire Repair`    | $12,000  |
+            | `3020 · Operating Reserve`  | $3,000  |
+            | **Total** | $151,000 |
+    1. January 27, 2026 = **We pay $1,000 towards our Credit Card Bill**
+        - **Transaction:**
+            | Type | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|---|
+            | Source      | `1010 · Checking`            | $1,000 | Asset     | General Operating | Credit |
+            | Destination | `2020 · Credit Card Payable` | $1,000 | Liability | General Operating | Debit  |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $21,000  |
+            | `1500 · Vehicles`        | $30,000  |
+            | **Total** | $551,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable`    | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $36,000  |
+            | `3180 · Wildfire Repair`    | $12,000  |
+            | `3020 · Operating Reserve`  | $3,000  |
+            | **Total** | $151,000 |
+    1. January 30, 2026 = **Individual asks for a $5,000 refund from their earlier donation**
+        - **Transaction:**
+            | Account | Amount | Bucket | Fund | Variant |
+            |---|---|---|---|---|
+            | `1010 · Checking`             | $5,000 | Asset    | General Operating | Credit |
+            | `4010 · Individual Donations` | $5,000 | Revenue | General Operating | Debit   |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1800 · Land & Building` | $500,000 |
+            | `1010 · Checking`        | $16,000  |
+            | `1500 · Vehicles`        | $30,000  |
+            | **Total** | $546,000 |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable`    | $400,000 |
+            | **Total** | $400,000 |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3030 · Capital & Equipment`| $100,000 |
+            | `3010 · General Operating`  | $31,000  |
+            | `3180 · Wildfire Repair`    | $12,000  |
+            | `3020 · Operating Reserve`  | $3,000  |
+            | **Total** | $146,000 |
     1. Conclusion:
         - Start-of-period Balance Sheet
-            | Assets | Liabilities | Net Assets |
-            |---|---|---|
-            | $500,000 Office | $400,000 Mortgage | $100,000 |
+            - **Assets:**
+                | Account | Amount |
+                |---|---|
+                | `1800 · Land & Building` | $500,000 |
+                | **Total** | $500,000 |
+            - **Liabilities:**
+                | Account | Amount |
+                |---|---|
+                | `2700 · Mortgage Payable` | $400,000 |
+                | **Total** | $400,000 |
+            - **Net Assets:**
+                | Account | Amount |
+                |---|---|
+                | `3030 · Capital & Equipment` | $100,000 |
+                | **Total** | $100,000 |
         - Period Income Statement:
-            | Revenue | Expenses | Net Income |
-            |---|---|---|
-            | $50,000 Grant | $10,000 Wages + $500 Tools | $39,500 (Surplus) |
+            - **Revenue:**
+                | Account | Amount |
+                |---|---|
+                | `4010 · Individual Donations` | $45,000 |
+                | `4030 · Foundation Grants`    | $15,000 |
+                | **Total** | $60,000 |
+            - **Expenses:**
+                | Account | Amount |
+                |---|---|
+                | `5200 · Program Materials & Supplies` | $3,000  |
+                | `5030 · Administrative Salaries`      | $10,000 |
+                | `5210 · Tools & Consumables`          | $1,000  |
+                | **Total** | $14,000 |
+            - **Net Income: $46,000**
         - End-of-period Balance Sheet
-            | Assets | Liabilities | Net Assets |
-            |---|---|---|
-            | $500,000 Office |  | |
-            |  | $400,000 Mortgage | |
-            | $10,000 Cash |  |  |
-            | $30,000 Vehicle |  |  |
-            | | $500 Tools  |  |
-            | **$540,000** | **$400,500** | **$139,500** |
+            - **Assets:**
+                | Account | Amount |
+                |---|---|
+                | `1800 · Land & Building` | $500,000 |
+                | `1010 · Checking`        | $16,000  |
+                | `1500 · Vehicles`        | $30,000  |
+                | **Total** | $546,000 |
+            - **Liabilities:**
+                | Account | Amount |
+                |---|---|
+                | `2700 · Mortgage Payable`    | $400,000 |
+                | **Total** | $400,000 |
+            - **Net Assets:**
+                | Account | Amount |
+                |---|---|
+                | `3030 · Capital & Equipment`| $100,000 |
+                | `3010 · General Operating`  | $31,000  |
+                | `3180 · Wildfire Repair`    | $12,000  |
+                | `3020 · Operating Reserve`  | $3,000  |
+                | **Total** | $146,000 |
 <!--{"accordionEnd":true}-->
 
 
@@ -442,7 +678,7 @@
 ## What is a Fund?
 <!--{"accordionBody":true}-->
 - A Fund is a pool of money or resources set aside for a specific purpose
-- A way for a nonprofit to track and prove that money is being used according to:
+- A Fund is a way for a nonprofit's to track and prove that money is being used according to:
     - Donor intent
     - Legal restrictions
     - Board designations
@@ -453,59 +689,49 @@
 <!--{"accordionStart":true}-->
 ## What is an Unrestricted Fund?
 <!--{"accordionBody":true}-->
-- An Unrestricted Fund has money our Board can spend freely (e.g., General Operating, Operating Reserve, Capital & Equipment)
+- An Unrestricted Fund has money that our Board can spend freely (e.g., General Operating, Operating Reserve, Capital & Equipment)
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What is an Restricted Fund?
+## What is a Restricted Fund?
 <!--{"accordionBody":true}-->
-- A Restricted Fund has money legally restricted by Donors (e.g., Wildfire Repair, Elderly Assistance, Opportunity Youth)
+- A Restricted Fund has money that is legally restricted by Donors (e.g., Wildfire Repair, Elderly Assistance, Opportunity Youth)
 <!--{"accordionEnd":true}-->
 
 
 <!--{"accordionStart":true}-->
-## What are our funds?
+## What are our Funds?
 <!--{"accordionBody":true}-->
-| Fund | Type | Why does this fund exist? |
-|---|---|---|
-| General Operating | Unrestricted | **General Operating** is our unrestricted primary bucket of money covering general expenses (e.g., rent, insurance, software) |
-| Operating Reserve | Board-Designated | **Operating Reserve** holds 3 months of operating expenses so a lost grant or a slow quarter never forces us to lay off apprentices mid-cohort. It is the same cash as General Operating, but with a governance lock the Board cannot casually undo. |
-| Capital & Equipment | Board-Designated | **Capital & Equipment** buys and replaces the trucks, tools, laptops, and training-space buildout that outlive a single year. It turns a broken truck from a crisis into a scheduled line item the Board already planned for. |
-| Workforce Development | Restricted | **Workforce Development** lets us recruit, train, and pay skilled tradespeople. Foundations focused on **optimal community employment** love this fund. |
-| Opportunity Youth | Restricted | **Opportunity Youth** are young adults (age 16-24) who are not in school and not working. Foundations focused on **opportunity youth** love this fund. |
-| Apprenticeship Training | Restricted | **Apprenticeship Training** lets us cover the structured training costs that sit outside or inside wages (e.g., study guide creation, safety certifications, exam prep). Foundations focused on **apprenticeship programs** love this fund. |
-| Mentor Development | Restricted | **Mentor Development** lets us recruit, train, and compensate the experienced tradespeople who make apprenticeships work. Foundations focused on **mentorship** and **teacher quality** love this fund. |
-| Low & Moderate Income | Restricted | **Low & Moderate Income** lets us subsidize repair and renovation work for households that cannot afford market rates. Foundations focused on **economic mobility** and **housing equity** love this fund. |
-| Elderly Assistance | Restricted | **Elderly Assistance** lets us serve seniors on fixed incomes who need help before their home repairs become hazards. Foundations focused on **aging gracefully** and **senior safety** love this fund. |
-| Community Repair | Restricted | **Community Repair** lets us deliver affordable, high-quality trade services across Siskiyou County. Foundations focused on **community revitalization** love this fund. |
-| Wildfire Repair | Restricted | **Wildfire Repair** lets us harden homes against wildfire (e.g., replacing dry wood roofs, bad siding, other hazards that put our neighborhoods at risk). Foundations focused on **wildfire resilience** love this fund. |
-<!--{"accordionEnd":true}-->
-
-
-<!--{"accordionStart":true}-->
-## Why not only have a General Operating fund, why have "Board-Designated" funds?
-<!--{"accordionBody":true}-->
-- The **General Operating** fund is for **spending**:
-    - General Operating is the source. Reserve and Capital are destinations the Board funds when there is surplus
-    - Answers "can we pay this month's bills"?
-- The **Operating Reserve** fund is for **surviving**:
-    - Cash set aside by the **Board** (not a donor) to cover 3 months of operating expenses if revenue drops or a crisis hits
-    - This fund is not a different pile of cash, it's the same cash with a governance label that the Board cannot casually undo.
-    - Answers "can we survive a crisis"?
-- The **Capital & Equipment** fund is for **replacing**:
-    - Money set aside to **buy or replace things that last more than a year** (e.g., trucks, tools, computers, a training facility)
-    - This fund is not a different pile of cash, it's the same cash with a governance label that the Board cannot casually undo.
-    - Answers "can we replace the truck before it dies"?
-
-| Only General Operating Fund | With Board-Designated funds |
+| Fund | Details |
 |---|---|
-| One number hides everything | Three numbers tell the real story |
-| Crisis forces layoffs | Reserve absorbs the shock |
-| Truck breaks, work stops | Capital fund already has the cash |
-| Board can't govern what it can't see | Board votes on release, not vibes |
-| Funders see a fragile org | Funders see a resilient org |
-| Audit = stress | Audit = routine |
+| **Unrestricted** | |
+| General Operating | **General Operating** is our unrestricted primary bucket of money covering general expenses (e.g., rent, insurance, software) |
+| Operating Reserve | **Operating Reserve** holds 3 months of operating expenses so a lost grant or a slow quarter can be managed with ease. It is cash from General Operating with a governance lock the Board cannot casually undo. |
+| Capital & Equipment | **Capital & Equipment** buys and replaces the assets (e.g., trucks, tools, laptops, and training-space buildout). It turns a broken truck from a crisis into a scheduled line item the Board already planned for. |
+| **Restricted** | |
+| Workforce Development | **Workforce Development** lets us recruit, train, and pay skilled tradespeople. Donors focused on **optimal community employment**, **skilled trades workforce pipelines** and **economic opportunity through construction careers** love this fund. |
+| Opportunity Youth | **Opportunity Youth** are young adults (age 16-24) who are not in school and not working. Donors focused on **opportunity youth**, **disconnected youth employment** and **youth workforce development** love this fund. |
+| Apprenticeship Training | **Apprenticeship Training** lets us cover the costs aligned with our apprenticeship work (e.g., study guide creation, safety certifications, exam prep). Donors focused on **apprenticeship programs**, **skilled trades education** and **construction trades training** love this fund. |
+| Mentor Development | **Mentor Development** lets us recruit, train, and compensate the experienced tradespeople who make apprenticeships work. Donors focused on **mentorship**, **teacher quality** and **community role model development** love this fund. |
+| Low & Moderate Income | **Low & Moderate Income** lets us subsidize repair and renovation work for households that cannot afford market rates. Donors focused on **economic mobility**, **housing equity** and **preserving homeownership for low-income families** love this fund. |
+| Elderly Assistance | **Elderly Assistance** lets us serve seniors on fixed incomes who need help before their home repairs become hazards. Donors focused on **aging gracefully**, **senior safety** and **older adults gaining assistance w/ household burdens** love this fund. |
+| Community Repair | **Community Repair** lets us deliver affordable, high-quality trade services across Siskiyou County. Donors focused on **community revitalization**, **local quality of life**, and **civic infrastructure** love this fund. |
+| Wildfire Repair | **Wildfire Repair** lets us harden homes against wildfire (e.g., replacing dry wood roofs, bad siding, other hazards that put our neighborhoods at risk). Donors focused on **wildfire resilience**, **home wildfire defensible space** and **community safety** love this fund. |
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## Why have "Board-Designated" funds ("Operating Reserve" / "Capital & Equipment")?
+<!--{"accordionBody":true}-->
+- The **Operating Reserve** fund is for **surviving**:
+    - Cash set aside to cover 3 months of operating expenses
+    - Answers "Can we survive a crisis"?
+    - Our organization's emergency fund
+- The **Capital & Equipment** fund is for **replacing**:
+    - Cash set aside to **buy or replace assets** (e.g., trucks, tools, computers)
+    - Answers "Can we replace the asset when it dies"?
+    - Helps us be ready for large purchases (e.g., replacing the truck)
 <!--{"accordionEnd":true}-->
 
 
@@ -514,11 +740,12 @@
 <!--{"accordionBody":true}-->
 | Ledger account | Type | Bank account | Fund(s) served | Notes |
 |---|---|---|---|---|
-| 3010 · General Operating | Fund | Checking | General Operating | Board can spend freely |
-| 3020 · Operating Reserve | Fund | Savings | Operating Reserve | Same cash as General Operating, governance lock |
-| 3030 · Capital & Equipment | Fund | Checking | Capital & Equipment | Set aside for trucks, tools, buildout |
+| **Directly Fund Aligned** | | | | |
+| 3010 · General Operating | Fund | Checking | General Operating | Board can spend on mission freely freely |
+| 3020 · Operating Reserve | Fund | Savings | Operating Reserve | Cash set aside to cover 3 months of operating expenses |
+| 3030 · Capital & Equipment | Fund | Checking | Capital & Equipment | Cash set aside to **buy or replace assets** (e.g., trucks, tools, computers) |
 | 3110 · Workforce Development | Fund | Checking | Workforce Development | Restricted |
-| 3120 · Opportunity Youth | Fund | Checking | Opportunity Youth | Restricted (COYA, etc.) |
+| 3120 · Opportunity Youth | Fund | Checking | Opportunity Youth | Restricted |
 | 3130 · Apprenticeship Training | Fund | Checking | Apprenticeship Training | Restricted |
 | 3140 · Mentor Development | Fund | Checking | Mentor Development | Restricted |
 | 3150 · Low & Moderate Income | Fund | Checking | Low & Moderate Income | Restricted |
@@ -528,28 +755,28 @@
 | **Asset** | | | | |
 | 1010 · Checking | Asset | Checking | Any fund | 10 of 11 funds commingle cash here |
 | 1020 · Savings | Asset | Savings | Operating Reserve | Holds the reserve |
-| 1030 · Investments — brokerage | Asset | — | Any fund (per donor) | Only if we hold securities |
-| 1100 · Pledges receivable | Asset | — | Any fund | Promised but not received |
-| 1110 · Grants receivable | Asset | — | Restricted funds, General Operating | Awarded but not disbursed |
-| 1200 · Inventory — materials for resale | Asset | — | Any fund | Only for inventoryForResale |
-| 1500 · Vehicles | Asset | — | Capital & Equipment, Community Repair | Cost |
-| 1510 · Vehicles Accumulated Depreciation | Contra-asset | — | Same fund as the vehicle | Reduces 1500 |
+| 1030 · Investments, Brokerage | Asset | — | Any fund (per donor) | The brokerage account holds the securities; the donor's intent decides which fund (General Operating, Wildfire Repair, etc.) those securities belong to, and that fund label follows the money even after the securities are sold and converted to cash. |
+| 1100 · Pledges Receivable | Asset | — | Any fund | Promised but not received |
+| 1110 · Grants Receivable | Asset | — | Restricted funds, General Operating | Awarded but not disbursed |
+| 1200 · Resale Material Inventory | Asset | — | Any fund | Holds the value of goods that we **intends to sell**, not use. When we sell an item, its cost **leaves** 1200 and becomes **cost of goods sold** — an expense on our income statement. Only when the goods are held primarily for sale. |
+| 1500 · Vehicles | Asset | — | Capital & Equipment, Community Repair | This account the account stores the original price we paid (or the fair market value on the day we received a donated vehicle). The only two events that touch 1500 are **buying** (debit up) and **disposing** (credit down). |
+| 1510 · Vehicles Accumulated Depreciation | Contra-asset | — | Capital & Equipment, Community Repair | Keeping 1500 at cost and putting the wear in 1510 preserves the original cost in 1500 and the total wear in 1510 |
 | 1600 · Equipment, tools, laptops | Asset | — | Workforce Development, Apprenticeship Training, General Operating | Cost |
 | 1610 · Accumulated depreciation — equipment | Contra-asset | — | Same fund as the item | Reduces 1600 |
 | 1700 · Intangible assets — software, licenses | Asset | — | General Operating, Apprenticeship Training | Cost |
-| 1800 · Land & building | Asset | — | Capital & Equipment | Cost; land never depreciates |
+| 1800 · Land & Building | Asset | — | Capital & Equipment | Cost; land never depreciates |
 | 1810 · Accumulated depreciation — building | Contra-asset | — | Capital & Equipment | Reduces 1800 |
 | **Liability** | | | | |
-| 2010 · Accounts payable | Liability | — | Any fund | Vendors we owe |
-| 2020 · Credit card payable | Liability | — | Any fund | Card issuer — not a vendor |
+| 2010 · Accounts Payable | Liability | — | Any fund | Vendors we owe |
+| 2020 · Credit Card Payable | Liability | — | Any fund | Card issuer — not a vendor |
 | 2100 · Accrued payroll | Liability | — | Any fund with wages | Wages earned, not yet paid |
 | 2110 · Federal payroll taxes payable | Liability | — | Any fund with wages | 941/940 portion |
 | 2120 · CA payroll taxes payable (EDD) | Liability | — | Any fund with wages | DE 9 portion |
 | 2200 · Refundable advances / deferred revenue | Liability | — | Any restricted fund | Grant conditions unmet |
 | 2300 · Sales tax payable | Liability | — | General Operating | Only if CDTFA applies |
-| 2700 · Mortgage payable | Liability | — | Capital & Equipment | Long-term debt |
+| 2700 · Mortgage Payable | Liability | — | Capital & Equipment | Long-term debt |
 | **Revenue** | | | | |
-| 4010 · Individual donations | Revenue | — | Any fund (per donor designation) | |
+| 4010 · Individual Donations | Revenue | — | Any fund (per donor designation) | |
 | 4020 · Corporate donations | Revenue | — | Any fund | |
 | 4030 · Foundation grants | Revenue | — | Restricted funds, General Operating | |
 | 4040 · Government grants | Revenue | — | Opportunity Youth, Workforce Development, Wildfire Repair | COYA, state, federal |
@@ -565,8 +792,8 @@
 | 5020 · Mentor wages | Expense | — | Mentor Development, Workforce Development | |
 | 5030 · Administrative Salaries | Expense | — | General Operating | ED, CTO, bookkeeper |
 | 5100 · Payroll taxes & benefits | Expense | — | Any fund with wages | |
-| 5200 · Program materials & supplies | Expense | — | Elderly Assistance, Community Repair, Wildfire Repair, Low & Moderate Income | Lumber, paint, siding |
-| 5210 · Tools & consumables | Expense | — | Workforce Development, Apprenticeship Training | Hand tools, PPE |
+| 5200 · Program Materials & Supplies | Expense | — | Elderly Assistance, Community Repair, Wildfire Repair, Low & Moderate Income | Materials that go **into the client's home** and become part of the finished job (e.g., lumber, shingles, siding, paint, caulk, fasteners, pipe, wire, flooring, drywall, insulation) |
+| 5210 · Tools & Consumables | Expense | — | Workforce Development, Apprenticeship Training | Supplies our **crew uses to do the work**, not part of the finished job (e.g., hand tools, power tools under threshold, drill bits, saw blades, gloves, safety glasses, hard hats, harnesses, tape measures, brooms) |
 | 5300 · Rent | Expense | — | General Operating (office), Apprenticeship Training (training bay) | Includes in-kind facilities |
 | 5310 · Utilities | Expense | — | General Operating | |
 | 5320 · Insurance | Expense | — | General Operating | |

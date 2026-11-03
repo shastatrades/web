@@ -32,8 +32,8 @@ export default (() => {
         <a {...authDataset.attr('false')} href={rpc['sign-in'].$url().href} class="item anchor">Sign In</a>
         <a {...authDataset.attr('false')} href={rpc['sign-up'].$url().href} class="item anchor">Sign Up</a>
         <a {...authDataset.attr('true')} href={rpc.inbox[':variant?'].$url({ param: { variant: 'objective-activity' }}).href} class="item anchor">Inbox</a>
-        <a {...authDataset.attr('true')} href={rpc['finance-forms'][':variant?'].$url({ param: { variant: enumFinanceFormPages.ids[0] } }).href} class="item anchor">Finance Forms</a>
         <a {...authDataset.attr('true')} href={rpc['finance-notes'].$url().href} class="item anchor">Finance Notes</a>
+        <a {...authDataset.attr('true')} href={rpc['finance-forms'][':variant?'].$url({ param: { variant: enumFinanceFormPages.ids[0] } }).href} class="item anchor">Finance Forms</a>
         <a {...authDataset.attr('true')} href={rpc['edit-profile'].$url().href} class="item anchor">Edit Your Profile</a>
         <a {...authDataset.attr('true')} href={rpc['sign-out'].$url().href} class="item anchor">Sign Out</a>
       </div>
