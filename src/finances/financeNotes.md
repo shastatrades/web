@@ -671,17 +671,17 @@
 | Ledger account | Type | Bank account | Fund(s) served | Notes |
 |---|---|---|---|---|
 | **Directly Fund Aligned** | | | | |
-| 3010 · General Operating | Fund | Checking | General Operating | Board can spend on mission freely freely |
-| 3020 · Operating Reserve | Fund | Savings | Operating Reserve | Cash set aside to cover 3 months of operating expenses |
-| 3030 · Capital & Equipment | Fund | Checking | Capital & Equipment | Cash set aside to **buy or replace assets** (e.g., trucks, tools, computers) |
-| 3110 · Workforce Development | Fund | Checking | Workforce Development | Restricted |
-| 3120 · Opportunity Youth | Fund | Checking | Opportunity Youth | Restricted |
-| 3130 · Apprenticeship Training | Fund | Checking | Apprenticeship Training | Restricted |
-| 3140 · Mentor Development | Fund | Checking | Mentor Development | Restricted |
-| 3150 · Low & Moderate Income | Fund | Checking | Low & Moderate Income | Restricted |
-| 3160 · Elderly Assistance | Fund | Checking | Elderly Assistance | Restricted |
-| 3170 · Community Repair | Fund | Checking | Community Repair | Restricted |
-| 3180 · Wildfire Repair | Fund | Checking | Wildfire Repair | Restricted |
+| 3010 · General Operating | Net Asset | Checking | General Operating | Board can spend on mission freely freely |
+| 3020 · Operating Reserve | Net Asset | Savings | Operating Reserve | Cash set aside to cover 3 months of operating expenses |
+| 3030 · Capital & Equipment | Net Asset | Checking | Capital & Equipment | Cash set aside to **buy or replace assets** (e.g., trucks, tools, computers) |
+| 3110 · Workforce Development | Net Asset | Checking | Workforce Development | Restricted |
+| 3120 · Opportunity Youth | Net Asset | Checking | Opportunity Youth | Restricted |
+| 3130 · Apprenticeship Training | Net Asset | Checking | Apprenticeship Training | Restricted |
+| 3140 · Mentor Development | Net Asset | Checking | Mentor Development | Restricted |
+| 3150 · Low & Moderate Income | Net Asset | Checking | Low & Moderate Income | Restricted |
+| 3160 · Elderly Assistance | Net Asset | Checking | Elderly Assistance | Restricted |
+| 3170 · Community Repair | Net Asset | Checking | Community Repair | Restricted |
+| 3180 · Wildfire Repair | Net Asset | Checking | Wildfire Repair | Restricted |
 | **Asset** | | | | |
 | 1010 · Checking | Asset | Checking | Any fund | 10 of 11 funds commingle cash here |
 | 1020 · Savings | Asset | Savings | Operating Reserve | Holds the reserve |
@@ -1169,4 +1169,18 @@ If we are a **consumer** of materials (using them in our repair work rather than
     |---| --- |
     | FTB 199N  | Normally ≤ $50,000 |
     | Form 199 | > $50,000, or private foundations / trusts regardless of size |
+<!--{"accordionEnd":true}-->
+
+
+<!--{"accordionStart":true}-->
+## What is GAAP (Generally Accepted Accounting Principles)?
+<!--{"accordionBody":true}-->
+- GAAP is the rulebook for how financial statements are prepared
+- The common language that donors, lenders, auditors, and regulators use to read financial books
+- The standard framework, maintained by the FASB (Financial Accounting Standards Board)
+    - Defines how transactions should be recorded and how financial statements should be presented
+    - For nonprofits, the key rulebook is FASB ASC 958, Not-for-Profit Entities
+    - Nonprofits follow the same GAAP framework as for-profits, but ASC 958 adds nonprofit-specific rules for things like donor restrictions, net asset classification, and functional expenses
+- GAAP is to accounting what building codes are to construction
+    - We are not legally required to follow the code to build a shed on our own land, but the moment we want a bank loan, a permit, or a professional inspection, the code becomes the standard everyone checks against
 <!--{"accordionEnd":true}-->
