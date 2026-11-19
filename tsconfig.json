@@ -86,6 +86,9 @@
       ],
       "@drizzle-compose": [
         "./npm/drizzle-compose/index"
+      ],
+      "@sqlite-seed": [
+        "./npm/sqlite-seed/index"
       ]
     }
   },

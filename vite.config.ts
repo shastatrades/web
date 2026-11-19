@@ -26,6 +26,7 @@ export default defineConfig({
       '@hono-api/be': path.resolve(__dirname, 'npm/hono-api/be/index'),
       '@hono-api/fe': path.resolve(__dirname, 'npm/hono-api/fe/index'),
       '@hono-events': path.resolve(__dirname, 'npm/hono-events/index'),
+      '@sqlite-seed': path.resolve(__dirname, 'npm/sqlite-seed/index'),
       '@hono-tooltip': path.resolve(__dirname, 'npm/hono-tooltip/index'),
       '@safely-access': path.resolve(__dirname, 'npm/safely-access/index'),
       '@hono-accordion': path.resolve(__dirname, 'npm/hono-accordion/index'),

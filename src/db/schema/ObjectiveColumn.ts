@@ -8,4 +8,5 @@ export const ObjectiveColumn = sqliteTable('ObjectiveColumn', {
   id: integer('id').primaryKey({ autoIncrement: true }),
   value: text('value').notNull(),
   isActive: integer('isActive', { mode: 'boolean' }).notNull().default(true),
+  slug: text('slug').notNull(),
 })

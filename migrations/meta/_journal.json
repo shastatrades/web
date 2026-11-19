@@ -57,6 +57,20 @@
       "when": 1792978780740,
       "tag": "0007_busy_enchantress",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1795124491048,
+      "tag": "0008_military_mad_thinker",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1795126078429,
+      "tag": "0009_dapper_nico_minoru",
+      "breakpoints": true
     }
   ]
 }

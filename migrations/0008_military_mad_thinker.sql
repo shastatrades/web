@@ -1,0 +1,1 @@
+ALTER TABLE `ObjectiveColumn` ADD `slug` text;

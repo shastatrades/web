@@ -36,7 +36,7 @@ export default (() => {
             <div class="columns">
               <div class="left">
                 <Field {...fieldObjectiveInUpTitle().attr()} label="Title" />
-                <Field {...fieldObjectiveInUpColumnId().attr()} label="Column" options={enumObjectiveColumns.array.map(c => ({ value: String(c.id), label: c.label }))} />
+                <Field {...fieldObjectiveInUpColumnId().attr()} label="Column" options={enumObjectiveColumns.array.map(c => ({ value: String(c.id), label: c.value }))} />
                 <Field {...fieldObjectiveInUpAssigneeIds().attr()} label="Assignees" options={[]} />
               </div>
               <div class="right">

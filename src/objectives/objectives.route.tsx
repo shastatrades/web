@@ -84,9 +84,9 @@ export default new Hono()
                       <div class="kanban-board" id="kanbanBoard" aria-label="Kanban Board">
                         <div class="kanban-board-inner">
                           {enumObjectiveColumns.array.map((column) => (
-                            <section {...columnIdDataset.attr(column.id)} class={columnClassName.className} aria-label={`${column.label} column`}>
+                            <section {...columnIdDataset.attr(column.id)} class={columnClassName.className} aria-label={`${column.value} column`}>
                               <header class="header">
-                                <h2 class="title">{column.label}</h2>
+                                <h2 class="title">{column.value}</h2>
                                 <span class={countClassName.className}>
                                   {kanbanData[column.id]?.length || 0}
                                 </span>

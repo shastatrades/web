@@ -283,7 +283,7 @@ const Chip = ((props) => {
     if (!column) throw new Error('!column')
 
     key = column.slug
-    label = column.label
+    label = column.value
   }
 
   if (!key) throw new Error('!key', { cause: props })
