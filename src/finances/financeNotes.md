@@ -253,9 +253,9 @@
             - Direction
                 - Asset: Did we **gain** or **lose**?
                 - Liability: We owe **more** or **less**?
-                - Expense: We consume **more** or **less**?
                 - Net Asset: Did we **gain** or **lose**?
                 - Revenue: We earn **more** or **less**?
+                - Expense: We consumed **more** or **less**?
     2. Set Credit / Debit for each line:
         - **All Elephants Dance**
             - Increasing Assets or Expenses = Debit
@@ -271,7 +271,6 @@
 - No connection to "credit card"
 - In every transaction, **total debits must equal total credits**
 - **Credit** = Where did the value come from? **Debit** = Where is the value now?
-- Just remember C comes before D **alphabetically** and **financially**, examples:
     - Paid Wages:
         | Account | Entry |
         |---|---|
@@ -292,7 +291,6 @@
 - No connection to "debit card"
 - In every transaction, **total debits must equal total credits**
 - **Credit** = Where did the value come from? **Debit** = Where is the value now?
-- Just remember C comes before D **alphabetically** and **financially**, examples:
     - Received a Grant:
         | Account | Entry |
         |---|---|
@@ -379,242 +377,174 @@
             | Account | Amount |
             |---|---|
             | `1800 · Land & Building` | $500,000 |
-            | **Total** | $500,000 |
+            | Total | **$500,000** |
         - **Liabilities:**
             | Account | Amount |
             |---|---|
             | `2700 · Mortgage Payable` | $400,000 |
-            | **Total** | $400,000 |
+            | Total | **$400,000** |
         - **Net Assets:**
             | Account | Amount |
             |---|---|
             | `3030 · Capital & Equipment` | $100,000 |
-            | **Total** | $100,000 |
-    1. January 6, 2026 = **$50,000 unrestricted donation from an individual**
+            | Total | **$100,000** |
+    1. January 1, 2026 = **$50,000 unrestricted donation from an individual**
         - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
+            | Account | Amount | Fund | Bucket | Direction | Variant |
             |---|---|---|---|---|---|
-            | Source      | `4010 · Individual Donations` | $50,000 | Revenue | General Operating | Credit |
-            | Destination | `1010 · Checking`             | $50,000 | Asset   | General Operating | Debit  |
+            | `4010 · Individual Donations` | $50,000 | General Operating | Revenue | Up | Credit |
+            | `1010 · Checking`             | $50,000 | General Operating | Asset   | Up | Debit  |
         - **Assets:**
             | Account | Amount |
             |---|---|
             | `1800 · Land & Building` | $500,000 |
             | `1010 · Checking`        | $50,000  |
-            | **Total** | $550,000 |
+            | Total | **$550,000** |
         - **Liabilities:**
             | Account | Amount |
             |---|---|
             | `2700 · Mortgage Payable` | $400,000 |
-            | **Total** | $400,000 |
+            | Total | **$400,000** |
         - **Net Assets:**
             | Account | Amount |
             |---|---|
-            | `3030 · Capital & Equipment` | $100,000 |
             | `3010 · General Operating`   | $50,000  |
-            | **Total** | $150,000 |
+            | `3030 · Capital & Equipment` | $100,000 |
+            | Total | **$150,000** |
+    1. January 1, 2026 = **We buy a $30,000 truck with cash**
+        - **Transaction 1:**
+            | Account | Amount | Fund | Bucket | Direction | Variant |
+            |---|---|---|---|---|---|
+            | `3010 · General Operating`   | $30,000 | General Operating   | Net Asset | Down | Debit   |
+            | `3030 · Capital & Equipment` | $30,000 | Capital & Equipment | Net Asset | Up   | Credit  |
+        - **Transaction 2:**
+            | Account | Amount | Fund | Bucket | Direction | Variant |
+            |---|---|---|---|---|---|
+            | `1010 · Checking` | $30,000 | Capital & Equipment | Asset | Down | Credit |
+            | `1500 · Vehicles` | $30,000 | Capital & Equipment | Asset | Up   | Debit  |
+        - **Assets:**
+            | Account | Amount |
+            |---|---|
+            | `1010 · Checking`        | $20,000  |
+            | `1500 · Vehicles`        | $30,000  |
+            | `1800 · Land & Building` | $500,000 |
+            | Total | **$550,000** |
+        - **Liabilities:**
+            | Account | Amount |
+            |---|---|
+            | `2700 · Mortgage Payable` | $400,000 |
+            | Total | **$400,000** |
+        - **Net Assets:**
+            | Account | Amount |
+            |---|---|
+            | `3010 · General Operating`  | $20,000  |
+            | `3030 · Capital & Equipment`| $130,000 |
+            | Total | **$150,000** |
     1. January 9, 2026 = **$15,000 restricted donation to Wildfire Repair from a foundation**
         - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
+            | Account | Amount | Fund | Bucket | Direction | Variant |
             |---|---|---|---|---|---|
-            | Source      | `4030 · Foundation Grants` | $15,000 | Revenue | Wildfire Repair | Credit |
-            | Destination | `1010 · Checking`          | $15,000 | Asset   | Wildfire Repair | Debit  |
+            | `4030 · Foundation Grants` | $15,000 | Wildfire Repair | Revenue | Up | Credit |
+            | `1010 · Checking`          | $15,000 | Wildfire Repair | Asset   | Up | Debit  |
         - **Assets:**
             | Account | Amount |
             |---|---|
+            | `1010 · Checking`        | $35,000  |
+            | `1500 · Vehicles`        | $30,000  |
             | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $65,000  |
-            | **Total** | $565,000 |
+            | Total | **$565,000** |
         - **Liabilities:**
             | Account | Amount |
             |---|---|
             | `2700 · Mortgage Payable` | $400,000 |
-            | **Total** | $400,000 |
+            | Total | **$400,000** |
         - **Net Assets:**
             | Account | Amount |
             |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $50,000  |
+            | `3010 · General Operating`  | $20,000  |
+            | `3030 · Capital & Equipment`| $130,000 |
             | `3180 · Wildfire Repair`    | $15,000  |
-            | **Total** | $165,000 |
-    1. January 12, 2026 = **Spent $3,000 on fire-resistant siding**
+            | Total | **$165,000** |
+    1. January 12, 2026 = **Spent $2,000 on fire-resistant siding**
         - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
+            | Account | Amount | Fund | Bucket | Direction | Variant |
             |---|---|---|---|---|---|
-            | Source      | `1010 · Checking`                     | $3,000 | Asset   | Wildfire Repair | Credit |
-            | Destination | `5200 · Program Materials & Supplies` | $3,000 | Expense | Wildfire Repair | Debit  |
+            | `1010 · Checking`                     | $2,000 | Wildfire Repair | Asset   | Down | Credit |
+            | `5200 · Program Materials & Supplies` | $2,000 | Wildfire Repair | Expense | Up   | Debit  |
         - **Assets:**
             | Account | Amount |
             |---|---|
+            | `1010 · Checking`        | $33,000  |
+            | `1500 · Vehicles`        | $30,000  |
             | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $62,000  |
-            | **Total** | $562,000 |
+            | Total | **$563,000** |
         - **Liabilities:**
             | Account | Amount |
             |---|---|
             | `2700 · Mortgage Payable` | $400,000 |
-            | **Total** | $400,000 |
+            | Total | **$400,000** |
         - **Net Assets:**
             | Account | Amount |
             |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $50,000  |
-            | `3180 · Wildfire Repair`    | $12,000  |
-            | **Total** | $162,000 |
-    1. January 15, 2026 = **We pay $10,000 in wages**
+            | `3010 · General Operating`  | $20,000  |
+            | `3030 · Capital & Equipment`| $130,000 |
+            | `3180 · Wildfire Repair`    | $13,000  |
+            | Total | **$163,000** |
+    1. January 31, 2026 = **We pay $10,000 in wages**
         - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
+            | Account | Amount | Fund | Bucket | Direction | Variant |
             |---|---|---|---|---|---|
-            | Source      | `1010 · Checking`                | $10,000 | Asset   | General Operating | Credit |
-            | Destination | `5030 · Administrative Salaries` | $10,000 | Expense | General Operating | Debit  |
+            | `1010 · Checking`                 | $10,000 | General Operating | Asset   | Down | Credit |
+            | `5030 · Administrative Salaries` | $10,000 | General Operating | Expense | Up   | Debit  |
         - **Assets:**
             | Account | Amount |
             |---|---|
+            | `1010 · Checking`        | $23,000  |
+            | `1500 · Vehicles`        | $30,000  |
             | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $52,000  |
-            | **Total** | $552,000 |
+            | Total | **$553,000** |
         - **Liabilities:**
             | Account | Amount |
             |---|---|
             | `2700 · Mortgage Payable` | $400,000 |
-            | **Total** | $400,000 |
+            | Total | **$400,000** |
         - **Net Assets:**
             | Account | Amount |
             |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $40,000  |
-            | `3180 · Wildfire Repair`    | $12,000  |
-            | **Total** | $152,000 |
-    1. January 18, 2026 = **We buy a $30,000 truck with cash**
+            | `3030 · Capital & Equipment`| $130,000 |
+            | `3010 · General Operating`  | $10,000  |
+            | `3180 · Wildfire Repair`    | $13,000  |
+            | Total | **$153,000** |
+    1. January 31, 2026 = **1 month of vehicle Depreciation**
+        - **Fundamentals:**
+            - 5-year useful life
+            - Annual depreciation: $30,000 ÷ 5 = **$6,000**
+            - Monthly depreciation: $6,000 ÷ 12 = **$500**
         - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
+            | Account | Amount | Fund | Bucket | Direction | Variant |
             |---|---|---|---|---|---|
-            | Source      | `1010 · Checking` | $30,000 | Asset | Capital & Equipment | Credit |
-            | Destination | `1500 · Vehicles` | $30,000 | Asset | Capital & Equipment | Debit  |
+            | `5700 · Depreciation Expense` | $500 | Capital & Equipment | Expense | Up | Debit |
+            | `1510 · Accumulated Depreciation — Vehicles` | $500 | Capital & Equipment | Contra-asset | Up | Credit (flipped b/c contra-asset) |
         - **Assets:**
             | Account | Amount |
             |---|---|
-            | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $22,000  |
+            | `1010 · Checking`        | $23,000  |
             | `1500 · Vehicles`        | $30,000  |
-            | **Total** | $552,000 |
+            | `1800 · Land & Building` | $500,000 |
+            | `1510 · Accumulated Depreciation — Vehicles` | ($500) |
+            | Total | **$552,500** |
         - **Liabilities:**
             | Account | Amount |
             |---|---|
             | `2700 · Mortgage Payable` | $400,000 |
-            | **Total** | $400,000 |
+            | Total | **$400,000** |
         - **Net Assets:**
             | Account | Amount |
             |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $40,000  |
-            | `3180 · Wildfire Repair`    | $12,000  |
-            | **Total** | $152,000 |
-    1. January 21, 2026 = **We buy $1,000 of tools w/ a Credit Card**
-        - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
-            |---|---|---|---|---|---|
-            | Source      | `2020 · Credit Card Payable` | $1,000 | Liability | General Operating | Credit |
-            | Destination | `5210 · Tools & Consumables` | $1,000 | Expense   | General Operating | Debit  |
-        - **Assets:**
-            | Account | Amount |
-            |---|---|
-            | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $22,000  |
-            | `1500 · Vehicles`        | $30,000  |
-            | **Total** | $552,000 |
-        - **Liabilities:**
-            | Account | Amount |
-            |---|---|
-            | `2700 · Mortgage Payable`    | $400,000 |
-            | `2020 · Credit Card Payable` | $1,000 |
-            | **Total** | $401,000 |
-        - **Net Assets:**
-            | Account | Amount |
-            |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $39,000  |
-            | `3180 · Wildfire Repair`    | $12,000  |
-            | **Total** | $151,000 |
-    1. January 24, 2026 = **We move $3,000 into Operating Reserve**
-        - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
-            |---|---|---|---|---|---|
-            | Source      | `3010 · General Operating` | $3,000 | Net Asset | General Operating | Debit  |
-            | Destination | `3020 · Operating Reserve` | $3,000 | Net Asset | Operating Reserve | Credit |
-        - **Assets:**
-            | Account | Amount |
-            |---|---|
-            | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $22,000  |
-            | `1500 · Vehicles`        | $30,000  |
-            | **Total** | $552,000 |
-        - **Liabilities:**
-            | Account | Amount |
-            |---|---|
-            | `2700 · Mortgage Payable`    | $400,000 |
-            | `2020 · Credit Card Payable` | $1,000 |
-            | **Total** | $401,000 |
-        - **Net Assets:**
-            | Account | Amount |
-            |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $36,000  |
-            | `3180 · Wildfire Repair`    | $12,000  |
-            | `3020 · Operating Reserve`  | $3,000  |
-            | **Total** | $151,000 |
-    1. January 27, 2026 = **We pay $1,000 towards our Credit Card Bill**
-        - **Transaction:**
-            | Type | Account | Amount | Bucket | Fund | Variant |
-            |---|---|---|---|---|---|
-            | Source      | `1010 · Checking`            | $1,000 | Asset     | General Operating | Credit |
-            | Destination | `2020 · Credit Card Payable` | $1,000 | Liability | General Operating | Debit  |
-        - **Assets:**
-            | Account | Amount |
-            |---|---|
-            | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $21,000  |
-            | `1500 · Vehicles`        | $30,000  |
-            | **Total** | $551,000 |
-        - **Liabilities:**
-            | Account | Amount |
-            |---|---|
-            | `2700 · Mortgage Payable`    | $400,000 |
-            | **Total** | $400,000 |
-        - **Net Assets:**
-            | Account | Amount |
-            |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $36,000  |
-            | `3180 · Wildfire Repair`    | $12,000  |
-            | `3020 · Operating Reserve`  | $3,000  |
-            | **Total** | $151,000 |
-    1. January 30, 2026 = **Individual asks for a $5,000 refund from their earlier donation**
-        - **Transaction:**
-            | Account | Amount | Bucket | Fund | Variant |
-            |---|---|---|---|---|
-            | `1010 · Checking`             | $5,000 | Asset    | General Operating | Credit |
-            | `4010 · Individual Donations` | $5,000 | Revenue | General Operating | Debit   |
-        - **Assets:**
-            | Account | Amount |
-            |---|---|
-            | `1800 · Land & Building` | $500,000 |
-            | `1010 · Checking`        | $16,000  |
-            | `1500 · Vehicles`        | $30,000  |
-            | **Total** | $546,000 |
-        - **Liabilities:**
-            | Account | Amount |
-            |---|---|
-            | `2700 · Mortgage Payable`    | $400,000 |
-            | **Total** | $400,000 |
-        - **Net Assets:**
-            | Account | Amount |
-            |---|---|
-            | `3030 · Capital & Equipment`| $100,000 |
-            | `3010 · General Operating`  | $31,000  |
-            | `3180 · Wildfire Repair`    | $12,000  |
-            | `3020 · Operating Reserve`  | $3,000  |
-            | **Total** | $146,000 |
+            | `3030 · Capital & Equipment`| $129,500 |
+            | `3010 · General Operating`  | $10,000  |
+            | `3180 · Wildfire Repair`    | $13,000  |
+            | Total | **$152,500** |
     1. Conclusion:
         - Start-of-period Balance Sheet
             - **Assets:**
@@ -636,38 +566,38 @@
             - **Revenue:**
                 | Account | Amount |
                 |---|---|
-                | `4010 · Individual Donations` | $45,000 |
-                | `4030 · Foundation Grants`    | $15,000 |
-                | **Total** | $60,000 |
+                | `4010 · Individual Donations`      | $50,000 |
+                | `4030 · Foundation Grants`         | $15,000 |
+                | **Total** | $65,000 |
             - **Expenses:**
                 | Account | Amount |
                 |---|---|
-                | `5200 · Program Materials & Supplies` | $3,000  |
+                | `5200 · Program Materials & Supplies` | $2,000  |
                 | `5030 · Administrative Salaries`      | $10,000 |
-                | `5210 · Tools & Consumables`          | $1,000  |
-                | **Total** | $14,000 |
-            - **Net Income: $46,000**
+                | `5700 · Depreciation Expense`         | $500    |
+                | **Total** | $12,500 |
+            - **Net Income: $52,500**
         - End-of-period Balance Sheet
             - **Assets:**
                 | Account | Amount |
                 |---|---|
-                | `1800 · Land & Building` | $500,000 |
-                | `1010 · Checking`        | $16,000  |
+                | `1010 · Checking`        | $23,000  |
                 | `1500 · Vehicles`        | $30,000  |
-                | **Total** | $546,000 |
+                | `1800 · Land & Building` | $500,000 |
+                | `1510 · Accumulated Depreciation — Vehicles` | ($500) |
+                | Total | **$552,500** |
             - **Liabilities:**
                 | Account | Amount |
                 |---|---|
-                | `2700 · Mortgage Payable`    | $400,000 |
-                | **Total** | $400,000 |
+                | `2700 · Mortgage Payable` | $400,000 |
+                | Total | **$400,000** |
             - **Net Assets:**
                 | Account | Amount |
                 |---|---|
-                | `3030 · Capital & Equipment`| $100,000 |
-                | `3010 · General Operating`  | $31,000  |
-                | `3180 · Wildfire Repair`    | $12,000  |
-                | `3020 · Operating Reserve`  | $3,000  |
-                | **Total** | $146,000 |
+                | `3030 · Capital & Equipment`| $129,500 |
+                | `3010 · General Operating`  | $10,000  |
+                | `3180 · Wildfire Repair`    | $13,000  |
+                | Total | **$152,500** |
 <!--{"accordionEnd":true}-->
 
 
@@ -761,7 +691,7 @@
 | 1200 · Resale Material Inventory | Asset | — | Any fund | Holds the value of goods that we **intends to sell**, not use. When we sell an item, its cost **leaves** 1200 and becomes **cost of goods sold** — an expense on our income statement. Only when the goods are held primarily for sale. |
 | 1500 · Vehicles | Asset | — | Capital & Equipment, Community Repair | This account the account stores the original price we paid (or the fair market value on the day we received a donated vehicle). The only two events that touch 1500 are **buying** (debit up) and **disposing** (credit down). |
 | 1510 · Vehicles Accumulated Depreciation | Contra-asset | — | Capital & Equipment, Community Repair | Keeping 1500 at cost and putting the wear in 1510 preserves the original cost in 1500 and the total wear in 1510 |
-| 1600 · Equipment, tools, laptops | Asset | — | Workforce Development, Apprenticeship Training, General Operating | Cost |
+| 1600 · Equipment, Tools & Laptops | Asset | — | Workforce Development, Apprenticeship Training, General Operating | Cost |
 | 1610 · Accumulated depreciation — equipment | Contra-asset | — | Same fund as the item | Reduces 1600 |
 | 1700 · Intangible assets — software, licenses | Asset | — | General Operating, Apprenticeship Training | Cost |
 | 1800 · Land & Building | Asset | — | Capital & Equipment | Cost; land never depreciates |
@@ -780,9 +710,9 @@
 | 4020 · Corporate donations | Revenue | — | Any fund | |
 | 4030 · Foundation grants | Revenue | — | Restricted funds, General Operating | |
 | 4040 · Government grants | Revenue | — | Opportunity Youth, Workforce Development, Wildfire Repair | COYA, state, federal |
-| 4050 · In-kind donations — goods | Revenue | — | Any fund | Paired with asset or expense |
-| 4060 · In-kind donations — services | Revenue | — | Any fund | Paired with expense |
-| 4070 · In-kind donations — facilities use | Revenue | — | Any fund | Paired with rent expense |
+| 4050 · In-kind Donations, Goods | Revenue | — | Any fund | Paired with asset or expense |
+| 4060 · In-kind Donations, Services | Revenue | — | Any fund | Paired with expense |
+| 4070 · In-kind Donations — facilities use | Revenue | — | Any fund | Paired with rent expense |
 | 4100 · Service fee revenue — full rate | Revenue | — | Community Repair, General Operating | Betty, Sarah, Jake at full rate |
 | 4110 · Program service revenue — subsidized | Revenue | — | Low & Moderate Income, Elderly Assistance, Community Repair | Discounted portion |
 | 4200 · Investment income | Revenue | — | General Operating or donor-restricted fund | Interest, dividends |
@@ -797,7 +727,7 @@
 | 5300 · Rent | Expense | — | General Operating (office), Apprenticeship Training (training bay) | Includes in-kind facilities |
 | 5310 · Utilities | Expense | — | General Operating | |
 | 5320 · Insurance | Expense | — | General Operating | |
-| 5400 · Professional fees | Expense | — | General Operating, Mentor Development | Legal, accounting, consulting |
+| 5400 · Professional Fees | Expense | — | General Operating, Mentor Development | The account captures services purchased from outside professionals — people who are not our employees (e.g., Legal, accounting, consulting) |
 | 5500 · Software & subscriptions | Expense | — | General Operating, Apprenticeship Training | |
 | 5600 · Vehicle operating | Expense | — | Capital & Equipment, Community Repair | Fuel, maintenance |
 | 5700 · Depreciation Expense | Expense | — | Capital & Equipment, General Operating (allocated) | Noncash |
@@ -853,17 +783,18 @@
 <!--{"accordionStart":true}-->
 ## What is a Contra-Asset?
 <!--{"accordionBody":true}-->
-- "Contra" means "against"
-- A contra-asset is an account that reduces total assets
-- Examples:
-    | Account | Type | What it shows |
+- "Contra" is Latin for "against"
+- An account that offsets another account
+- AED says: Assets and Expenses grow with Debit
+    - A contra-asset is not a normal asset
+    - A contra-asset exists to reduce net assets
+    - A contra-asset grows with Credit, the opposite of normal assets
+- We have three:
+    | Contra-asset | Offsets | What it tracks |
     |---|---|---|
-    | **1500 · Vehicles** | Debit | What we **paid** (original cost) |
-    | **1510 · Vehicles Accumulated Depreciation** | **Credit** | How much of that cost has been **used up** |
-    | **1600 · Equipment** | Debit | What we **paid** (original cost) |
-    | **1610 · Equipment Accumulated Depreciation** | **Credit** | **Credit** | How much of that cost has been **used up** |
-    | **1800 · Building** | Debit | What we **paid** (original cost) |
-    | **1810 · Building Accumulated Depreciation** | **Credit** | **Credit** | How much of that cost has been **used up** |
+    | `1510 · Accumulated depreciation — vehicles` | `1500 · Vehicles` | Total wear on vehicles |
+    | `1610 · Accumulated depreciation — equipment` | `1600 · Equipment` | Total wear on tools, laptops, furniture |
+    | `1810 · Accumulated depreciation — building` | `1800 · Land & Building` (building portion only) | Total wear on buildings |
 <!--{"accordionEnd":true}-->
 
 
