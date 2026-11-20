@@ -4,11 +4,11 @@ import type { FC } from 'hono/jsx'
 import { Field } from '@hono-form'
 import { patience } from '@src/lib/vars'
 import svgLock from '@src/svg/lock.html?raw'
-import { enumStaff } from '@src/enums/staff.enum'
 import { enumTrades } from '@src/enums/trades.enum'
 import svgFrequency from '@src/svg/frequency.html?raw'
 import { datasetScroll, idHomeForm } from '@src/lib/dom'
 import { enumHomeForms } from '@src/enums/homeForms.enum'
+import { hiringStaffPositions } from '@src/enums/staffPositions.enum'
 import { onContactUsSubmit, onServiceRequestSubmit, onJoinLeadershipSubmit, onJoinNewsletterSubmit, tooltip, onHomeHashLoad, onHomeHashClick } from '@hono-directives'
 
 
@@ -57,7 +57,7 @@ const ServiceRequest: FC = () => {
               <div class="item">
                 <div class="icon" dangerouslySetInnerHTML={{ __html: item.icon }}></div>
                 <div class="info">
-                  <div class="primary">{item.label}</div>
+                  <div class="primary">{item.value}</div>
                   <div class="secondary">{item.description}</div>
                 </div>
               </div>
@@ -78,7 +78,7 @@ const ServiceRequest: FC = () => {
               <Field name="email" placeholder="Email" type="email" prefix={id} />
 
               <Field name="description" placeholder="Job Description" type="textarea" prefix={id} />
-              <Field name="trade" type="checkbox" options={enumTrades.array.map(v => ({ label: String(v.id), value: v.label }))} prefix={id} />
+              <Field name="trade" type="checkbox" options={enumTrades.array.map(v => ({ label: v.value, value: String(v.id) }))} prefix={id} />
 
               <button data-directive={tooltip('topCenter', patience)} class="orange wide" type="submit">Hire Trade Professionals</button>
             </form>
@@ -101,11 +101,11 @@ const JoinLeadership: FC = () => {
           <div class="title">Lead by Example</div>
           <div class="description">We are uniting a visionary Board and dedicated Staff to lead by example! Current openings include:</div>
           <div class="items">
-            {enumStaff.array.map(item => <>
+            {hiringStaffPositions.map(item => <>
               <div class="item">
                 <div class="icon" dangerouslySetInnerHTML={{__html: item.icon}}></div>
                 <div class="info">
-                  <div class="primary">{item.label}</div>
+                  <div class="primary">{item.value}</div>
                   <div class="secondary">{item.description}</div>
                 </div>
               </div>
@@ -124,7 +124,7 @@ const JoinLeadership: FC = () => {
               </div>
 
               <Field name="email" placeholder="Email" type="email" prefix={id} />
-              <Field name="interest" placeholder="Select Interested Position" type="select" options={enumStaff.array.map(v => ({ label: String(v.id), value: v.label }))} prefix={id} />
+              <Field name="interest" placeholder="Select Interested Position" type="select" options={hiringStaffPositions.map(v => ({ label: v.value, value: String(v.id) }))} prefix={id} />
               <button class="orange wide" type="submit">Join Leadership Team</button>
             </form>
           </div>

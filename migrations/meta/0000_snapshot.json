@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "2639466c-2bea-4ba9-a638-e14898e1714b",
+  "id": "8ad9ad65-3ff7-496a-9a9c-2e893cf83df7",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "Contact": {
@@ -357,8 +357,8 @@
           "notNull": true,
           "autoincrement": false
         },
-        "description": {
-          "name": "description",
+        "slug": {
+          "name": "slug",
           "type": "text",
           "primaryKey": false,
           "notNull": true,
@@ -371,9 +371,31 @@
           "notNull": true,
           "autoincrement": false,
           "default": true
+        },
+        "description": {
+          "name": "description",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "JobStatus_value_unique": {
+          "name": "JobStatus_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "JobStatus_slug_unique": {
+          "name": "JobStatus_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -544,6 +566,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "isActive": {
           "name": "isActive",
           "type": "integer",
@@ -553,7 +582,22 @@
           "default": true
         }
       },
-      "indexes": {},
+      "indexes": {
+        "LeadStatus_value_unique": {
+          "name": "LeadStatus_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "LeadStatus_slug_unique": {
+          "name": "LeadStatus_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -644,6 +688,13 @@
           "notNull": true,
           "autoincrement": true
         },
+        "boardId": {
+          "name": "boardId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "columnId": {
           "name": "columnId",
           "type": "integer",
@@ -703,15 +754,29 @@
           ],
           "isUnique": false
         },
-        "Objective__title__unique": {
-          "name": "Objective__title__unique",
+        "Objective__boardId__title__unique": {
+          "name": "Objective__boardId__title__unique",
           "columns": [
+            "boardId",
             "title"
           ],
           "isUnique": true
         }
       },
       "foreignKeys": {
+        "Objective_boardId_ObjectiveBoard_id_fk": {
+          "name": "Objective_boardId_ObjectiveBoard_id_fk",
+          "tableFrom": "Objective",
+          "tableTo": "ObjectiveBoard",
+          "columnsFrom": [
+            "boardId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
         "Objective_columnId_ObjectiveColumn_id_fk": {
           "name": "Objective_columnId_ObjectiveColumn_id_fk",
           "tableFrom": "Objective",
@@ -743,6 +808,367 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
+    "ObjectiveActivity": {
+      "name": "ObjectiveActivity",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "objectiveId": {
+          "name": "objectiveId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "typeId": {
+          "name": "typeId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "actorId": {
+          "name": "actorId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "assigneeId": {
+          "name": "assigneeId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "fromColumnId": {
+          "name": "fromColumnId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "toColumnId": {
+          "name": "toColumnId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "tagId": {
+          "name": "tagId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "commentId": {
+          "name": "commentId",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(unixepoch() * 1000)"
+        }
+      },
+      "indexes": {
+        "ObjectiveActivity__objectiveId__createdAt__index": {
+          "name": "ObjectiveActivity__objectiveId__createdAt__index",
+          "columns": [
+            "objectiveId",
+            "createdAt"
+          ],
+          "isUnique": false
+        },
+        "ObjectiveActivity__typeId__index": {
+          "name": "ObjectiveActivity__typeId__index",
+          "columns": [
+            "typeId"
+          ],
+          "isUnique": false
+        },
+        "ObjectiveActivity__actorId__index": {
+          "name": "ObjectiveActivity__actorId__index",
+          "columns": [
+            "actorId"
+          ],
+          "isUnique": false
+        },
+        "ObjectiveActivity__assigneeId__index": {
+          "name": "ObjectiveActivity__assigneeId__index",
+          "columns": [
+            "assigneeId"
+          ],
+          "isUnique": false
+        },
+        "ObjectiveActivity__tagId__index": {
+          "name": "ObjectiveActivity__tagId__index",
+          "columns": [
+            "tagId"
+          ],
+          "isUnique": false
+        },
+        "ObjectiveActivity__commentId__index": {
+          "name": "ObjectiveActivity__commentId__index",
+          "columns": [
+            "commentId"
+          ],
+          "isUnique": false
+        },
+        "ObjectiveActivity__createdAt__index": {
+          "name": "ObjectiveActivity__createdAt__index",
+          "columns": [
+            "createdAt"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "ObjectiveActivity_objectiveId_Objective_id_fk": {
+          "name": "ObjectiveActivity_objectiveId_Objective_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "Objective",
+          "columnsFrom": [
+            "objectiveId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        },
+        "ObjectiveActivity_typeId_ObjectiveActivityType_id_fk": {
+          "name": "ObjectiveActivity_typeId_ObjectiveActivityType_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "ObjectiveActivityType",
+          "columnsFrom": [
+            "typeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "ObjectiveActivity_actorId_Person_id_fk": {
+          "name": "ObjectiveActivity_actorId_Person_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "Person",
+          "columnsFrom": [
+            "actorId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "ObjectiveActivity_assigneeId_Person_id_fk": {
+          "name": "ObjectiveActivity_assigneeId_Person_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "Person",
+          "columnsFrom": [
+            "assigneeId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "ObjectiveActivity_fromColumnId_ObjectiveColumn_id_fk": {
+          "name": "ObjectiveActivity_fromColumnId_ObjectiveColumn_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "ObjectiveColumn",
+          "columnsFrom": [
+            "fromColumnId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "ObjectiveActivity_toColumnId_ObjectiveColumn_id_fk": {
+          "name": "ObjectiveActivity_toColumnId_ObjectiveColumn_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "ObjectiveColumn",
+          "columnsFrom": [
+            "toColumnId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "ObjectiveActivity_tagId_ObjectiveTag_id_fk": {
+          "name": "ObjectiveActivity_tagId_ObjectiveTag_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "ObjectiveTag",
+          "columnsFrom": [
+            "tagId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "set null",
+          "onUpdate": "no action"
+        },
+        "ObjectiveActivity_commentId_ObjectiveComment_id_fk": {
+          "name": "ObjectiveActivity_commentId_ObjectiveComment_id_fk",
+          "tableFrom": "ObjectiveActivity",
+          "tableTo": "ObjectiveComment",
+          "columnsFrom": [
+            "commentId"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "cascade",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "ObjectiveActivityType": {
+      "name": "ObjectiveActivityType",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "value": {
+          "name": "value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "isActive": {
+          "name": "isActive",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        }
+      },
+      "indexes": {
+        "ObjectiveActivityType_value_unique": {
+          "name": "ObjectiveActivityType_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "ObjectiveActivityType_slug_unique": {
+          "name": "ObjectiveActivityType_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "ObjectiveBoard": {
+      "name": "ObjectiveBoard",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": true
+        },
+        "value": {
+          "name": "value",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "isActive": {
+          "name": "isActive",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": true
+        },
+        "isCurrent": {
+          "name": "isCurrent",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": false
+        }
+      },
+      "indexes": {
+        "ObjectiveBoard_value_unique": {
+          "name": "ObjectiveBoard_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "ObjectiveBoard_slug_unique": {
+          "name": "ObjectiveBoard_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        },
+        "ObjectiveBoard__isCurrent__unique": {
+          "name": "ObjectiveBoard__isCurrent__unique",
+          "columns": [
+            "isCurrent"
+          ],
+          "isUnique": true,
+          "where": "\"ObjectiveBoard\".\"isCurrent\" = 1"
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
     "ObjectiveColumn": {
       "name": "ObjectiveColumn",
       "columns": {
@@ -760,6 +1186,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "isActive": {
           "name": "isActive",
           "type": "integer",
@@ -769,7 +1202,22 @@
           "default": true
         }
       },
-      "indexes": {},
+      "indexes": {
+        "ObjectiveColumn_value_unique": {
+          "name": "ObjectiveColumn_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "ObjectiveColumn_slug_unique": {
+          "name": "ObjectiveColumn_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -947,6 +1395,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "isActive": {
           "name": "isActive",
           "type": "integer",
@@ -977,7 +1432,22 @@
           "autoincrement": false
         }
       },
-      "indexes": {},
+      "indexes": {
+        "ObjectiveTag_value_unique": {
+          "name": "ObjectiveTag_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "ObjectiveTag_slug_unique": {
+          "name": "ObjectiveTag_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -1370,6 +1840,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "isActive": {
           "name": "isActive",
           "type": "integer",
@@ -1379,7 +1856,22 @@
           "default": true
         }
       },
-      "indexes": {},
+      "indexes": {
+        "StaffEndReason_value_unique": {
+          "name": "StaffEndReason_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "StaffEndReason_slug_unique": {
+          "name": "StaffEndReason_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -1488,6 +1980,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "isActive": {
           "name": "isActive",
           "type": "integer",
@@ -1505,7 +2004,22 @@
           "default": true
         }
       },
-      "indexes": {},
+      "indexes": {
+        "StaffPosition_value_unique": {
+          "name": "StaffPosition_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "StaffPosition_slug_unique": {
+          "name": "StaffPosition_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},
@@ -1528,6 +2042,13 @@
           "notNull": true,
           "autoincrement": false
         },
+        "slug": {
+          "name": "slug",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
         "isActive": {
           "name": "isActive",
           "type": "integer",
@@ -1537,7 +2058,22 @@
           "default": true
         }
       },
-      "indexes": {},
+      "indexes": {
+        "Trade_value_unique": {
+          "name": "Trade_value_unique",
+          "columns": [
+            "value"
+          ],
+          "isUnique": true
+        },
+        "Trade_slug_unique": {
+          "name": "Trade_slug_unique",
+          "columns": [
+            "slug"
+          ],
+          "isUnique": true
+        }
+      },
       "foreignKeys": {},
       "compositePrimaryKeys": {},
       "uniqueConstraints": {},

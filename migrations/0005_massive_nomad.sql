@@ -1,1 +1,0 @@
-ALTER TABLE `ObjectiveBoard` ADD `slug` text NOT NULL;

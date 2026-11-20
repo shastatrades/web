@@ -48,10 +48,13 @@ CREATE UNIQUE INDEX `JobLead__jobId__unique` ON `JobLead` (`jobId`);--> statemen
 CREATE TABLE `JobStatus` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`value` text NOT NULL,
-	`description` text NOT NULL,
-	`isActive` integer DEFAULT true NOT NULL
+	`slug` text NOT NULL,
+	`isActive` integer DEFAULT true NOT NULL,
+	`description` text NOT NULL
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `JobStatus_value_unique` ON `JobStatus` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `JobStatus_slug_unique` ON `JobStatus` (`slug`);--> statement-breakpoint
 CREATE TABLE `Job__Client` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`jobId` integer NOT NULL,
@@ -75,9 +78,12 @@ CREATE UNIQUE INDEX `Job__Trade__jobId__tradeId__unique` ON `Job__Trade` (`jobId
 CREATE TABLE `LeadStatus` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`value` text NOT NULL,
+	`slug` text NOT NULL,
 	`isActive` integer DEFAULT true NOT NULL
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `LeadStatus_value_unique` ON `LeadStatus` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `LeadStatus_slug_unique` ON `LeadStatus` (`slug`);--> statement-breakpoint
 CREATE TABLE `MagicToken` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`personId` integer NOT NULL,
@@ -91,25 +97,78 @@ CREATE INDEX `MagicToken__personId__index` ON `MagicToken` (`personId`);--> stat
 CREATE INDEX `MagicToken__tokenHash__index` ON `MagicToken` (`tokenHash`);--> statement-breakpoint
 CREATE TABLE `Objective` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`boardId` integer NOT NULL,
 	`columnId` integer NOT NULL,
 	`createdBy` integer NOT NULL,
 	`title` text NOT NULL,
 	`description` text,
 	`order` real NOT NULL,
 	`createdAt` integer DEFAULT (unixepoch() * 1000) NOT NULL,
+	FOREIGN KEY (`boardId`) REFERENCES `ObjectiveBoard`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`columnId`) REFERENCES `ObjectiveColumn`(`id`) ON UPDATE no action ON DELETE no action,
 	FOREIGN KEY (`createdBy`) REFERENCES `Person`(`id`) ON UPDATE no action ON DELETE cascade
 );
 --> statement-breakpoint
 CREATE INDEX `Objective__columnId__index` ON `Objective` (`columnId`);--> statement-breakpoint
 CREATE INDEX `Objective__order__index` ON `Objective` (`order`);--> statement-breakpoint
-CREATE UNIQUE INDEX `Objective__title__unique` ON `Objective` (`title`);--> statement-breakpoint
-CREATE TABLE `ObjectiveColumn` (
+CREATE UNIQUE INDEX `Objective__boardId__title__unique` ON `Objective` (`boardId`,`title`);--> statement-breakpoint
+CREATE TABLE `ObjectiveActivity` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`objectiveId` integer NOT NULL,
+	`typeId` integer NOT NULL,
+	`actorId` integer,
+	`assigneeId` integer,
+	`fromColumnId` integer,
+	`toColumnId` integer,
+	`tagId` integer,
+	`commentId` integer,
+	`createdAt` integer DEFAULT (unixepoch() * 1000) NOT NULL,
+	FOREIGN KEY (`objectiveId`) REFERENCES `Objective`(`id`) ON UPDATE no action ON DELETE cascade,
+	FOREIGN KEY (`typeId`) REFERENCES `ObjectiveActivityType`(`id`) ON UPDATE no action ON DELETE no action,
+	FOREIGN KEY (`actorId`) REFERENCES `Person`(`id`) ON UPDATE no action ON DELETE set null,
+	FOREIGN KEY (`assigneeId`) REFERENCES `Person`(`id`) ON UPDATE no action ON DELETE set null,
+	FOREIGN KEY (`fromColumnId`) REFERENCES `ObjectiveColumn`(`id`) ON UPDATE no action ON DELETE set null,
+	FOREIGN KEY (`toColumnId`) REFERENCES `ObjectiveColumn`(`id`) ON UPDATE no action ON DELETE set null,
+	FOREIGN KEY (`tagId`) REFERENCES `ObjectiveTag`(`id`) ON UPDATE no action ON DELETE set null,
+	FOREIGN KEY (`commentId`) REFERENCES `ObjectiveComment`(`id`) ON UPDATE no action ON DELETE cascade
+);
+--> statement-breakpoint
+CREATE INDEX `ObjectiveActivity__objectiveId__createdAt__index` ON `ObjectiveActivity` (`objectiveId`,`createdAt`);--> statement-breakpoint
+CREATE INDEX `ObjectiveActivity__typeId__index` ON `ObjectiveActivity` (`typeId`);--> statement-breakpoint
+CREATE INDEX `ObjectiveActivity__actorId__index` ON `ObjectiveActivity` (`actorId`);--> statement-breakpoint
+CREATE INDEX `ObjectiveActivity__assigneeId__index` ON `ObjectiveActivity` (`assigneeId`);--> statement-breakpoint
+CREATE INDEX `ObjectiveActivity__tagId__index` ON `ObjectiveActivity` (`tagId`);--> statement-breakpoint
+CREATE INDEX `ObjectiveActivity__commentId__index` ON `ObjectiveActivity` (`commentId`);--> statement-breakpoint
+CREATE INDEX `ObjectiveActivity__createdAt__index` ON `ObjectiveActivity` (`createdAt`);--> statement-breakpoint
+CREATE TABLE `ObjectiveActivityType` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`value` text NOT NULL,
+	`slug` text NOT NULL,
 	`isActive` integer DEFAULT true NOT NULL
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveActivityType_value_unique` ON `ObjectiveActivityType` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveActivityType_slug_unique` ON `ObjectiveActivityType` (`slug`);--> statement-breakpoint
+CREATE TABLE `ObjectiveBoard` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`value` text NOT NULL,
+	`slug` text NOT NULL,
+	`isActive` integer DEFAULT true NOT NULL,
+	`isCurrent` integer DEFAULT false NOT NULL
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveBoard_value_unique` ON `ObjectiveBoard` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveBoard_slug_unique` ON `ObjectiveBoard` (`slug`);--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveBoard__isCurrent__unique` ON `ObjectiveBoard` (`isCurrent`) WHERE "ObjectiveBoard"."isCurrent" = 1;--> statement-breakpoint
+CREATE TABLE `ObjectiveColumn` (
+	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
+	`value` text NOT NULL,
+	`slug` text NOT NULL,
+	`isActive` integer DEFAULT true NOT NULL
+);
+--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveColumn_value_unique` ON `ObjectiveColumn` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveColumn_slug_unique` ON `ObjectiveColumn` (`slug`);--> statement-breakpoint
 CREATE TABLE `ObjectiveComment` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`objectiveId` integer NOT NULL,
@@ -134,12 +193,15 @@ CREATE UNIQUE INDEX `ObjectiveComment__Assignee__commentId__personId__unique` ON
 CREATE TABLE `ObjectiveTag` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`value` text NOT NULL,
+	`slug` text NOT NULL,
 	`isActive` integer DEFAULT true NOT NULL,
 	`order` integer NOT NULL,
 	`bgHex` text NOT NULL,
 	`fgHex` text NOT NULL
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveTag_value_unique` ON `ObjectiveTag` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `ObjectiveTag_slug_unique` ON `ObjectiveTag` (`slug`);--> statement-breakpoint
 CREATE TABLE `Objective__Assignee` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`objectiveId` integer NOT NULL,
@@ -195,9 +257,12 @@ CREATE INDEX `Session__personId__index` ON `Session` (`personId`);--> statement-
 CREATE TABLE `StaffEndReason` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`value` text NOT NULL,
+	`slug` text NOT NULL,
 	`isActive` integer DEFAULT true NOT NULL
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `StaffEndReason_value_unique` ON `StaffEndReason` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `StaffEndReason_slug_unique` ON `StaffEndReason` (`slug`);--> statement-breakpoint
 CREATE TABLE `StaffLead` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`personId` integer NOT NULL,
@@ -212,16 +277,22 @@ CREATE TABLE `StaffLead` (
 CREATE TABLE `StaffPosition` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`value` text NOT NULL,
+	`slug` text NOT NULL,
 	`isActive` integer DEFAULT true NOT NULL,
 	`isHiring` integer DEFAULT true NOT NULL
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `StaffPosition_value_unique` ON `StaffPosition` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `StaffPosition_slug_unique` ON `StaffPosition` (`slug`);--> statement-breakpoint
 CREATE TABLE `Trade` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`value` text NOT NULL,
+	`slug` text NOT NULL,
 	`isActive` integer DEFAULT true NOT NULL
 );
 --> statement-breakpoint
+CREATE UNIQUE INDEX `Trade_value_unique` ON `Trade` (`value`);--> statement-breakpoint
+CREATE UNIQUE INDEX `Trade_slug_unique` ON `Trade` (`slug`);--> statement-breakpoint
 CREATE TABLE `Trade__JobLead` (
 	`id` integer PRIMARY KEY AUTOINCREMENT NOT NULL,
 	`tradeId` integer NOT NULL,

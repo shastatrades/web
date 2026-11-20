@@ -275,7 +275,7 @@ const Chip = ((props) => {
     if (!tag) throw new Error('!tag')
 
     key = tag.slug
-    label = tag.label
+    label = tag.value
   }
 
   if ('columnId' in props) {

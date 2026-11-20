@@ -1,12 +1,8 @@
 // web/src/db/schema/ObjectiveColumn.ts
 
-import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
+import { sqliteTable } from 'drizzle-orm/sqlite-core'
+import { lookupColumns } from '@src/db/lookupColumns'
 
 
 /** Objective column (on Kanban) lookup table */
-export const ObjectiveColumn = sqliteTable('ObjectiveColumn', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  value: text('value').notNull(),
-  isActive: integer('isActive', { mode: 'boolean' }).notNull().default(true),
-  slug: text('slug').notNull(),
-})
+export const ObjectiveColumn = sqliteTable('ObjectiveColumn', lookupColumns())

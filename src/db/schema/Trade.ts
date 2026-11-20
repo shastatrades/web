@@ -1,11 +1,8 @@
 // web/src/db/schema/Trade.ts
 
-import { text, integer, sqliteTable } from 'drizzle-orm/sqlite-core'
+import { sqliteTable } from 'drizzle-orm/sqlite-core'
+import { lookupColumns } from '@src/db/lookupColumns'
 
 
 /** Trades lookup table */
-export const Trade = sqliteTable('Trade', {
-  id: integer('id').primaryKey({ autoIncrement: true }),
-  value: text('value').notNull(),
-  isActive: integer('isActive', { mode: 'boolean' }).notNull().default(true),
-})
+export const Trade = sqliteTable('Trade', lookupColumns())
