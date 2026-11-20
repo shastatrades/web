@@ -1,7 +1,7 @@
 // web/npm/hono-form/src/Field.tsx
 
 import type { FC } from 'hono/jsx'
-
+import { localNow } from '@hono-directives'
 
 export const Field: FC<FieldProps> = (props: FieldProps) => {
   let field = <></>
@@ -25,7 +25,10 @@ export const Field: FC<FieldProps> = (props: FieldProps) => {
         value={props.type === 'file' ? '' : (props.value ?? '')}
         placeholder={props.type === 'file' ? '' : (props.placeholder ?? '')}
         aria-describedby={errorID}
-        aria-required={props.required ? "true" : undefined} />
+        aria-required={props.required ? "true" : undefined}
+        {
+          ...((props.type === 'datetime-local' && props.now) && { 'data-directive': localNow() })
+        } />
       break
     case 'textarea':
       field = <>
@@ -116,6 +119,7 @@ export type FieldProps =
   | FieldPropsSelect
   | FieldPropsCheckbox
   | FieldPropsSimple
+  | FieldPropsDateTimeLocal
 
 
 type FieldPropsBase = {
@@ -133,7 +137,7 @@ type FieldPropsValue = {
 
 
 type FieldPropsSimple = FieldPropsBase & FieldPropsValue & {
-  type: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'file' | 'datetime-local'
+  type: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'file'
 }
 
 
@@ -147,4 +151,9 @@ type FieldPropsCheckbox = FieldPropsBase & {
   type: 'checkbox',
   value?: string | string[],
   options: readonly FieldOption[],
+}
+
+type FieldPropsDateTimeLocal = FieldPropsBase & FieldPropsValue & {
+  type: 'datetime-local',
+  now?: boolean,
 }

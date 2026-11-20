@@ -13,8 +13,8 @@ import { enumInboxPages } from '@src/enums/inboxPages.enum'
 import { ContactUsMessages } from '@src/inbox/ContactUsMessages'
 import { tabsStyle, PageTabs, type PageTabsParameters } from '@hono-tabs'
 import { inboxPagesValidator } from '@src/validators/inboxPages.validator'
+import { queryObjectiveActivity, queryStaffPerson, type Person } from '@src/db'
 import { ObjectiveActivity, objectiveActivityStyle } from '@src/lib/ObjectiveActivity'
-import { queryObjectiveActivity, queryStaffPerson, type Person, type QueryStaffPerson } from '@src/db'
 
 
 export default new Hono()
@@ -29,7 +29,7 @@ export default new Hono()
 
     const variant = c.req.valid('param').variant ?? 'objective-activity'
 
-    const resStaff: QueryStaffPerson = await queryStaffPerson(person.id)
+    const resStaff = await queryStaffPerson(person.id)
 
     const pages = (!resStaff?.positions.length)
       ? []

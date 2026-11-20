@@ -7,7 +7,7 @@ import { validator } from '@hono-api/be'
 import { mdStyle } from '@src/md/mdStyle'
 import { authRoute } from '@src/auth/authRoute'
 import { onPageTabChange } from '@hono-directives'
-import { IntentForms } from '@src/finances/IntentForms'
+import { InflowForms } from '@src/finances/InflowForms'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
 import { enumFinanceFormPages } from '@src/enums/financeFormPages.enum'
 import { tabsStyle, PageTabs, type PageTabsParameters } from '@hono-tabs'
@@ -26,7 +26,7 @@ export default new Hono()
 
       const pages: PageTabsParameters['pages'] = enumFinanceFormPages.array.map(v => {
         switch(v.id) {
-          case 'intent': return { ...v, content: <IntentForms /> }
+          case 'inflow': return { ...v, content: <InflowForms /> }
           default: return { ...v, content: <></> }
         }
       })
