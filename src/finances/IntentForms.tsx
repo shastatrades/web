@@ -10,6 +10,7 @@ import svgExplore from '@src/svg/explore.html?raw'
 import { enumFunds } from '@src/enums/funds.enum'
 import { bindAccordionItems } from '@hono-directives'
 import svgHandshake from '@src/svg/handShake.html?raw'
+import svgGoldMedal from '@src/svg/goldMedal.html?raw'
 import { enumGrantFit } from '@src/enums/grantFit.enum'
 import { Accordion, AccordionItem } from '@hono-accordion'
 import { enumDonorTypes } from '@src/enums/donorTypes.enum'
@@ -26,6 +27,7 @@ export const IntentForms = (() => {
         pledgePaymentReceived(),
         foundGrant(),
         appliedToGrant(),
+        wonGrant(),
       ]} />
     </div>
   </>
@@ -37,14 +39,14 @@ function metDonor(): AccordionItem {
     header: <>
       <div class="with-icon">
         <span class="icon" dangerouslySetInnerHTML={{ __html: svgPerson }}></span>
-        <h2>We Met a Donor</h2>
+        <h2>Met a Donor</h2>
       </div>
     </>,
     body: <>
       <form class="form-card bg-white">
         <div class="title has-icon">
           <span class="icon" dangerouslySetInnerHTML={{ __html: svgPerson }}></span>
-          <span>We Met a Donor</span>
+          <span>Met a Donor</span>
         </div>
 
         <div class="two">
@@ -69,14 +71,14 @@ function donationReceived(): AccordionItem {
     header: <>
       <div class="with-icon">
         <span class="icon" dangerouslySetInnerHTML={{ __html: svgMoney }}></span>
-        <h2>We Received a Donation</h2>
+        <h2>Received a Donation</h2>
       </div>
     </>,
     body: <>
       <form class="form-card bg-white">
         <div class="title has-icon">
           <span class="icon" dangerouslySetInnerHTML={{ __html: svgMoney }}></span>
-          <span>We Received a Donation</span>
+          <span>Received a Donation</span>
         </div>
 
         <Field type="select" label="Donor" name="type" options={examples} prefix="donation-received" />
@@ -96,14 +98,14 @@ function pledgeReceived(): AccordionItem {
     header: <>
       <div class="with-icon">
         <span class="icon" dangerouslySetInnerHTML={{ __html: svgHandshake }}></span>
-        <h2>We Received a Pledge</h2>
+        <h2>Received a Pledge</h2>
       </div>
     </>,
     body: <>
       <form class="form-card bg-white">
         <div class="title has-icon">
           <span class="icon" dangerouslySetInnerHTML={{ __html: svgHandshake }}></span>
-          <span>We Received a Pledge</span>
+          <span>Received a Pledge</span>
         </div>
 
         <Field type="select" label="Donor" name="type" options={examples} prefix="pledge-received" />
@@ -124,14 +126,14 @@ function pledgePaymentReceived(): AccordionItem {
     header: <>
       <div class="with-icon">
         <span class="icon" dangerouslySetInnerHTML={{ __html: svgCheck }}></span>
-        <h2>We Received a Pledge Payment</h2>
+        <h2>Received a Pledge Payment</h2>
       </div>
     </>,
     body: <>
       <form class="form-card bg-white">
         <div class="title has-icon">
           <span class="icon" dangerouslySetInnerHTML={{ __html: svgCheck }}></span>
-          <span>We Received a Pledge Payment</span>
+          <span>Received a Pledge Payment</span>
         </div>
 
         <Field type="select" label="Pledge" name="type" options={examples} prefix="pledge-payment-received" />
@@ -151,14 +153,14 @@ function foundGrant() {
     header: <>
       <div class="with-icon">
         <span class="icon" dangerouslySetInnerHTML={{ __html: svgExplore }}></span>
-        <h2>We Found a Lovely Grant</h2>
+        <h2>Found a Lovely Grant</h2>
       </div>
     </>,
     body: <>
       <form class="form-card bg-white">
         <div class="title has-icon">
           <span class="icon" dangerouslySetInnerHTML={{ __html: svgExplore }}></span>
-          <span>We Found a Lovely Grant</span>
+          <span>Found a Lovely Grant</span>
         </div>
 
         <Field type="text" label="Organization" name="organization" prefix="found-grant" placeholder="California Workforce Development" />
@@ -178,19 +180,46 @@ function appliedToGrant(): AccordionItem {
     header: <>
       <div class="with-icon">
         <span class="icon" dangerouslySetInnerHTML={{ __html: svgSend }}></span>
-        <h2>We Applied to a Grant</h2>
+        <h2>Applied to a Grant</h2>
       </div>
     </>,
     body: <>
       <form class="form-card bg-white">
         <div class="title has-icon">
           <span class="icon" dangerouslySetInnerHTML={{ __html: svgSend }}></span>
-          <span>We Applied to a Grant</span>
+          <span>Applied to a Grant</span>
         </div>
 
         <Field type="select" label="Grant" name="type" options={examples} prefix="applied-to-grant" />
         <Field type="datetime-local" label="Submission Date & Time" name="submissionDateTime" prefix="applied-to-grant" />
         <Field type="number" label="Requested Amount ($ USD)" name="amount" prefix="applied-to-grant" />
+        <button type="submit" class="primary">Save Application</button>
+      </form>
+    </>
+  }
+}
+
+
+function wonGrant(): AccordionItem {
+  return {
+    header: <>
+      <div class="with-icon">
+        <span class="icon" dangerouslySetInnerHTML={{ __html: svgGoldMedal }}></span>
+        <h2>Won a Grant</h2>
+      </div>
+    </>,
+    body: <>
+      <form class="form-card bg-white">
+        <div class="title has-icon">
+          <span class="icon" dangerouslySetInnerHTML={{ __html: svgGoldMedal }}></span>
+          <span>Won a Grant</span>
+        </div>
+
+        <Field type="select" label="Grant" name="type" options={examples} prefix="won-grant" />
+        <Field type="number" label="Awarded Amount ($ USD)" name="amount" prefix="won-grant" />
+        <Field type="textarea" label="Terms & Deliverables" name="terms" prefix="won-grant" />
+        <Field type="textarea" label="Restriction Guidelines" name="restrictions" prefix="won-grant" />
+        <Field type="textarea" label="Tranche Schedule" name="trancheSchedule" prefix="won-grant" />
         <button type="submit" class="primary">Save Application</button>
       </form>
     </>

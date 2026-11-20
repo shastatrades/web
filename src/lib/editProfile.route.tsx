@@ -3,10 +3,10 @@
 import { Hono } from 'hono'
 import { Field } from '@hono-form'
 import { css, Style } from 'hono/css'
+import { queryStaffPerson } from '@src/db'
 import { authRoute } from '@src/auth/authRoute'
 import { idAvatar, idEditYourProfile } from '@src/lib/dom'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
-import { queryStaffPerson, type QueryStaffPerson } from '@src/db'
 
 
 const avatarId = idAvatar()
@@ -19,7 +19,7 @@ export default new Hono()
     
     const { person, contact } = resAuthRoute.resSession.response
 
-    const resStaff: QueryStaffPerson = await queryStaffPerson(person.id)
+    const resStaff = await queryStaffPerson(person.id)
 
     return c.render(
       <>
@@ -35,10 +35,7 @@ export default new Hono()
               <div class="space-between">
                 <div class="sub-title">Please feel free to edit your personal settings</div>
                 <div class="chips">
-                  {
-                    resStaff?.positions && resStaff.positions
-                      .map((p) => <div className="chip" key={p.id}>{p.value}</div>)
-                  }
+                  { resStaff?.positions.map((p) => <div className="chip" key={p.id}>{p.value}</div>) }
                 </div>
               </div>
             </div>

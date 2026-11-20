@@ -30,7 +30,7 @@ function getBaseQuery() {
     .leftJoin(Person__StaffPosition, eq(Person__StaffPosition.personId, Person.id),)
     .leftJoin(StaffPosition, eq(StaffPosition.id, Person__StaffPosition.positionId),)
     .leftJoin(StaffEndReason, eq(StaffEndReason.id, Person__StaffPosition.endReasonId),)
-    .orderBy(Person.id, StaffPosition.value)
+    .orderBy(Person.id, StaffPosition.id)
 }
 
 
@@ -181,7 +181,7 @@ export async function queryStaffPersonSession(sessionId: number) {
 
 
 
-export type QueryStaffPerson = InferQuery<typeof queryStaffPerson> | undefined
+export type QueryStaffPerson = InferQuery<typeof queryStaffPerson>
 
 export type QueryStaffPeople = InferQuery<typeof queryStaffPeople>
 
