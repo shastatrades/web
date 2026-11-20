@@ -6,7 +6,7 @@ import { createRPC } from '@hono-api/be'
 import svgClose from '@src/svg/close.html?raw'
 import { onNavModalToggle } from '@hono-directives'
 import { datasetAuth, idAuthModal } from '@src/lib/dom'
-import { enumFinanceFormPages } from '@src/enums/financeFormPages.enum'
+import { enumFormPages } from '@src/enums/formPages.enum'
 
 
 export default (() => {
@@ -33,7 +33,7 @@ export default (() => {
         <a {...authDataset.attr('false')} href={rpc['sign-up'].$url().href} class="item anchor">Sign Up</a>
         <a {...authDataset.attr('true')} href={rpc.inbox[':variant?'].$url({ param: { variant: 'objective-activity' }}).href} class="item anchor">Inbox</a>
         <a {...authDataset.attr('true')} href={rpc['finance-notes'].$url().href} class="item anchor">Finance Notes</a>
-        <a {...authDataset.attr('true')} href={rpc['finance-forms'][':variant?'].$url({ param: { variant: enumFinanceFormPages.ids[0] } }).href} class="item anchor">Finance Forms</a>
+        <a {...authDataset.attr('true')} href={rpc.forms[':variant?'].$url({ param: { variant: enumFormPages.ids[0] } }).href} class="item anchor">Forms</a>
         <a {...authDataset.attr('true')} href={rpc['edit-profile'].$url().href} class="item anchor">Edit Your Profile</a>
         <a {...authDataset.attr('true')} href={rpc['sign-out'].$url().href} class="item anchor">Sign Out</a>
       </div>

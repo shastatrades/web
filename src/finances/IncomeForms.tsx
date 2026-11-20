@@ -1,10 +1,11 @@
-// web/src/finances/InflowForms.tsx
+// web/src/finances/IncomeForms.tsx
 
 import { Field } from '@hono-form'
 import type { FC } from 'hono/jsx'
 import svgSend from '@src/svg/send.html?raw'
 import svgMoney from '@src/svg/money.html?raw'
 import svgCheck from '@src/svg/check.html?raw'
+import svgClose from '@src/svg/close.html?raw'
 import svgPerson from '@src/svg/person.html?raw'
 import svgExplore from '@src/svg/explore.html?raw'
 import { enumFunds } from '@src/enums/funds.enum'
@@ -14,11 +15,10 @@ import svgGoldMedal from '@src/svg/goldMedal.html?raw'
 import { enumGrantFit } from '@src/enums/grantFit.enum'
 import { Accordion, AccordionItem } from '@hono-accordion'
 import { enumDonorTypes } from '@src/enums/donorTypes.enum'
-import svgCloseWithCircle from '@src/svg/closeWithCircle.html?raw'
 import { enumPledgeFrequencies } from '@src/enums/pledgeFrequencies.enum'
 
 
-export const InflowForms = (() => {
+export const IncomeForms = (() => {
   return <>
     <div data-directive={bindAccordionItems()} class="inflow-forms">
       <Accordion items={[
@@ -234,14 +234,14 @@ function lostGrant(): AccordionItem {
   return {
     header: <>
       <div class="with-icon">
-        <span class="icon" dangerouslySetInnerHTML={{ __html: svgCloseWithCircle }}></span>
+        <span class="icon" dangerouslySetInnerHTML={{ __html: svgClose }}></span>
         <h2>Lost a Grant</h2>
       </div>
     </>,
     body: <>
       <form class="form-card bg-white">
         <div class="title has-icon">
-          <span class="icon" dangerouslySetInnerHTML={{ __html: svgCloseWithCircle }}></span>
+          <span class="icon" dangerouslySetInnerHTML={{ __html: svgClose }}></span>
           <span>Lost a Grant</span>
         </div>
 

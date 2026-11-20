@@ -6,10 +6,10 @@ import { FormUtil } from '@hono-form'
 import { showToast } from '@hono-toast'
 import { tabsEvents } from '@hono-tabs'
 import { idActivity } from '@src/lib/dom'
-import formatTime from '@src/time/formatTime.directive'
 import { QueryObjective } from '@src/db/queryObjective'
 import type { QueryTags, QueryStaffPeople } from '@src/db'
 import { createRPC, onError, getParam } from '@hono-api/fe'
+import { runDirectivesOnDemand } from '@hono-directives-run'
 import { toggleModalDom, onConfirmEvents } from '@hono-modal'
 import { datasetId, classNameObjective, idObjectiveInUpModal, datasetObjectiveInUpShowModal } from '@src/lib/dom'
 
@@ -106,9 +106,9 @@ export class ObjectiveController {
       const res = await this.rpc.api['objective-activity'][':slug'].$get({ param: { slug } })
       elActivity.innerHTML = await res.text()
 
-      elActivity.querySelectorAll('time').forEach(elTime => {
-        formatTime(elTime, Number(elTime.textContent))
-      })
+      if (v.id === 'activity') {
+        runDirectivesOnDemand(elActivity)
+      }
     })
   }
 }

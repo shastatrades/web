@@ -6,6 +6,7 @@ import pdf from '@src/lib/pdf.route'
 import staff from '@src/api/staff.api'
 import home from '@src/home/home.route'
 import people from '@src/api/people.api'
+import formsApi from '@src/api/forms.api'
 import inboxApi from '@src/api/inbox.api'
 import signInApi from '@src/api/signIn.api'
 import signUpApi from '@src/api/signUp.api'
@@ -18,10 +19,10 @@ import mastery from '@src/mastery/mastery.route'
 import signInRoute from '@src/auth/signIn.route'
 import signUpRoute from '@src/auth/signUp.route'
 import { renderer } from '@src/renderer/renderer'
+import formsRoute from '@src/finances/forms.route'
 import signOutRoute from '@src/auth/signOut.route'
 import studyGuideApi from '@src/api/studyGuide.api'
 import magicLinkRoute from '@src/auth/magicLink.route'
-import financeFormsApi from '@src/api/financeForms.api'
 import transparencyApi from '@src/api/transparency.api'
 import serviceRequest from '@src/api/serviceRequest.api'
 import joinLeadership from '@src/api/joinLeadership.api'
@@ -31,7 +32,6 @@ import editProfileRoute from '@src/lib/editProfile.route'
 import financeNotes from '@src/finances/financeNotes.route'
 import objectiveActivity from '@src/api/objectiveActivity.api'
 import objectiveCommentApi from '@src/api/objectiveComment.api'
-import financeFormsRoute from '@src/finances/financeForms.route'
 import transparencyRoute from '@src/transparency/transparency.route'
 
 const app = new Hono()
@@ -41,8 +41,10 @@ const app = new Hono()
   .route('/api/tags', tags)
   .route('/mastery', mastery)
   .route('/api/staff', staff)
+  .route('/forms', formsRoute)
   .route('/inbox', inboxRoute)
   .route('/api/people', people)
+  .route('/api/forms', formsApi)
   .route('/api/inbox', inboxApi)
   .route('/sign-in', signInRoute)
   .route('/sign-up', signUpRoute)
@@ -59,9 +61,7 @@ const app = new Hono()
   .route('/api/study-guide', studyGuideApi)
   .route('/edit-profile', editProfileRoute)
   .route('/transparency', transparencyRoute)
-  .route('/finance-forms', financeFormsRoute)
   .route('/api/transparency', transparencyApi)
-  .route('/api/finance-forms', financeFormsApi)
   .route('/api/join-leadership', joinLeadership)
   .route('/api/join-newsletter', joinNewsletter)
   .route('/api/service-request', serviceRequest)

@@ -23,14 +23,14 @@ export const ObjectiveActivity = (({ res }) => {
       {res.items.map(item => <ObjectiveActivityItem item={item} rpc={rpc} />)}
     </div>
 
-    {
+    {/*
       res.nextCursor && <>
         <div class="feed-footer">
           <hr />
           <button type="button" class="primary">Load older activity</button>
         </div>
       </>
-    }
+    */}
   </>
 }) satisfies FC<{ res: QueryObjectiveActivity }>
 
@@ -303,6 +303,7 @@ const Anchor = (({ rpc, objective, objectiveBoardSlug }) => {
 
 
 const ColumnChanged = (({ rpc, objective, objectiveBoardSlug, actorName, fromColumnId, toColumnId, epoch }) => {
+  console.log('epoch:', epoch)
   return <>
     <div class="event">
       <div class="icon move" aria-hidden="true">→</div>

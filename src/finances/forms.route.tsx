@@ -7,44 +7,44 @@ import { validator } from '@hono-api/be'
 import { mdStyle } from '@src/md/mdStyle'
 import { authRoute } from '@src/auth/authRoute'
 import { onPageTabChange } from '@hono-directives'
-import { InflowForms } from '@src/finances/InflowForms'
+import { IncomeForms } from '@src/finances/IncomeForms'
+import { enumFormPages } from '@src/enums/formPages.enum'
 import { subPageHeroStyle } from '@src/lib/subPageHeroStyle'
-import { enumFinanceFormPages } from '@src/enums/financeFormPages.enum'
+import { formPagesValidator } from '@src/validators/formPages.validator'
 import { tabsStyle, PageTabs, type PageTabsParameters } from '@hono-tabs'
-import { financeFormPagesValidator } from '@src/validators/financeFormPages.validator'
 
 
 export default new Hono()
   .get(
     '/:variant?',
-    validator('param', financeFormPagesValidator.schema),
+    validator('param', formPagesValidator.schema),
     async (c) => {
       const resAuthRoute = await authRoute(c)
       if (!resAuthRoute.authenticated) return c.redirect(resAuthRoute.redirect)
 
-      const variant = c.req.valid('param').variant ?? enumFinanceFormPages.array[0]
+      const variant = c.req.valid('param').variant ?? enumFormPages.array[0]
 
-      const pages: PageTabsParameters['pages'] = enumFinanceFormPages.array.map(v => {
+      const pages: PageTabsParameters['pages'] = enumFormPages.array.map(v => {
         switch(v.id) {
-          case 'inflow': return { ...v, content: <InflowForms /> }
+          case 'income': return { ...v, content: <IncomeForms /> }
           default: return { ...v, content: <></> }
         }
       })
 
       return c.render(
         <>
-          <title>Shasta Trades · Finance Forms</title>
+          <title>Shasta Trades · Forms</title>
           <Style>{tabsStyle}</Style>
           <Style>{subPageHeroStyle}</Style>
           <Style>{mdStyle}</Style>
           <Style>{style}</Style>
 
-          <div data-directive={onPageTabChange('finances')} class="finance-forms">
+          <div data-directive={onPageTabChange('forms')} class="forms">
             <div class="sub-page-hero">
               <div class="bg"></div>
               <div class="header">
-                <h1>Finance Forms</h1>
-                <div class="sub-title">Our finance forms help our staff track what happened.</div>
+                <h1>Forms</h1>
+                <div class="sub-title">Help us track what's happening</div>
               </div>
             </div>
 
@@ -58,7 +58,7 @@ export default new Hono()
 
 
 export const style = css`
-  .finance-forms {
+  .forms {
 
     /** all accordions */
     .tabs__contents {
